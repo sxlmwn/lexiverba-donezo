@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
@@ -6,20 +6,36 @@ interface LoginPageProps {
 }
 
 export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode }) => {
+  const [parallax, setParallax] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const x = (e.clientX - window.innerWidth / 2) / 25;
+    const y = (e.clientY - window.innerHeight / 2) / 25;
+    setParallax({ x, y });
+  };
+
   return (
-    <div className={`min-h-screen flex flex-col items-center justify-center p-6 transition-colors duration-300 ${
-      isDarkMode ? 'bg-[#090d16] text-slate-100' : 'bg-[#f9f9ff] text-slate-900'
-    }`}>
+    <div
+      onMouseMove={handleMouseMove}
+      className={`min-h-screen flex flex-col items-center justify-center p-6 transition-colors duration-300 ${
+        isDarkMode ? 'bg-[#090d16] text-slate-100' : 'bg-[#f9f9ff] text-slate-900'
+      }`}
+    >
       <main className="w-full flex flex-col items-center justify-center">
-        {/* Main Card Container (Max-width 1100px matching login_unihedu_aligned) */}
+        {/* Main Card Container */}
         <div className={`relative w-full max-w-[1100px] flex flex-col md:flex-row rounded-[32px] shadow-2xl overflow-hidden border transition-all ${
           isDarkMode ? 'bg-[#131927] border-[#1f283d]' : 'bg-white border-slate-200/80'
         }`}>
           {/* Left Side: Visual / Branding (Desktop Only) */}
           <div className="hidden md:flex md:w-1/2 relative bg-[#004ac6] p-12 flex-col justify-between overflow-hidden text-white min-h-[620px]">
-            {/* Animated Background Ornament matching login_unihedu_aligned */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none">
-              <svg className="w-[150%] h-[150%] animate-[spin_60s_linear_infinite]" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            {/* Interactive Mouse Parallax Background Ornament */}
+            <div
+              className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none transition-transform duration-100 ease-out"
+              style={{
+                transform: `translate(${parallax.x}px, ${parallax.y}px)`,
+              }}
+            >
+              <svg className="w-[160%] h-[160%] animate-[spin_60s_linear_infinite]" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill="currentColor"
                   d="M44.7,-76.4C58.3,-69.2,70.1,-58.5,78.5,-45.3C86.9,-32.1,91.9,-16.1,90.4,-0.9C88.8,14.4,80.7,28.8,71.2,40.9C61.7,53,50.7,62.8,38.1,70.1C25.5,77.4,12.7,82.2,-0.9,83.7C-14.5,85.2,-29,83.4,-42,76.5C-54.9,69.5,-66.4,57.4,-73.9,43.5C-81.4,29.7,-85,14.8,-83.9,0.7C-82.7,-13.4,-76.8,-26.8,-68.2,-38.7C-59.5,-50.5,-48.1,-60.8,-35.3,-68.4C-22.5,-76,-11.2,-81,2.3,-84.9C15.8,-88.8,31.1,-83.6,44.7,-76.4Z"
@@ -180,7 +196,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
           </div>
         </div>
 
-        {/* Footer Metadata matching login_unihedu_aligned */}
+        {/* Footer Metadata */}
         <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 opacity-40 text-[10px] font-black uppercase tracking-widest text-slate-400 text-center">
           <span>Privacy Protocol v4.2</span>
           <span className="hidden sm:inline">•</span>
