@@ -8,7 +8,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
   const [seconds, setSeconds] = useState(5048); // 01:24:08
   const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [hoveredCard, setHoveredCard] = useState<number>(0);
-  const [chartType, setChartType] = useState<'bars' | 'line'>('bars'); // Toggle between Donezo Bars and Line Wave!
+  const [chartType, setChartType] = useState<'bars' | 'line'>('bars');
   const [timeframe, setTimeframe] = useState<'D' | 'W' | 'M'>('W');
 
   useEffect(() => {
@@ -33,39 +33,39 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
   const statCards = [
     {
       id: 0,
-      title: 'LIVE PROJECTS',
+      title: 'TOTAL PROJECTS',
       value: '24',
-      badge: '+12.4%',
-      subtext: '12.4% Increase vs last month',
-      icon: 'translate',
-      type: 'blue',
+      badge: '5 ▲ Increased',
+      subtext: '5 Increased from last month',
+      icon: 'north_east',
+      color: 'blue',
     },
     {
       id: 1,
-      title: 'PENDING REVIEWS',
-      value: '12',
-      badge: 'ACTIVE',
-      subtext: '12 Reviews in queue',
-      icon: 'pending_actions',
-      type: 'white',
+      title: 'ENDED PROJECTS',
+      value: '10',
+      badge: '6 ▲ Increased',
+      subtext: '6 Increased from last month',
+      icon: 'north_east',
+      color: 'emerald',
     },
     {
       id: 2,
-      title: 'DELIVERY MILESTONE',
-      value: '150',
-      badge: 'GOAL 100%',
-      subtext: '150 Batches delivered',
-      icon: 'check_circle',
-      type: 'white',
+      title: 'RUNNING PROJECTS',
+      value: '12',
+      badge: '2 ▲ Increased',
+      subtext: '2 Increased from last month',
+      icon: 'north_east',
+      color: 'amber',
     },
     {
       id: 3,
-      title: 'MONTHLY REVENUE',
-      value: '$42,910',
-      badge: 'TARGET GOAL',
-      subtext: 'Goal $50K target',
-      icon: 'payments',
-      type: 'dark',
+      title: 'PENDING PROJECT',
+      value: '2',
+      badge: 'On Discuss',
+      subtext: 'Currently in discussion',
+      icon: 'north_east',
+      color: 'rose',
     },
   ];
 
@@ -77,28 +77,40 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
     { name: 'Cross-Browser Testing', date: 'Due date: Dec 6, 2026', icon: 'devices', color: 'text-purple-500 bg-purple-50 dark:bg-purple-900/30' },
   ];
 
-  const liveNetworkLogs = [
+  const teamMembers = [
     {
       name: 'Alexandra Deff',
-      time: 'NOW',
-      action: "Updated 'Legal Contract - DE/EN' final proofs with SEO keywords.",
-      status: 'Proofing',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120',
-      statusColor: 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300',
+      task: 'Working on Github Project Repository',
+      status: 'Completed',
+      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'Edwin Adenike',
-      time: '45M AGO',
-      action: 'System auto-assigned 14,000 words for technical review.',
-      status: 'Queue',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120',
+      task: 'Working on Integrate User Authentication System',
+      status: 'In Progress',
       statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120',
+    },
+    {
+      name: 'Isaac Oluwatemilorun',
+      task: 'Working on Develop Search and Filter Functionality',
+      status: 'Pending',
+      statusColor: 'bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120',
+    },
+    {
+      name: 'David Oshodi',
+      task: 'Working on Responsive Layout for Homepage',
+      status: 'In Progress',
+      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300',
+      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120',
     },
   ];
 
   return (
     <div className="space-y-8">
-      {/* SVG Definitions for Hatched Patterns */}
+      {/* SVG Definitions for Hatched Pattern */}
       <svg className="absolute w-0 h-0 pointer-events-none">
         <defs>
           <pattern id="hatchedPattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -107,37 +119,32 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         </defs>
       </svg>
 
-      {/* Header */}
+      {/* Page Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="h-1.5 w-10 bg-blue-600 rounded-full"></div>
-            <span className="text-xs font-black text-blue-500 uppercase tracking-[0.25em]">OPERATIONAL DASHBOARD</span>
-          </div>
           <h1 className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            Overview <span className="text-blue-500 italic font-serif">&amp;</span> Performance
+            Dashboard
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-            Managing <span className={isDarkMode ? 'text-white font-black' : 'text-slate-900 font-black'}>1.2M words</span> this month across 12 active language pairs with elite certification levels.
+            Plan, prioritize, and accomplish your tasks with ease.
           </p>
         </div>
 
-        {/* Pill Action Buttons */}
+        {/* Pill Buttons */}
         <div className="flex items-center gap-3">
-          <button className={`flex items-center gap-2 px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 ${
-            isDarkMode ? 'bg-slate-800 border-slate-700 text-white hover:bg-slate-700' : 'bg-slate-200/80 border-slate-300 text-slate-900 hover:bg-slate-300/80'
-          }`}>
-            <span className="material-symbols-outlined text-[18px]">file_download</span>
-            Export Report
+          <button className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover">
+            <span className="text-base font-bold">+</span>
+            Add Project
           </button>
-          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-black text-xs rounded-full shadow-lg shadow-blue-700/30 transition-all hover:scale-105 active:scale-95">
-            <span className="material-symbols-outlined text-[18px]">add_circle</span>
-            New Project
+          <button className={`px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover ${
+            isDarkMode ? 'bg-[#182032] border-[#26324a] text-white hover:bg-slate-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
+          }`}>
+            Import Data
           </button>
         </div>
       </div>
 
-      {/* Top 4 Interactive Expandable Stat Cards */}
+      {/* Top 4 Interactive Expandable Stat Cards (Smooth Corner Fix + Float Shadow) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((card) => {
           const isExpanded = hoveredCard === card.id;
@@ -146,13 +153,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             <div
               key={card.id}
               onMouseEnter={() => setHoveredCard(card.id)}
-              className={`p-6 rounded-[2.5rem] cursor-pointer hover-vibrate transition-all duration-500 relative overflow-hidden flex flex-col justify-between ${
+              className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-500 relative overflow-hidden flex flex-col justify-between ${
                 isExpanded
-                  ? 'bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white shadow-2xl scale-[1.03] z-20 border-2 border-blue-500'
-                  : card.type === 'dark'
-                  ? 'bg-slate-900 text-white border-2 border-slate-800 shadow-md'
+                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl scale-[1.03] z-20 border-2 border-blue-500'
                   : isDarkMode
-                  ? 'bg-slate-800/80 border-2 border-slate-700/80 text-white shadow-sm hover:shadow-lg'
+                  ? 'bg-[#131927] border-2 border-[#1f283d] text-white shadow-sm hover:shadow-lg'
                   : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
               }`}
             >
@@ -170,20 +175,27 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 </span>
                 <div
                   className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-                    isExpanded ? 'bg-white/20 text-white' : isDarkMode ? 'bg-slate-700 text-slate-300' : 'bg-blue-50 text-blue-600'
+                    isExpanded ? 'bg-white/20 text-white' : isDarkMode ? 'bg-slate-800 text-slate-300' : 'border border-slate-200 text-slate-600'
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[18px]">{card.icon}</span>
+                  <span className="material-symbols-outlined text-[18px]">north_east</span>
                 </div>
               </div>
 
               <div className="mt-8 relative z-10">
-                <div className="text-4xl lg:text-5xl font-black tracking-tight mb-2">
+                <div className="text-5xl font-black tracking-tight mb-3">
                   {card.value}
                 </div>
-                <div className={`text-[10px] font-black uppercase tracking-widest ${
-                  isExpanded ? 'text-blue-100' : 'text-slate-400'
-                }`}>
+
+                <div
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black transition-colors ${
+                    isExpanded
+                      ? 'bg-white/20 text-white'
+                      : isDarkMode
+                      ? 'bg-slate-800 text-slate-300 border border-slate-700'
+                      : 'bg-slate-100 text-slate-600 border border-slate-200/60'
+                  }`}
+                >
                   {card.badge}
                 </div>
               </div>
@@ -192,22 +204,22 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         })}
       </div>
 
-      {/* Middle Grid: Project Analytics (With Bars/Line Toggle) + Donezo Project Progress 180° Arc Meter */}
+      {/* Middle Grid: Project Analytics (With Bars/Line Toggle) + Donezo Project Progress Arc Meter */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Project Analytics Card with Chart Type Toggle (Bars vs Line Wave) - 7 Cols */}
-        <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 shadow-sm relative overflow-hidden flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-slate-800/80 border-slate-700/80 text-white' : 'bg-white border-slate-200/80 text-slate-900'
+        <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 float-shadow smooth-card flex flex-col justify-between transition-colors ${
+          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
               <h3 className="text-xl font-black">Project Analytics</h3>
-              <p className="text-xs text-slate-400 font-bold">Wordcount throughput & active project volume</p>
+              <p className="text-xs text-slate-400 font-bold">Wordcount throughput &amp; active project volume</p>
             </div>
 
-            {/* Controls: Chart Type Toggle (Bars/Line) + Timeframe */}
+            {/* Controls */}
             <div className="flex items-center gap-3">
               {/* Bars vs Line Toggle */}
-              <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
+              <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#1a2336] border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
                 <button
                   onClick={() => setChartType('bars')}
                   className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 ${
@@ -233,14 +245,14 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               </div>
 
               {/* Timeframe D/W/M */}
-              <div className={`flex p-1 rounded-full ${isDarkMode ? 'bg-slate-700' : 'bg-slate-100'}`}>
+              <div className={`flex p-1 rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
                 {(['D', 'W', 'M'] as const).map((t) => (
                   <button
                     key={t}
                     onClick={() => setTimeframe(t)}
                     className={`px-3 py-1 text-xs font-black rounded-full transition-colors ${
                       timeframe === t
-                        ? 'bg-blue-700 text-white shadow-md'
+                        ? 'bg-blue-600 text-white shadow-md'
                         : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
@@ -251,7 +263,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             </div>
           </div>
 
-          {/* Render Selected Chart: Donezo Capsule Bars OR Smooth Line Wave */}
+          {/* Render Selected Chart */}
           {chartType === 'bars' ? (
             <div className="h-60 flex items-end justify-between px-2 gap-3 relative">
               {[
@@ -265,19 +277,19 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               ].map((bar, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center h-full justify-end relative group">
                   {bar.badge && (
-                    <div className="absolute -top-7 bg-blue-700 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-md animate-bounce">
+                    <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-md animate-bounce">
                       {bar.badge}
                     </div>
                   )}
                   <div
-                    className={`w-full rounded-full transition-all duration-500 hover:scale-105 ${
+                    className={`w-full rounded-full transition-all duration-300 hover:scale-105 ${
                       bar.type === 'dark'
-                        ? 'bg-blue-900'
+                        ? 'bg-blue-900 dark:bg-blue-600'
                         : bar.type === 'solid'
-                        ? 'bg-blue-700'
+                        ? 'bg-blue-600'
                         : bar.type === 'active'
                         ? 'bg-blue-500'
-                        : 'bg-blue-100 border-2 border-dashed border-blue-300 dark:bg-slate-700 dark:border-slate-600'
+                        : 'bg-blue-100 border-2 border-dashed border-blue-300 dark:bg-slate-800 dark:border-slate-700'
                     }`}
                     style={{ height: bar.height }}
                   ></div>
@@ -293,9 +305,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 </svg>
                 <svg className="w-full h-full text-blue-500 relative z-10" preserveAspectRatio="none" viewBox="0 0 800 200">
                   <path d="M0,150 C50,140 100,170 150,120 S250,40 300,80 S400,100 450,50 S550,20 600,60 S700,90 800,40" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round"></path>
-                  <circle cx="150" cy="120" r="6" fill={isDarkMode ? '#0f172a' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
-                  <circle cx="450" cy="50" r="6" fill={isDarkMode ? '#0f172a' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
-                  <circle cx="800" cy="40" r="6" fill={isDarkMode ? '#0f172a' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="150" cy="120" r="6" fill={isDarkMode ? '#0e121e' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="450" cy="50" r="6" fill={isDarkMode ? '#0e121e' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="800" cy="40" r="6" fill={isDarkMode ? '#0e121e' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
                 </svg>
               </div>
               <div className="flex justify-between mt-3 text-xs font-black text-slate-400 px-2">
@@ -311,16 +323,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           )}
         </div>
 
-        {/* Donezo Project Progress 180° Semi-Circle Arc Meter (Positioned at Top-Right!) - 5 Cols */}
-        <div className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 shadow-sm flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-slate-800/80 border-slate-700/80 text-white' : 'bg-white border-slate-200/80 text-slate-900'
+        {/* Donezo Project Progress 180° Arc Meter (Animate & Float on Hover) - 5 Cols */}
+        <div className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
+          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-xl font-black">Project Progress</h3>
             <span className="text-xs font-bold text-blue-500 bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full">LIVE SLA</span>
           </div>
 
-          <div className="relative w-64 h-40 mx-auto flex flex-col items-center justify-end my-4">
+          <div className="relative w-64 h-40 mx-auto flex flex-col items-center justify-end my-4 cursor-pointer group">
             <svg className="w-64 h-40" viewBox="0 0 200 110">
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
@@ -337,6 +349,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 strokeDasharray="251.3"
                 strokeDashoffset="80"
                 strokeLinecap="butt"
+                className="transition-all duration-700"
               />
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
@@ -346,10 +359,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 strokeDasharray="251.3"
                 strokeDashoffset="148"
                 strokeLinecap="round"
+                className="transition-all duration-700 animate-arc"
               />
             </svg>
 
-            <div className="absolute bottom-2 flex flex-col items-center justify-center">
+            <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
               <span className={`text-5xl font-black tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                 41%
               </span>
@@ -358,10 +372,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           </div>
 
           <div className={`flex justify-between items-center text-xs font-bold border-t pt-4 mt-2 ${
-            isDarkMode ? 'border-slate-700 text-slate-300' : 'border-slate-100 text-slate-600'
+            isDarkMode ? 'border-slate-800 text-slate-300' : 'border-slate-100 text-slate-600'
           }`}>
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-full bg-blue-700"></span>
+              <span className="w-3 h-3 rounded-full bg-blue-600"></span>
               <span>Completed</span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -369,84 +383,98 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               <span>In Progress</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-3.5 h-3.5 border-2 border-dashed border-slate-400 rounded-sm bg-slate-100 dark:bg-slate-700"></span>
+              <span className="w-3.5 h-3.5 border-2 border-dashed border-slate-400 rounded-sm bg-slate-100 dark:bg-slate-800"></span>
               <span>Pending</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Grid: Live Network + Hard Deadlines + Reminders + Time Tracker */}
+      {/* Bottom Grid: Team Collaboration, Project List, Hard Deadlines, Reminders, Time Tracker */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Live Network Logs - 7 Cols */}
-        <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 shadow-sm flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-slate-800/80 border-slate-700/80 text-white' : 'bg-white border-slate-200/80 text-slate-900'
+        {/* Team Collaboration - 5 Cols */}
+        <div className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-colors ${
+          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-black">Live Network</h3>
-            <button className="text-xs font-black text-blue-500 hover:underline flex items-center gap-1">
-              ALL LOGS →
+            <h3 className="text-lg font-black">Team Collaboration</h3>
+            <button className={`px-4 py-1.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 ${
+              isDarkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-800'
+            }`}>
+              + Add Member
             </button>
           </div>
 
           <div className="space-y-4">
-            {liveNetworkLogs.map((log, idx) => (
-              <div key={idx} className={`flex items-center gap-4 p-4 rounded-2xl border transition-colors ${
-                isDarkMode ? 'border-slate-700/60 hover:bg-slate-700/40' : 'border-slate-100 hover:bg-slate-50'
+            {teamMembers.map((m, idx) => (
+              <div key={idx} className={`flex items-center justify-between p-3 rounded-2xl border transition-all hover:translate-x-1 ${
+                isDarkMode ? 'border-slate-800 hover:bg-slate-800/60' : 'border-slate-100 hover:bg-slate-50'
               }`}>
-                <img src={log.avatar} alt={log.name} className="w-12 h-12 rounded-full object-cover" />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="font-black text-sm">{log.name}</span>
-                    <span className="text-[10px] font-black text-slate-400">{log.time}</span>
+                <div className="flex items-center gap-3">
+                  <img src={m.avatar} alt={m.name} className="w-10 h-10 rounded-full object-cover" />
+                  <div>
+                    <div className="font-extrabold text-xs">{m.name}</div>
+                    <div className="text-[10px] text-slate-400 font-medium">{m.task}</div>
                   </div>
-                  <p className="text-xs text-slate-400 font-medium mt-0.5 truncate">{log.action}</p>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase ${log.statusColor}`}>
-                  {log.status}
+                <span className={`px-3 py-1 text-[10px] font-black rounded-full uppercase ${m.statusColor}`}>
+                  {m.status}
                 </span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Hard Deadlines + Mobile App CTA - 5 Cols */}
-        <div className="lg:col-span-5 space-y-8">
-          {/* Hard Deadlines */}
-          <div className={`p-8 rounded-[2.5rem] border-2 shadow-sm space-y-4 transition-colors ${
-            isDarkMode ? 'bg-slate-800/80 border-slate-700/80 text-white' : 'bg-white border-slate-200/80 text-slate-900'
-          }`}>
-            <h3 className="text-xl font-black mb-4">Hard Deadlines</h3>
-            <div className="p-4 rounded-2xl bg-red-500/10 border-l-8 border-red-500">
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-[10px] font-black text-red-500 uppercase tracking-widest">URGENT • 2H REMAINING</span>
-                <span className="material-symbols-outlined text-red-500 text-[18px]">priority_high</span>
-              </div>
-              <h4 className="font-black text-sm">Legal Contract - DE/EN</h4>
-              <p className="text-xs text-slate-400 font-medium mt-1">Reviewer: Alex Sterling</p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-blue-500/10 border-l-8 border-blue-500">
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">STANDARD • TOMORROW</span>
-              </div>
-              <h4 className="font-black text-sm">Financial Report - ES/EN</h4>
-              <p className="text-xs text-slate-400 font-medium mt-1">In-house validation pending...</p>
-            </div>
+        {/* Project List - 4 Cols */}
+        <div className={`lg:col-span-4 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-colors ${
+          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+        }`}>
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-black">Project</h3>
+            <button className={`px-4 py-1.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 ${
+              isDarkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-800'
+            }`}>
+              + New
+            </button>
           </div>
 
-          {/* Productivity Unbound Mobile CTA */}
-          <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-            <span className="text-[10px] font-black bg-blue-600 text-white px-3 py-1 rounded-full uppercase tracking-wider">Mobile Access</span>
-            <h3 className="text-2xl font-black leading-tight mt-3 mb-2">
-              Productivity <br />
-              <span className="text-blue-500">Unbound.</span>
-            </h3>
-            <p className="text-xs text-slate-400 font-medium mb-6">Approve batches and monitor linguistics on the fly.</p>
-            <button className="w-full py-4 bg-blue-700 hover:bg-blue-800 text-white font-black text-xs rounded-full shadow-lg shadow-blue-700/30 transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95">
-              <span className="material-symbols-outlined text-[18px]">install_mobile</span>
-              GET THE MOBILE APP
-            </button>
+          <div className="space-y-4">
+            {projectList.map((p, idx) => (
+              <div key={idx} className={`flex items-center gap-3 p-2 rounded-2xl transition-all hover:translate-x-1 ${
+                isDarkMode ? 'hover:bg-slate-800/60' : 'hover:bg-slate-50'
+              }`}>
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${p.color}`}>
+                  <span className="material-symbols-outlined text-[20px]">{p.icon}</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-extrabold text-xs truncate">{p.name}</div>
+                  <div className="text-[10px] text-slate-400 font-medium">{p.date}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Hard Deadlines (Polished Donezo Rows with Hover Slide-Right) - 3 Cols */}
+        <div className={`lg:col-span-3 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card space-y-4 transition-colors ${
+          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+        }`}>
+          <h3 className="text-lg font-black mb-4">Hard Deadlines</h3>
+          <div className="p-4 rounded-2xl bg-red-500/10 border-l-8 border-red-500 transition-all hover:translate-x-2 cursor-pointer">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-[10px] font-black text-red-500 uppercase tracking-widest">URGENT • 2H</span>
+              <span className="material-symbols-outlined text-red-500 text-[18px]">priority_high</span>
+            </div>
+            <h4 className="font-black text-xs">Legal Contract - DE/EN</h4>
+            <p className="text-[10px] text-slate-400 font-medium mt-1">Reviewer: Alex Sterling</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-blue-500/10 border-l-8 border-blue-500 transition-all hover:translate-x-2 cursor-pointer">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">HIGH • TODAY</span>
+            </div>
+            <h4 className="font-black text-xs">Financial Report - ES/EN</h4>
+            <p className="text-[10px] text-slate-400 font-medium mt-1">Validation pending</p>
           </div>
         </div>
       </div>
@@ -454,8 +482,8 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       {/* Donezo Reminders + Time Tracker Row */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Reminders - 7 Cols */}
-        <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 shadow-sm flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-slate-800/80 border-slate-700/80 text-white' : 'bg-white border-slate-200/80 text-slate-900'
+        <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
+          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div>
             <h3 className="text-lg font-black mb-4">Reminders</h3>
@@ -469,14 +497,14 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             </div>
           </div>
 
-          <button className="w-full max-w-sm mt-6 py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-black text-xs rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-700/30 transition-all hover:scale-105 active:scale-95">
+          <button className="w-full max-w-sm mt-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover">
             <span className="material-symbols-outlined text-[18px]">videocam</span>
             Start Meeting
           </button>
         </div>
 
         {/* Time Tracker - 5 Cols */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-blue-900 via-slate-900 to-slate-950 text-white p-8 rounded-[2.5rem] shadow-2xl flex flex-col justify-between relative overflow-hidden">
+        <div className="lg:col-span-5 bg-gradient-to-br from-blue-900 via-slate-900 to-slate-950 text-white p-8 rounded-[2.5rem] shadow-2xl float-shadow float-hover smooth-card flex flex-col justify-between relative overflow-hidden">
           <div className="absolute -right-8 -bottom-8 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl"></div>
           <div>
             <h3 className="text-xs font-extrabold text-blue-200 uppercase tracking-widest mb-4">Time Tracker</h3>
