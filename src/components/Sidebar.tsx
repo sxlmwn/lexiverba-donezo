@@ -25,7 +25,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
   return (
     <aside
       className={`fixed left-0 top-0 h-full w-72 border-r-2 z-50 flex flex-col justify-between p-6 transition-colors duration-300 ${
-        isDarkMode ? 'bg-[#0e121e] border-[#1e2638] text-slate-100' : 'bg-white border-slate-200/80 text-slate-900'
+        isDarkMode ? 'bg-[#121215] border-[#27272a] text-slate-100' : 'bg-white border-slate-200/80 text-slate-900'
       }`}
     >
       <div>
@@ -53,13 +53,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
                   <button
                     key={item.id}
                     onClick={() => setCurrentTab(item.id)}
-                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold transition-all text-xs relative group ${
+                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold transition-all text-xs relative group cursor-pointer ${
                       isActive
                         ? isDarkMode
-                          ? 'bg-[#182032] text-white font-extrabold shadow-sm'
+                          ? 'bg-[#1e1e24] text-white font-extrabold shadow-sm'
                           : 'bg-slate-100 text-slate-900 font-extrabold shadow-2xs'
                         : isDarkMode
-                        ? 'text-slate-400 hover:bg-[#151c2c] hover:text-white'
+                        ? 'text-slate-400 hover:bg-[#18181c] hover:text-white'
                         : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
                     }`}
                   >
@@ -85,7 +85,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
                       <span className={`text-[10px] font-black px-2 py-0.5 rounded-md ${
                         isActive
                           ? 'bg-blue-600 text-white'
-                          : 'bg-slate-200/80 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                          : 'bg-slate-200/80 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300'
                       }`}>
                         {item.badge}
                       </span>
@@ -108,13 +108,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
                   <button
                     key={item.id}
                     onClick={() => setCurrentTab(item.id)}
-                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold transition-all text-xs relative group ${
+                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold transition-all text-xs relative group cursor-pointer ${
                       isActive
                         ? isDarkMode
-                          ? 'bg-[#182032] text-white font-extrabold shadow-sm'
+                          ? 'bg-[#1e1e24] text-white font-extrabold shadow-sm'
                           : 'bg-slate-100 text-slate-900 font-extrabold shadow-2xs'
                         : isDarkMode
-                        ? 'text-slate-400 hover:bg-[#151c2c] hover:text-white'
+                        ? 'text-slate-400 hover:bg-[#18181c] hover:text-white'
                         : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
                     }`}
                   >
@@ -142,8 +142,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
         </div>
       </div>
 
-      {/* Donezo Reference Dark Mobile App Card */}
-      <div className="bg-[#131927] p-5 rounded-[2rem] text-white shadow-xl space-y-3 relative overflow-hidden group border border-[#20293d] float-hover">
+      {/* Donezo Dark Mobile App Card */}
+      <div className="bg-[#18181b] p-5 rounded-[2rem] text-white shadow-xl space-y-3 relative overflow-hidden group border border-[#27272a] float-hover">
         <div className="absolute -right-6 -bottom-6 opacity-10 text-white pointer-events-none group-hover:scale-110 transition-transform">
           <span className="material-symbols-outlined text-[100px]">smartphone</span>
         </div>
@@ -157,7 +157,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
           <p className="text-[10px] text-slate-400 font-medium mt-0.5">Get easy in another way</p>
         </div>
 
-        <button className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-black rounded-xl transition-all shadow-md hover:scale-105 active:scale-95">
+        <button className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-black rounded-xl transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer">
           Download
         </button>
       </div>

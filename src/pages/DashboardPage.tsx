@@ -98,33 +98,32 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       name: 'Alexandra Deff',
       task: 'Working on Github Project Repository',
       status: 'Completed',
-      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300',
+      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'Edwin Adenike',
       task: 'Working on Integrate User Authentication System',
       status: 'In Progress',
-      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300',
+      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'Isaac Oluwatemilorun',
       task: 'Working on Develop Search and Filter Functionality',
       status: 'Pending',
-      statusColor: 'bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300',
+      statusColor: 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300',
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'David Oshodi',
       task: 'Working on Responsive Layout for Homepage',
       status: 'In Progress',
-      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300',
+      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120',
     },
   ];
 
-  // Total Arc Perimeter: π * 80 = 251.32
   const totalArcLength = 251.32;
   const completedDashOffset = totalArcLength - (totalArcLength * (gaugePercent / 100));
   const inProgressDashOffset = totalArcLength - (totalArcLength * 0.70);
@@ -135,7 +134,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       <svg className="absolute w-0 h-0 pointer-events-none">
         <defs>
           <pattern id="hatchedPattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-            <line x1="0" y1="0" x2="0" y2="8" stroke={isDarkMode ? '#334155' : '#cbd5e1'} strokeWidth="3" />
+            <line x1="0" y1="0" x2="0" y2="8" stroke={isDarkMode ? '#3f3f46' : '#cbd5e1'} strokeWidth="3" />
           </pattern>
         </defs>
       </svg>
@@ -146,7 +145,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           <h1 className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Dashboard
           </h1>
-          <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+          <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
             Plan, prioritize, and accomplish your tasks with ease.
           </p>
         </div>
@@ -158,7 +157,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             Add Project
           </button>
           <button className={`px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
-            isDarkMode ? 'bg-[#182032] border-[#26324a] text-white hover:bg-slate-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
+            isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
           }`}>
             Import Data
           </button>
@@ -178,7 +177,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 isExpanded
                   ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
                   : isDarkMode
-                  ? 'bg-[#111726] border-2 border-[#1e2638] text-white shadow-sm hover:shadow-lg'
+                  ? 'bg-[#18181b] border-2 border-[#27272a] text-white shadow-sm hover:shadow-lg'
                   : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
               }`}
             >
@@ -190,13 +189,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
               <div className="flex justify-between items-start relative z-10">
                 <span className={`text-xs font-black uppercase tracking-widest ${
-                  isExpanded ? 'text-blue-100' : isDarkMode ? 'text-slate-300' : 'text-slate-700'
+                  isExpanded ? 'text-blue-100' : isDarkMode ? 'text-zinc-300' : 'text-slate-700'
                 }`}>
                   {card.title}
                 </span>
                 <div
                   className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-                    isExpanded ? 'bg-white/20 text-white' : isDarkMode ? 'bg-slate-800 text-slate-300' : 'border border-slate-200 text-slate-600'
+                    isExpanded ? 'bg-white/20 text-white' : isDarkMode ? 'bg-zinc-800 text-zinc-300' : 'border border-slate-200 text-slate-600'
                   }`}
                 >
                   <span className="material-symbols-outlined text-[18px]">north_east</span>
@@ -213,7 +212,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                     isExpanded
                       ? 'bg-white/20 text-white'
                       : isDarkMode
-                      ? 'bg-slate-800 text-slate-300 border border-slate-700'
+                      ? 'bg-zinc-800 text-zinc-300 border border-zinc-700'
                       : 'bg-slate-100 text-slate-600 border border-slate-200/60'
                   }`}
                 >
@@ -225,26 +224,26 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         })}
       </div>
 
-      {/* Middle Grid: Project Analytics + Donezo Project Progress Arc Gauge */}
+      {/* Middle Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Project Analytics Card - 7 Cols */}
         <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 float-shadow smooth-card flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
               <h3 className="text-xl font-black">Project Analytics</h3>
-              <p className="text-xs text-slate-400 font-bold">Wordcount throughput &amp; active project volume</p>
+              <p className="text-xs text-zinc-400 font-bold">Wordcount throughput &amp; active project volume</p>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#1a2334] border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
+              <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#27272a] border-zinc-700' : 'bg-slate-100 border-slate-200'}`}>
                 <button
                   onClick={() => setChartType('bars')}
                   className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                     chartType === 'bars'
                       ? 'bg-blue-600 text-white shadow-md'
-                      : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                      : 'text-zinc-400 hover:text-zinc-200'
                   }`}
                 >
                   <span className="material-symbols-outlined text-[16px]">bar_chart</span>
@@ -255,7 +254,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                   className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                     chartType === 'line'
                       ? 'bg-blue-600 text-white shadow-md'
-                      : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                      : 'text-zinc-400 hover:text-zinc-200'
                   }`}
                 >
                   <span className="material-symbols-outlined text-[16px]">show_chart</span>
@@ -263,7 +262,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 </button>
               </div>
 
-              <div className={`flex p-1 rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
+              <div className={`flex p-1 rounded-full ${isDarkMode ? 'bg-zinc-800' : 'bg-slate-100'}`}>
                 {(['D', 'W', 'M'] as const).map((t) => (
                   <button
                     key={t}
@@ -271,7 +270,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                     className={`px-3 py-1 text-xs font-black rounded-full transition-colors cursor-pointer ${
                       timeframe === t
                         ? 'bg-blue-600 text-white shadow-md'
-                        : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                        : 'text-zinc-400 hover:text-zinc-200'
                     }`}
                   >
                     {t}
@@ -302,19 +301,19 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                     className={`w-full rounded-full transition-all duration-300 hover:scale-105 ${
                       bar.type === 'dark'
                         ? isDarkMode
-                          ? 'bg-blue-600'
+                          ? 'bg-zinc-100 text-slate-900'
                           : 'bg-blue-900'
                         : bar.type === 'solid'
                         ? 'bg-blue-600'
                         : bar.type === 'active'
                         ? 'bg-blue-500'
                         : isDarkMode
-                        ? 'bg-slate-800 border-2 border-dashed border-slate-700'
+                        ? 'bg-zinc-800 border-2 border-dashed border-zinc-700'
                         : 'bg-blue-50 border-2 border-dashed border-blue-200'
                     }`}
                     style={{ height: bar.height }}
                   ></div>
-                  <span className="text-xs font-bold text-slate-400 mt-3">{bar.day}</span>
+                  <span className="text-xs font-bold text-zinc-400 mt-3">{bar.day}</span>
                 </div>
               ))}
             </div>
@@ -326,12 +325,12 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 </svg>
                 <svg className="w-full h-full text-blue-500 relative z-10" preserveAspectRatio="none" viewBox="0 0 800 200">
                   <path d="M0,150 C50,140 100,170 150,120 S250,40 300,80 S400,100 450,50 S550,20 600,60 S700,90 800,40" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round"></path>
-                  <circle cx="150" cy="120" r="6" fill={isDarkMode ? '#070b14' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
-                  <circle cx="450" cy="50" r="6" fill={isDarkMode ? '#070b14' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
-                  <circle cx="800" cy="40" r="6" fill={isDarkMode ? '#070b14' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="150" cy="120" r="6" fill={isDarkMode ? '#09090b' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="450" cy="50" r="6" fill={isDarkMode ? '#09090b' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="800" cy="40" r="6" fill={isDarkMode ? '#09090b' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
                 </svg>
               </div>
-              <div className="flex justify-between mt-3 text-xs font-black text-slate-400 px-2">
+              <div className="flex justify-between mt-3 text-xs font-black text-zinc-400 px-2">
                 <span>MON</span>
                 <span>TUE</span>
                 <span>WED</span>
@@ -344,11 +343,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           )}
         </div>
 
-        {/* Donezo Project Progress Arc Gauge with Rounded Light Blue End & Interactive Hover Count-Up Animation - 5 Cols */}
+        {/* Project Progress Arc Gauge - 5 Cols */}
         <div
           onMouseEnter={triggerGaugeAnimation}
           className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
-            isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+            isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}
         >
           <div className="flex items-center justify-between mb-2">
@@ -358,7 +357,6 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
           <div className="relative w-64 h-40 mx-auto flex flex-col items-center justify-end my-4 cursor-pointer group">
             <svg className="w-64 h-40" viewBox="0 0 200 110">
-              {/* Layer 1: Pending Segment (Hatched Pattern) */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
@@ -367,7 +365,6 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 strokeLinecap="round"
               />
 
-              {/* Layer 2: In Progress Segment (Sky Blue #38bdf8 with ROUND END strokeLinecap="round") */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
@@ -379,7 +376,6 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 className="transition-all duration-700 ease-out"
               />
 
-              {/* Layer 3: Completed Segment (Solid Dark Blue #004ac6 with ROUND END strokeLinecap="round") */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
@@ -392,17 +388,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               />
             </svg>
 
-            {/* Interactive Count-Up Counter */}
             <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
               <span className={`text-5xl font-black tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                 {gaugePercent}%
               </span>
-              <span className="text-xs font-bold text-slate-400 mt-1">Project Ended</span>
+              <span className="text-xs font-bold text-zinc-400 mt-1">Project Ended</span>
             </div>
           </div>
 
           <div className={`flex justify-between items-center text-xs font-bold border-t pt-4 mt-2 ${
-            isDarkMode ? 'border-slate-800 text-slate-300' : 'border-slate-100 text-slate-600'
+            isDarkMode ? 'border-zinc-800 text-zinc-300' : 'border-slate-100 text-slate-600'
           }`}>
             <div className="flex items-center gap-1.5">
               <span className="w-3 h-3 rounded-full bg-[#004ac6]"></span>
@@ -413,7 +408,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               <span>In Progress</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-3.5 h-3.5 border-2 border-dashed border-slate-400 rounded-sm bg-slate-100 dark:bg-slate-800"></span>
+              <span className="w-3.5 h-3.5 border-2 border-dashed border-zinc-400 rounded-sm bg-slate-100 dark:bg-zinc-800"></span>
               <span>Pending</span>
             </div>
           </div>
@@ -424,12 +419,12 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Team Collaboration - 5 Cols */}
         <div className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-colors ${
-          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-black">Team Collaboration</h3>
             <button className={`px-4 py-1.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 cursor-pointer ${
-              isDarkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-800'
+              isDarkMode ? 'bg-zinc-800 border-zinc-700 text-white' : 'bg-white border-slate-300 text-slate-800'
             }`}>
               + Add Member
             </button>
@@ -438,13 +433,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           <div className="space-y-4">
             {teamMembers.map((m, idx) => (
               <div key={idx} className={`flex items-center justify-between p-3 rounded-2xl border transition-all hover:translate-x-1 ${
-                isDarkMode ? 'border-slate-800 hover:bg-slate-800/60' : 'border-slate-100 hover:bg-slate-50'
+                isDarkMode ? 'border-zinc-800 hover:bg-zinc-800/60' : 'border-slate-100 hover:bg-slate-50'
               }`}>
                 <div className="flex items-center gap-3">
                   <img src={m.avatar} alt={m.name} className="w-10 h-10 rounded-full object-cover" />
                   <div>
                     <div className="font-extrabold text-xs">{m.name}</div>
-                    <div className="text-[10px] text-slate-400 font-medium">{m.task}</div>
+                    <div className="text-[10px] text-zinc-400 font-medium">{m.task}</div>
                   </div>
                 </div>
                 <span className={`px-3 py-1 text-[10px] font-black rounded-full uppercase ${m.statusColor}`}>
@@ -457,12 +452,12 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
         {/* Project List - 4 Cols */}
         <div className={`lg:col-span-4 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-colors ${
-          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-black">Project</h3>
             <button className={`px-4 py-1.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 cursor-pointer ${
-              isDarkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-800'
+              isDarkMode ? 'bg-zinc-800 border-zinc-700 text-white' : 'bg-white border-slate-300 text-slate-800'
             }`}>
               + New
             </button>
@@ -471,14 +466,14 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           <div className="space-y-4">
             {projectList.map((p, idx) => (
               <div key={idx} className={`flex items-center gap-3 p-2 rounded-2xl transition-all hover:translate-x-1 ${
-                isDarkMode ? 'hover:bg-slate-800/60' : 'hover:bg-slate-50'
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
               }`}>
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${p.color}`}>
                   <span className="material-symbols-outlined text-[20px]">{p.icon}</span>
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="font-extrabold text-xs truncate">{p.name}</div>
-                  <div className="text-[10px] text-slate-400 font-medium">{p.date}</div>
+                  <div className="text-[10px] text-zinc-400 font-medium">{p.date}</div>
                 </div>
               </div>
             ))}
@@ -487,7 +482,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
         {/* Hard Deadlines - 3 Cols */}
         <div className={`lg:col-span-3 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card space-y-4 transition-colors ${
-          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <h3 className="text-lg font-black mb-4">Hard Deadlines</h3>
           <div className="p-4 rounded-2xl bg-red-500/10 border-l-8 border-red-500 transition-all hover:translate-x-2 cursor-pointer">
@@ -496,7 +491,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               <span className="material-symbols-outlined text-red-500 text-[18px]">priority_high</span>
             </div>
             <h4 className="font-black text-xs">Legal Contract - DE/EN</h4>
-            <p className="text-[10px] text-slate-400 font-medium mt-1">Reviewer: Alex Sterling</p>
+            <p className="text-[10px] text-zinc-400 font-medium mt-1">Reviewer: Alex Sterling</p>
           </div>
 
           <div className="p-4 rounded-2xl bg-blue-500/10 border-l-8 border-blue-500 transition-all hover:translate-x-2 cursor-pointer">
@@ -504,7 +499,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">HIGH • TODAY</span>
             </div>
             <h4 className="font-black text-xs">Financial Report - ES/EN</h4>
-            <p className="text-[10px] text-slate-400 font-medium mt-1">Validation pending</p>
+            <p className="text-[10px] text-zinc-400 font-medium mt-1">Validation pending</p>
           </div>
         </div>
       </div>
@@ -513,7 +508,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Reminders - 7 Cols */}
         <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div>
             <h3 className="text-lg font-black mb-4">Reminders</h3>
@@ -521,7 +516,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               <h4 className="text-2xl font-black leading-snug">
                 Meeting with Arc Company
               </h4>
-              <p className="text-xs text-slate-400 font-semibold mt-2">
+              <p className="text-xs text-zinc-400 font-semibold mt-2">
                 Time : 02.00 pm - 04.00 pm
               </p>
             </div>
@@ -534,10 +529,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         </div>
 
         {/* Time Tracker - 5 Cols */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-blue-900 via-slate-900 to-slate-950 text-white p-8 rounded-[2.5rem] shadow-2xl float-shadow float-hover smooth-card flex flex-col justify-between relative overflow-hidden">
+        <div className="lg:col-span-5 bg-gradient-to-br from-zinc-900 via-zinc-950 to-black text-white p-8 rounded-[2.5rem] shadow-2xl float-shadow float-hover smooth-card flex flex-col justify-between relative overflow-hidden border border-zinc-800">
           <div className="absolute -right-8 -bottom-8 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl"></div>
           <div>
-            <h3 className="text-xs font-extrabold text-blue-200 uppercase tracking-widest mb-4">Time Tracker</h3>
+            <h3 className="text-xs font-extrabold text-zinc-400 uppercase tracking-widest mb-4">Time Tracker</h3>
             <div className="text-4xl font-black font-mono tracking-wider mt-4">
               {formatTime(seconds)}
             </div>

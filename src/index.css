@@ -14,16 +14,17 @@
   }
 }
 
+/* True Neutral Charcoal / Pitch Black Dark Mode */
 .dark {
-  background-color: #070b14 !important;
-  color: #f8fafc !important;
+  background-color: #09090b !important;
+  color: #fafafa !important;
 }
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24 !important;
 }
 
-/* Fix jagged card corners on transform */
+/* Fix card corners on transform */
 .smooth-card {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -39,7 +40,7 @@
 }
 
 .dark .float-shadow {
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), 0 4px 16px -2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), 0 4px 16px -2px rgba(0, 0, 0, 0.5);
 }
 
 /* Float Lift Micro-interaction without border-radius breakage */
@@ -54,5 +55,5 @@
 
 .dark .float-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 48px -10px rgba(37, 99, 235, 0.25), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.8), 0 8px 24px -4px rgba(0, 0, 0, 0.6);
 }

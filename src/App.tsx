@@ -51,7 +51,7 @@ export function App() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
-      isDarkMode ? 'bg-[#070b14] text-slate-100 dark' : 'bg-[#f4f7ff] text-[#001033]'
+      isDarkMode ? 'bg-[#09090b] text-slate-100 dark' : 'bg-[#f4f7ff] text-[#001033]'
     }`}>
       {/* Fixed Sidebar */}
       <Sidebar currentTab={currentTab} setCurrentTab={setCurrentTab} isDarkMode={isDarkMode} />
