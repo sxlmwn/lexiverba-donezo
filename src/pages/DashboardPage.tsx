@@ -11,6 +11,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
   const [chartType, setChartType] = useState<'bars' | 'line'>('bars');
   const [timeframe, setTimeframe] = useState<'D' | 'W' | 'M'>('W');
 
+  // Interactive Animated Gauge State (Count up from 0 to 41% on hover)
+  const [gaugePercent, setGaugePercent] = useState<number>(41);
+  const [isGaugeAnimating, setIsGaugeAnimating] = useState<boolean>(false);
+
   useEffect(() => {
     let interval: any = null;
     if (isTimerRunning) {
@@ -22,6 +26,26 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
     }
     return () => clearInterval(interval);
   }, [isTimerRunning]);
+
+  const triggerGaugeAnimation = () => {
+    if (isGaugeAnimating) return;
+    setIsGaugeAnimating(true);
+    setGaugePercent(0);
+
+    let start = 0;
+    const target = 41;
+    const duration = 1000; // 1 second
+    const stepTime = Math.abs(Math.floor(duration / target));
+
+    const timer = setInterval(() => {
+      start += 1;
+      setGaugePercent(start);
+      if (start >= target) {
+        clearInterval(timer);
+        setIsGaugeAnimating(false);
+      }
+    }, stepTime);
+  };
 
   const formatTime = (totalSecs: number) => {
     const hrs = Math.floor(totalSecs / 3600);
@@ -100,6 +124,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
     },
   ];
 
+  // Total Arc Perimeter: π * 80 = 251.32
+  const totalArcLength = 251.32;
+  const completedDashOffset = totalArcLength - (totalArcLength * (gaugePercent / 100));
+  const inProgressDashOffset = totalArcLength - (totalArcLength * 0.70);
+
   return (
     <div className="space-y-8">
       {/* SVG Definitions for Hatched Pattern */}
@@ -136,7 +165,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         </div>
       </div>
 
-      {/* Top 4 Interactive Expandable Stat Cards (Smooth Masking Fix) */}
+      {/* Top 4 Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((card) => {
           const isExpanded = hoveredCard === card.id;
@@ -196,9 +225,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         })}
       </div>
 
-      {/* Middle Grid: Project Analytics (With Light/Dark Mode Corrected Colors) + Donezo Project Progress Arc Gauge */}
+      {/* Middle Grid: Project Analytics + Donezo Project Progress Arc Gauge */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Project Analytics Card (Light/Dark Mode Corrected Colors) - 7 Cols */}
+        {/* Project Analytics Card - 7 Cols */}
         <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 float-shadow smooth-card flex flex-col justify-between transition-colors ${
           isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
@@ -208,9 +237,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               <p className="text-xs text-slate-400 font-bold">Wordcount throughput &amp; active project volume</p>
             </div>
 
-            {/* Controls */}
             <div className="flex items-center gap-3">
-              {/* Bars vs Line Toggle */}
               <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#1a2334] border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
                 <button
                   onClick={() => setChartType('bars')}
@@ -236,7 +263,6 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 </button>
               </div>
 
-              {/* Timeframe D/W/M */}
               <div className={`flex p-1 rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
                 {(['D', 'W', 'M'] as const).map((t) => (
                   <button
@@ -255,7 +281,6 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             </div>
           </div>
 
-          {/* Donezo Bar Chart with Light Mode Specific Colors */}
           {chartType === 'bars' ? (
             <div className="h-60 flex items-end justify-between px-2 gap-3 relative">
               {[
@@ -319,10 +344,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           )}
         </div>
 
-        {/* Donezo Project Progress 180° Arc Gauge (Exact Donezo Multi-Segment Arc Math) - 5 Cols */}
-        <div className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
-        }`}>
+        {/* Donezo Project Progress Arc Gauge with Rounded Light Blue End & Interactive Hover Count-Up Animation - 5 Cols */}
+        <div
+          onMouseEnter={triggerGaugeAnimation}
+          className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
+            isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          }`}
+        >
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-xl font-black">Project Progress</h3>
             <span className="text-xs font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full">LIVE SLA</span>
@@ -330,43 +358,44 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
           <div className="relative w-64 h-40 mx-auto flex flex-col items-center justify-end my-4 cursor-pointer group">
             <svg className="w-64 h-40" viewBox="0 0 200 110">
-              {/* Layer 1: Pending Segment (Hatched Pattern covering entire 180° arc) */}
+              {/* Layer 1: Pending Segment (Hatched Pattern) */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
                 stroke="url(#hatchedPattern)"
                 strokeWidth="28"
-                strokeLinecap="butt"
+                strokeLinecap="round"
               />
 
-              {/* Layer 2: In Progress Segment (Sky Blue #38bdf8 covering up to 70%) */}
+              {/* Layer 2: In Progress Segment (Sky Blue #38bdf8 with ROUND END strokeLinecap="round") */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
                 stroke="#38bdf8"
                 strokeWidth="28"
                 strokeDasharray="251.32"
-                strokeDashoffset="75.4"
-                strokeLinecap="butt"
-                className="transition-all duration-700"
+                strokeDashoffset={inProgressDashOffset}
+                strokeLinecap="round"
+                className="transition-all duration-700 ease-out"
               />
 
-              {/* Layer 3: Completed Segment (Solid Dark Blue #004ac6 covering 41%) */}
+              {/* Layer 3: Completed Segment (Solid Dark Blue #004ac6 with ROUND END strokeLinecap="round") */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
                 stroke="#004ac6"
                 strokeWidth="28"
                 strokeDasharray="251.32"
-                strokeDashoffset="148.28"
+                strokeDashoffset={completedDashOffset}
                 strokeLinecap="round"
-                className="transition-all duration-700"
+                className="transition-all duration-700 ease-out"
               />
             </svg>
 
+            {/* Interactive Count-Up Counter */}
             <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
               <span className={`text-5xl font-black tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                41%
+                {gaugePercent}%
               </span>
               <span className="text-xs font-bold text-slate-400 mt-1">Project Ended</span>
             </div>
