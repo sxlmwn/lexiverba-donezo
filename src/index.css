@@ -15,7 +15,7 @@
 }
 
 .dark {
-  background-color: #090d16 !important;
+  background-color: #070b14 !important;
   color: #f8fafc !important;
 }
 
@@ -23,12 +23,14 @@
   font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24 !important;
 }
 
-/* Fix jagged corners on transform */
+/* Fix jagged card corners on transform */
 .smooth-card {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-font-smoothing: subpixel-antialiased;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  border-radius: 2.5rem;
 }
 
 /* Deep Soft Floating Shadows */
@@ -40,26 +42,17 @@
   box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), 0 4px 16px -2px rgba(0, 0, 0, 0.3);
 }
 
-/* Float Lift Micro-interaction */
+/* Float Lift Micro-interaction without border-radius breakage */
 .float-hover {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .float-hover:hover {
-  transform: translateY(-6px) scale(1.01);
+  transform: translateY(-4px);
   box-shadow: 0 20px 48px -10px rgba(0, 74, 198, 0.15), 0 8px 24px -4px rgba(0, 0, 0, 0.06);
 }
 
 .dark .float-hover:hover {
-  transform: translateY(-6px) scale(1.01);
+  transform: translateY(-4px);
   box-shadow: 0 20px 48px -10px rgba(37, 99, 235, 0.25), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
-}
-
-@keyframes arcPulse {
-  0%, 100% { stroke-width: 28px; filter: drop-shadow(0 0 2px rgba(0, 74, 198, 0.2)); }
-  50% { stroke-width: 30px; filter: drop-shadow(0 0 8px rgba(0, 74, 198, 0.5)); }
-}
-
-.animate-arc {
-  animation: arcPulse 3s ease-in-out infinite;
 }

@@ -36,45 +36,37 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       title: 'TOTAL PROJECTS',
       value: '24',
       badge: '5 ▲ Increased',
-      subtext: '5 Increased from last month',
       icon: 'north_east',
-      color: 'blue',
     },
     {
       id: 1,
       title: 'ENDED PROJECTS',
       value: '10',
       badge: '6 ▲ Increased',
-      subtext: '6 Increased from last month',
       icon: 'north_east',
-      color: 'emerald',
     },
     {
       id: 2,
       title: 'RUNNING PROJECTS',
       value: '12',
       badge: '2 ▲ Increased',
-      subtext: '2 Increased from last month',
       icon: 'north_east',
-      color: 'amber',
     },
     {
       id: 3,
       title: 'PENDING PROJECT',
       value: '2',
       badge: 'On Discuss',
-      subtext: 'Currently in discussion',
       icon: 'north_east',
-      color: 'rose',
     },
   ];
 
   const projectList = [
-    { name: 'Develop API Endpoints', date: 'Due date: Nov 26, 2026', icon: 'code', color: 'text-blue-500 bg-blue-50 dark:bg-blue-900/30' },
-    { name: 'Onboarding Flow', date: 'Due date: Nov 28, 2026', icon: 'account_tree', color: 'text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30' },
-    { name: 'Build Dashboard', date: 'Due date: Nov 30, 2026', icon: 'dashboard', color: 'text-sky-500 bg-sky-50 dark:bg-sky-900/30' },
-    { name: 'Optimize Page Load', date: 'Due date: Dec 5, 2026', icon: 'speed', color: 'text-amber-500 bg-amber-50 dark:bg-amber-900/30' },
-    { name: 'Cross-Browser Testing', date: 'Due date: Dec 6, 2026', icon: 'devices', color: 'text-purple-500 bg-purple-50 dark:bg-purple-900/30' },
+    { name: 'Develop API Endpoints', date: 'Due date: Nov 26, 2026', icon: 'code', color: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' },
+    { name: 'Onboarding Flow', date: 'Due date: Nov 28, 2026', icon: 'account_tree', color: 'text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30' },
+    { name: 'Build Dashboard', date: 'Due date: Nov 30, 2026', icon: 'dashboard', color: 'text-sky-600 bg-sky-50 dark:bg-sky-900/30' },
+    { name: 'Optimize Page Load', date: 'Due date: Dec 5, 2026', icon: 'speed', color: 'text-amber-600 bg-amber-50 dark:bg-amber-900/30' },
+    { name: 'Cross-Browser Testing', date: 'Due date: Dec 6, 2026', icon: 'devices', color: 'text-purple-600 bg-purple-50 dark:bg-purple-900/30' },
   ];
 
   const teamMembers = [
@@ -114,7 +106,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       <svg className="absolute w-0 h-0 pointer-events-none">
         <defs>
           <pattern id="hatchedPattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-            <line x1="0" y1="0" x2="0" y2="8" stroke={isDarkMode ? '#475569' : '#cbd5e1'} strokeWidth="3" />
+            <line x1="0" y1="0" x2="0" y2="8" stroke={isDarkMode ? '#334155' : '#cbd5e1'} strokeWidth="3" />
           </pattern>
         </defs>
       </svg>
@@ -132,11 +124,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
         {/* Pill Buttons */}
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover">
+          <button className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
             <span className="text-base font-bold">+</span>
             Add Project
           </button>
-          <button className={`px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover ${
+          <button className={`px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
             isDarkMode ? 'bg-[#182032] border-[#26324a] text-white hover:bg-slate-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
           }`}>
             Import Data
@@ -144,7 +136,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         </div>
       </div>
 
-      {/* Top 4 Interactive Expandable Stat Cards (Smooth Corner Fix + Float Shadow) */}
+      {/* Top 4 Interactive Expandable Stat Cards (Smooth Masking Fix) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((card) => {
           const isExpanded = hoveredCard === card.id;
@@ -153,16 +145,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             <div
               key={card.id}
               onMouseEnter={() => setHoveredCard(card.id)}
-              className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-500 relative overflow-hidden flex flex-col justify-between ${
+              className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
                 isExpanded
-                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl scale-[1.03] z-20 border-2 border-blue-500'
+                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
                   : isDarkMode
-                  ? 'bg-[#131927] border-2 border-[#1f283d] text-white shadow-sm hover:shadow-lg'
+                  ? 'bg-[#111726] border-2 border-[#1e2638] text-white shadow-sm hover:shadow-lg'
                   : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
               }`}
             >
               {isExpanded && (
-                <div className="absolute -right-6 -top-6 opacity-10 text-white pointer-events-none transition-all duration-700">
+                <div className="absolute -right-6 -top-6 opacity-10 text-white pointer-events-none transition-all duration-500">
                   <span className="material-symbols-outlined text-[160px]">{card.icon}</span>
                 </div>
               )}
@@ -204,11 +196,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         })}
       </div>
 
-      {/* Middle Grid: Project Analytics (With Bars/Line Toggle) + Donezo Project Progress Arc Meter */}
+      {/* Middle Grid: Project Analytics (With Light/Dark Mode Corrected Colors) + Donezo Project Progress Arc Gauge */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Project Analytics Card with Chart Type Toggle (Bars vs Line Wave) - 7 Cols */}
+        {/* Project Analytics Card (Light/Dark Mode Corrected Colors) - 7 Cols */}
         <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 float-shadow smooth-card flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
@@ -219,13 +211,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             {/* Controls */}
             <div className="flex items-center gap-3">
               {/* Bars vs Line Toggle */}
-              <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#1a2336] border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
+              <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#1a2334] border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
                 <button
                   onClick={() => setChartType('bars')}
-                  className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 ${
+                  className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                     chartType === 'bars'
                       ? 'bg-blue-600 text-white shadow-md'
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                   }`}
                 >
                   <span className="material-symbols-outlined text-[16px]">bar_chart</span>
@@ -233,10 +225,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 </button>
                 <button
                   onClick={() => setChartType('line')}
-                  className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 ${
+                  className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                     chartType === 'line'
                       ? 'bg-blue-600 text-white shadow-md'
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                   }`}
                 >
                   <span className="material-symbols-outlined text-[16px]">show_chart</span>
@@ -250,10 +242,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                   <button
                     key={t}
                     onClick={() => setTimeframe(t)}
-                    className={`px-3 py-1 text-xs font-black rounded-full transition-colors ${
+                    className={`px-3 py-1 text-xs font-black rounded-full transition-colors cursor-pointer ${
                       timeframe === t
                         ? 'bg-blue-600 text-white shadow-md'
-                        : 'text-slate-400 hover:text-slate-200'
+                        : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                     }`}
                   >
                     {t}
@@ -263,7 +255,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             </div>
           </div>
 
-          {/* Render Selected Chart */}
+          {/* Donezo Bar Chart with Light Mode Specific Colors */}
           {chartType === 'bars' ? (
             <div className="h-60 flex items-end justify-between px-2 gap-3 relative">
               {[
@@ -284,12 +276,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                   <div
                     className={`w-full rounded-full transition-all duration-300 hover:scale-105 ${
                       bar.type === 'dark'
-                        ? 'bg-blue-900 dark:bg-blue-600'
+                        ? isDarkMode
+                          ? 'bg-blue-600'
+                          : 'bg-blue-900'
                         : bar.type === 'solid'
                         ? 'bg-blue-600'
                         : bar.type === 'active'
                         ? 'bg-blue-500'
-                        : 'bg-blue-100 border-2 border-dashed border-blue-300 dark:bg-slate-800 dark:border-slate-700'
+                        : isDarkMode
+                        ? 'bg-slate-800 border-2 border-dashed border-slate-700'
+                        : 'bg-blue-50 border-2 border-dashed border-blue-200'
                     }`}
                     style={{ height: bar.height }}
                   ></div>
@@ -305,9 +301,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 </svg>
                 <svg className="w-full h-full text-blue-500 relative z-10" preserveAspectRatio="none" viewBox="0 0 800 200">
                   <path d="M0,150 C50,140 100,170 150,120 S250,40 300,80 S400,100 450,50 S550,20 600,60 S700,90 800,40" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round"></path>
-                  <circle cx="150" cy="120" r="6" fill={isDarkMode ? '#0e121e' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
-                  <circle cx="450" cy="50" r="6" fill={isDarkMode ? '#0e121e' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
-                  <circle cx="800" cy="40" r="6" fill={isDarkMode ? '#0e121e' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="150" cy="120" r="6" fill={isDarkMode ? '#070b14' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="450" cy="50" r="6" fill={isDarkMode ? '#070b14' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
+                  <circle cx="800" cy="40" r="6" fill={isDarkMode ? '#070b14' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
                 </svg>
               </div>
               <div className="flex justify-between mt-3 text-xs font-black text-slate-400 px-2">
@@ -323,17 +319,18 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           )}
         </div>
 
-        {/* Donezo Project Progress 180° Arc Meter (Animate & Float on Hover) - 5 Cols */}
+        {/* Donezo Project Progress 180° Arc Gauge (Exact Donezo Multi-Segment Arc Math) - 5 Cols */}
         <div className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-xl font-black">Project Progress</h3>
-            <span className="text-xs font-bold text-blue-500 bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full">LIVE SLA</span>
+            <span className="text-xs font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full">LIVE SLA</span>
           </div>
 
           <div className="relative w-64 h-40 mx-auto flex flex-col items-center justify-end my-4 cursor-pointer group">
             <svg className="w-64 h-40" viewBox="0 0 200 110">
+              {/* Layer 1: Pending Segment (Hatched Pattern covering entire 180° arc) */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
@@ -341,25 +338,29 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                 strokeWidth="28"
                 strokeLinecap="butt"
               />
+
+              {/* Layer 2: In Progress Segment (Sky Blue #38bdf8 covering up to 70%) */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
                 stroke="#38bdf8"
                 strokeWidth="28"
-                strokeDasharray="251.3"
-                strokeDashoffset="80"
+                strokeDasharray="251.32"
+                strokeDashoffset="75.4"
                 strokeLinecap="butt"
                 className="transition-all duration-700"
               />
+
+              {/* Layer 3: Completed Segment (Solid Dark Blue #004ac6 covering 41%) */}
               <path
                 d="M 20 100 A 80 80 0 0 1 180 100"
                 fill="none"
                 stroke="#004ac6"
                 strokeWidth="28"
-                strokeDasharray="251.3"
-                strokeDashoffset="148"
+                strokeDasharray="251.32"
+                strokeDashoffset="148.28"
                 strokeLinecap="round"
-                className="transition-all duration-700 animate-arc"
+                className="transition-all duration-700"
               />
             </svg>
 
@@ -375,11 +376,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             isDarkMode ? 'border-slate-800 text-slate-300' : 'border-slate-100 text-slate-600'
           }`}>
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-full bg-blue-600"></span>
+              <span className="w-3 h-3 rounded-full bg-[#004ac6]"></span>
               <span>Completed</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-full bg-sky-400"></span>
+              <span className="w-3 h-3 rounded-full bg-[#38bdf8]"></span>
               <span>In Progress</span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -390,15 +391,15 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
         </div>
       </div>
 
-      {/* Bottom Grid: Team Collaboration, Project List, Hard Deadlines, Reminders, Time Tracker */}
+      {/* Bottom Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Team Collaboration - 5 Cols */}
         <div className={`lg:col-span-5 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-colors ${
-          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-black">Team Collaboration</h3>
-            <button className={`px-4 py-1.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 ${
+            <button className={`px-4 py-1.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 cursor-pointer ${
               isDarkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-800'
             }`}>
               + Add Member
@@ -427,11 +428,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
         {/* Project List - 4 Cols */}
         <div className={`lg:col-span-4 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-colors ${
-          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-black">Project</h3>
-            <button className={`px-4 py-1.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 ${
+            <button className={`px-4 py-1.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 cursor-pointer ${
               isDarkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-800'
             }`}>
               + New
@@ -455,9 +456,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           </div>
         </div>
 
-        {/* Hard Deadlines (Polished Donezo Rows with Hover Slide-Right) - 3 Cols */}
+        {/* Hard Deadlines - 3 Cols */}
         <div className={`lg:col-span-3 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card space-y-4 transition-colors ${
-          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <h3 className="text-lg font-black mb-4">Hard Deadlines</h3>
           <div className="p-4 rounded-2xl bg-red-500/10 border-l-8 border-red-500 transition-all hover:translate-x-2 cursor-pointer">
@@ -483,7 +484,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Reminders - 7 Cols */}
         <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
-          isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
+          isDarkMode ? 'bg-[#111726] border-[#1e2638] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div>
             <h3 className="text-lg font-black mb-4">Reminders</h3>
@@ -497,7 +498,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             </div>
           </div>
 
-          <button className="w-full max-w-sm mt-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover">
+          <button className="w-full max-w-sm mt-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
             <span className="material-symbols-outlined text-[18px]">videocam</span>
             Start Meeting
           </button>
@@ -516,7 +517,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           <div className="flex items-center gap-4 mt-8">
             <button
               onClick={() => setIsTimerRunning(!isTimerRunning)}
-              className="w-12 h-12 rounded-full bg-white text-slate-900 flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
+              className="w-12 h-12 rounded-full bg-white text-slate-900 flex items-center justify-center hover:scale-105 transition-transform shadow-lg cursor-pointer"
             >
               <span className="material-symbols-outlined text-[24px]">
                 {isTimerRunning ? 'pause' : 'play_arrow'}
@@ -524,7 +525,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             </button>
             <button
               onClick={() => setSeconds(0)}
-              className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
+              className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:scale-105 transition-transform shadow-lg cursor-pointer"
             >
               <span className="material-symbols-outlined text-[20px]">stop</span>
             </button>
