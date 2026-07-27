@@ -4,9 +4,17 @@ interface SidebarProps {
   currentTab: string;
   setCurrentTab: (tab: string) => void;
   isDarkMode: boolean;
+  isCollapsed: boolean;
+  toggleCollapse: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isDarkMode }) => {
+export const Sidebar: React.FC<SidebarProps> = ({
+  currentTab,
+  setCurrentTab,
+  isDarkMode,
+  isCollapsed,
+  toggleCollapse,
+}) => {
   const menuNav = [
     { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
     { id: 'documents', label: 'Documents', icon: 'description', badge: '12+' },
@@ -24,36 +32,62 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
 
   return (
     <aside
-      className={`fixed left-0 top-0 h-full w-72 border-r-2 z-50 flex flex-col justify-between p-6 transition-colors duration-300 ${
+      className={`fixed left-0 top-0 h-full border-r-2 z-50 flex flex-col justify-between transition-all duration-300 ease-in-out ${
+        isCollapsed ? 'w-20 p-3' : 'w-72 p-6'
+      } ${
         isDarkMode ? 'bg-[#121215] border-[#27272a] text-slate-100' : 'bg-white border-slate-200/80 text-slate-900'
       }`}
     >
       <div>
-        {/* Donezo Top Logo */}
-        <div className="flex items-center gap-3 mb-8 px-2">
-          <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-600/30">
-            <span className="material-symbols-outlined text-[24px]">translate</span>
+        {/* Donezo Top Logo & Collapse Toggle */}
+        <div className={`flex items-center justify-between mb-8 ${isCollapsed ? 'px-1' : 'px-2'}`}>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-600/30 shrink-0">
+              <span className="material-symbols-outlined text-[24px]">translate</span>
+            </div>
+            {!isCollapsed && (
+              <span className={`font-black text-2xl tracking-tight transition-opacity duration-200 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                LexiVerba
+              </span>
+            )}
           </div>
-          <span className={`font-black text-2xl tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            LexiVerba
-          </span>
+
+          {/* Minimize / Maximize Toggle Button */}
+          <button
+            onClick={toggleCollapse}
+            className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all shadow-sm cursor-pointer hover:scale-110 active:scale-95 ${
+              isDarkMode
+                ? 'bg-[#18181b] border-zinc-700 text-slate-300 hover:bg-zinc-800 hover:text-white'
+                : 'bg-slate-100 border-slate-200 text-slate-600 hover:bg-white hover:text-slate-900'
+            }`}
+            title={isCollapsed ? 'Maximize Sidebar (Expand)' : 'Minimize Sidebar (Collapse)'}
+          >
+            <span className="material-symbols-outlined text-[18px]">
+              {isCollapsed ? 'chevron_right' : 'chevron_left'}
+            </span>
+          </button>
         </div>
 
         {/* Navigation Groups */}
         <div className="space-y-6">
           {/* MENU Group */}
           <div>
-            <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-3 mb-3">
-              MENU
-            </div>
-            <div className="space-y-1">
+            {!isCollapsed && (
+              <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-3 mb-3">
+                MENU
+              </div>
+            )}
+            <div className="space-y-1.5">
               {menuNav.map((item) => {
                 const isActive = currentTab === item.id;
                 return (
                   <button
                     key={item.id}
                     onClick={() => setCurrentTab(item.id)}
-                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold transition-all text-xs relative group cursor-pointer ${
+                    title={isCollapsed ? item.label : undefined}
+                    className={`w-full flex items-center ${
+                      isCollapsed ? 'justify-center py-3' : 'justify-between px-3.5 py-3'
+                    } rounded-2xl font-bold transition-all text-xs relative group cursor-pointer ${
                       isActive
                         ? isDarkMode
                           ? 'bg-[#1e1e24] text-white font-extrabold shadow-sm'
@@ -63,30 +97,34 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
                         : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
                     }`}
                   >
-                    {/* Active Left Indicator Bar */}
+                    {/* Active Indicator Bar */}
                     {isActive && (
-                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-blue-600 rounded-r-full shadow-sm"></span>
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-blue-600 rounded-r-full shadow-sm shadow-blue-500/50"></span>
                     )}
 
-                    <div className="flex items-center gap-3.5 pl-1">
-                      <span className={`material-symbols-outlined text-[20px] transition-colors ${
-                        isActive
-                          ? 'text-blue-500'
-                          : isDarkMode
-                          ? 'text-slate-500 group-hover:text-slate-300'
-                          : 'text-slate-400 group-hover:text-slate-700'
-                      }`}>
+                    <div className={`flex items-center gap-3.5 ${isCollapsed ? 'justify-center' : 'pl-1'}`}>
+                      <span
+                        className={`material-symbols-outlined text-[22px] transition-transform duration-200 group-hover:scale-110 ${
+                          isActive
+                            ? 'text-blue-500'
+                            : isDarkMode
+                            ? 'text-slate-500 group-hover:text-slate-300'
+                            : 'text-slate-400 group-hover:text-slate-700'
+                        }`}
+                      >
                         {item.icon}
                       </span>
-                      <span>{item.label}</span>
+                      {!isCollapsed && <span>{item.label}</span>}
                     </div>
 
-                    {item.badge && (
-                      <span className={`text-[10px] font-black px-2 py-0.5 rounded-md ${
-                        isActive
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-slate-200/80 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300'
-                      }`}>
+                    {!isCollapsed && item.badge && (
+                      <span
+                        className={`text-[10px] font-black px-2 py-0.5 rounded-md ${
+                          isActive
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-slate-200/80 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300'
+                        }`}
+                      >
                         {item.badge}
                       </span>
                     )}
@@ -98,17 +136,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
 
           {/* GENERAL Group */}
           <div>
-            <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-3 mb-3">
-              GENERAL
-            </div>
-            <div className="space-y-1">
+            {!isCollapsed && (
+              <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-3 mb-3">
+                GENERAL
+              </div>
+            )}
+            <div className="space-y-1.5">
               {generalNav.map((item) => {
                 const isActive = currentTab === item.id;
                 return (
                   <button
                     key={item.id}
                     onClick={() => setCurrentTab(item.id)}
-                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl font-bold transition-all text-xs relative group cursor-pointer ${
+                    title={isCollapsed ? item.label : undefined}
+                    className={`w-full flex items-center ${
+                      isCollapsed ? 'justify-center py-3' : 'justify-between px-3.5 py-3'
+                    } rounded-2xl font-bold transition-all text-xs relative group cursor-pointer ${
                       isActive
                         ? isDarkMode
                           ? 'bg-[#1e1e24] text-white font-extrabold shadow-sm'
@@ -119,20 +162,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
                     }`}
                   >
                     {isActive && (
-                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-blue-600 rounded-r-full shadow-sm"></span>
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-blue-600 rounded-r-full shadow-sm shadow-blue-500/50"></span>
                     )}
 
-                    <div className="flex items-center gap-3.5 pl-1">
-                      <span className={`material-symbols-outlined text-[20px] transition-colors ${
-                        isActive
-                          ? 'text-blue-500'
-                          : isDarkMode
-                          ? 'text-slate-500 group-hover:text-slate-300'
-                          : 'text-slate-400 group-hover:text-slate-700'
-                      }`}>
+                    <div className={`flex items-center gap-3.5 ${isCollapsed ? 'justify-center' : 'pl-1'}`}>
+                      <span
+                        className={`material-symbols-outlined text-[22px] transition-transform duration-200 group-hover:scale-110 ${
+                          isActive
+                            ? 'text-blue-500'
+                            : isDarkMode
+                            ? 'text-slate-500 group-hover:text-slate-300'
+                            : 'text-slate-400 group-hover:text-slate-700'
+                        }`}
+                      >
                         {item.icon}
                       </span>
-                      <span>{item.label}</span>
+                      {!isCollapsed && <span>{item.label}</span>}
                     </div>
                   </button>
                 );
@@ -140,26 +185,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, setCurrentTab, isD
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Donezo Dark Mobile App Card */}
-      <div className="bg-[#18181b] p-5 rounded-[2rem] text-white shadow-xl space-y-3 relative overflow-hidden group border border-[#27272a] float-hover">
-        <div className="absolute -right-6 -bottom-6 opacity-10 text-white pointer-events-none group-hover:scale-110 transition-transform">
-          <span className="material-symbols-outlined text-[100px]">smartphone</span>
-        </div>
-
-        <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center shadow-md">
-          <span className="material-symbols-outlined text-[18px]">smartphone</span>
-        </div>
-
-        <div>
-          <h4 className="font-extrabold text-sm leading-snug">Download our Mobile App</h4>
-          <p className="text-[10px] text-slate-400 font-medium mt-0.5">Get easy in another way</p>
-        </div>
-
-        <button className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-black rounded-xl transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer">
-          Download
-        </button>
       </div>
     </aside>
   );

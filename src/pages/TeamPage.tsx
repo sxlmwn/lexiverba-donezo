@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 interface TeamPageProps {
   isDarkMode?: boolean;
+  onItemClick?: (item: { title: string; subtitle: string; icon?: string; badge?: string }) => void;
 }
 
-export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false }) => {
+export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemClick }) => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const teamMembers = [
@@ -196,9 +197,10 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false }) => {
                   key={member.id}
                   onMouseEnter={() => setHoveredCard(member.id)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  className={`p-6 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-all duration-300 relative flex flex-col justify-between ${
+                  onClick={() => onItemClick && onItemClick({ title: member.name, subtitle: `${member.role} • ${member.availability}`, icon: member.badge, badge: 'LINGUIST PROFILE' })}
+                  className={`p-6 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-all duration-300 relative flex flex-col justify-between cursor-pointer ${
                     isHovered
-                      ? 'shadow-2xl scale-[1.03] border-blue-500 z-10'
+                      ? 'shadow-2xl border-blue-500 z-10'
                       : isDarkMode
                       ? 'bg-[#131927] border-[#1f283d] text-white shadow-sm'
                       : 'bg-white border-slate-200/80 text-slate-900 shadow-sm'
@@ -243,7 +245,16 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false }) => {
                   <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-800">
                     <div>
                       <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block">AVAILABILITY</span>
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-200">{member.availability}</span>
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-black rounded-full border backdrop-blur-md uppercase tracking-wider mt-1 ${
+                        member.availability.includes('Available')
+                          ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+                          : 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20'
+                      }`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${
+                          member.availability.includes('Available') ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'
+                        }`}></span>
+                        <span>{member.availability}</span>
+                      </span>
                     </div>
                     <button className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors shadow-2xs">
                       <span className="material-symbols-outlined text-[20px]">{member.actionIcon}</span>

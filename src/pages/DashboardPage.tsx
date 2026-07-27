@@ -2,9 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 interface DashboardPageProps {
   isDarkMode?: boolean;
+  onAddProjectClick?: () => void;
+  onImportDataClick?: () => void;
+  onStartMeetingClick?: () => void;
+  onItemClick?: (item: { title: string; subtitle: string; icon?: string; badge?: string }) => void;
 }
 
-export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false }) => {
+export const DashboardPage: React.FC<DashboardPageProps> = ({
+  isDarkMode = false,
+  onAddProjectClick,
+  onImportDataClick,
+  onStartMeetingClick,
+  onItemClick,
+}) => {
   const [seconds, setSeconds] = useState(5048); // 01:24:08
   const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [hoveredCard, setHoveredCard] = useState<number>(0);
@@ -98,28 +108,32 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       name: 'Alexandra Deff',
       task: 'Working on Github Project Repository',
       status: 'Completed',
-      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
+      dotColor: 'bg-emerald-500',
+      badgeStyle: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'Edwin Adenike',
       task: 'Working on Integrate User Authentication System',
       status: 'In Progress',
-      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
+      dotColor: 'bg-amber-500 animate-pulse',
+      badgeStyle: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'Isaac Oluwatemilorun',
       task: 'Working on Develop Search and Filter Functionality',
       status: 'Pending',
-      statusColor: 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300',
+      dotColor: 'bg-rose-500',
+      badgeStyle: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20',
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'David Oshodi',
       task: 'Working on Responsive Layout for Homepage',
       status: 'In Progress',
-      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
+      dotColor: 'bg-amber-500 animate-pulse',
+      badgeStyle: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120',
     },
   ];
@@ -152,20 +166,26 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
         {/* Pill Buttons */}
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
+          <button 
+            onClick={onAddProjectClick}
+            className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer"
+          >
             <span className="text-base font-bold">+</span>
             Add Project
           </button>
-          <button className={`px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
-            isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
-          }`}>
+          <button 
+            onClick={onImportDataClick}
+            className={`px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+              isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
+            }`}
+          >
             Import Data
           </button>
         </div>
       </div>
 
       {/* Top 4 Stat Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
         {statCards.map((card) => {
           const isExpanded = hoveredCard === card.id;
 
@@ -173,6 +193,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             <div
               key={card.id}
               onMouseEnter={() => setHoveredCard(card.id)}
+              onClick={() => onItemClick && onItemClick({ title: card.title, subtitle: `${card.value} • ${card.badge}`, icon: card.icon, badge: card.badge })}
               className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
                 isExpanded
                   ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
@@ -225,7 +246,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
       </div>
 
       {/* Middle Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-0">
         {/* Project Analytics Card - 7 Cols */}
         <div className={`lg:col-span-7 p-8 rounded-[2.5rem] border-2 float-shadow smooth-card flex flex-col justify-between transition-colors ${
           isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
@@ -281,7 +302,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           </div>
 
           {chartType === 'bars' ? (
-            <div className="h-60 flex items-end justify-between px-2 gap-3 relative">
+            <div className="h-60 pt-8 flex items-end justify-between px-2 gap-3 relative">
               {[
                 { day: 'S', height: '60%', type: 'hatched' },
                 { day: 'M', height: '85%', type: 'solid' },
@@ -293,7 +314,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
               ].map((bar, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center h-full justify-end relative group">
                   {bar.badge && (
-                    <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-md animate-bounce">
+                    <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-md badge-shadow">
                       {bar.badge}
                     </div>
                   )}
@@ -442,8 +463,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
                     <div className="text-[10px] text-zinc-400 font-medium">{m.task}</div>
                   </div>
                 </div>
-                <span className={`px-3 py-1 text-[10px] font-black rounded-full uppercase ${m.statusColor}`}>
-                  {m.status}
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-black rounded-full border backdrop-blur-md uppercase tracking-wider ${m.badgeStyle}`}>
+                  <span className={`w-1.5 h-1.5 rounded-full ${m.dotColor}`}></span>
+                  <span>{m.status}</span>
                 </span>
               </div>
             ))}
@@ -465,9 +487,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
 
           <div className="space-y-4">
             {projectList.map((p, idx) => (
-              <div key={idx} className={`flex items-center gap-3 p-2 rounded-2xl transition-all hover:translate-x-1 ${
-                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
-              }`}>
+              <div 
+                key={idx}
+                onClick={() => onItemClick && onItemClick({ title: p.name, subtitle: p.date, icon: p.icon, badge: 'PROJECT ITEM' })}
+                className={`flex items-center gap-3 p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                  isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+                }`}
+              >
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${p.color}`}>
                   <span className="material-symbols-outlined text-[20px]">{p.icon}</span>
                 </div>
@@ -485,7 +511,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
           isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <h3 className="text-lg font-black mb-4">Hard Deadlines</h3>
-          <div className="p-4 rounded-2xl bg-red-500/10 border-l-8 border-red-500 transition-all hover:translate-x-2 cursor-pointer">
+          <div 
+            onClick={() => onItemClick && onItemClick({ title: 'Legal Contract - DE/EN', subtitle: 'URGENT • Due in 2 hours. Reviewer: Alex Sterling', icon: 'priority_high', badge: 'URGENT 2H' })}
+            className="p-4 rounded-2xl bg-red-500/10 border-l-8 border-red-500 transition-all hover:translate-x-2 cursor-pointer"
+          >
             <div className="flex justify-between items-center mb-1">
               <span className="text-[10px] font-black text-red-500 uppercase tracking-widest">URGENT • 2H</span>
               <span className="material-symbols-outlined text-red-500 text-[18px]">priority_high</span>
@@ -494,7 +523,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             <p className="text-[10px] text-zinc-400 font-medium mt-1">Reviewer: Alex Sterling</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-blue-500/10 border-l-8 border-blue-500 transition-all hover:translate-x-2 cursor-pointer">
+          <div 
+            onClick={() => onItemClick && onItemClick({ title: 'Financial Report - ES/EN', subtitle: 'HIGH • Due Today. Validation Pending', icon: 'schedule', badge: 'HIGH TODAY' })}
+            className="p-4 rounded-2xl bg-blue-500/10 border-l-8 border-blue-500 transition-all hover:translate-x-2 cursor-pointer"
+          >
             <div className="flex justify-between items-center mb-1">
               <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">HIGH • TODAY</span>
             </div>
@@ -522,7 +554,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ isDarkMode = false
             </div>
           </div>
 
-          <button className="w-full max-w-sm mt-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
+          <button 
+            onClick={onStartMeetingClick}
+            className="w-full max-w-sm mt-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer"
+          >
             <span className="material-symbols-outlined text-[18px]">videocam</span>
             Start Meeting
           </button>
