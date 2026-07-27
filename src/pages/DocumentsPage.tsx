@@ -14,7 +14,7 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ isDarkMode = false
     { id: 0, title: 'TOTAL ASSETS', value: '1,420', badge: '+8% ▲ Increased', icon: 'folder_open', color: 'text-blue-500' },
     { id: 1, title: 'SWORN CERTIFIED', value: '380', badge: 'ISO-9001 Certified', icon: 'verified', color: 'text-emerald-500' },
     { id: 2, title: 'STORAGE USED', value: '42.8 GB', badge: '78% of 50GB', icon: 'cloud', color: 'text-amber-500' },
-    { id: 3, title: 'ACTIVE TMS & GLOSSARIES', value: '124', badge: 'Auto Syncing', icon: 'sync', color: 'text-purple-500' },
+    { id: 3, title: 'ACTIVE TMS & GLOSSARIES', value: '124', badge: 'Auto Syncing', icon: 'sync', color: 'text-blue-500' },
   ];
 
   const documents = [
@@ -29,7 +29,7 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ isDarkMode = false
       status: 'Certified',
       statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 badge-glow-emerald',
       icon: 'picture_as_pdf',
-      iconColor: 'text-rose-600 bg-rose-50 dark:bg-rose-900/30',
+      iconColor: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30',
       badge: 'verified',
     },
     {
@@ -363,8 +363,9 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ isDarkMode = false
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className={`px-3 py-1 text-[10px] font-black rounded-full uppercase ${doc.statusColor}`}>
-                          {doc.status}
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
+                          <span className={`w-1.5 h-1.5 rounded-full ${doc.status === 'Certified' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+                          <span>{doc.status}</span>
                         </span>
                         <button className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors shadow-2xs cursor-pointer">
                           <span className="material-symbols-outlined text-[20px]">download</span>

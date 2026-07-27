@@ -14,7 +14,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
     { id: 0, title: 'TOTAL OUTSTANDING', value: '$12,150.00', badge: '3 Pending Invoices', icon: 'warning', color: 'text-amber-500' },
     { id: 1, title: 'PAID THIS MONTH', value: '$17,250.00', badge: '91% Realized ▲', icon: 'check_circle', color: 'text-emerald-500' },
     { id: 2, title: 'RETAINER BALANCE', value: '$45,000.00', badge: 'Active Retainer', icon: 'account_balance_wallet', color: 'text-blue-500' },
-    { id: 3, title: 'AVG SETTLEMENT', value: '4.2 Days', badge: 'Fast Speed', icon: 'speed', color: 'text-purple-500' },
+    { id: 3, title: 'AVG SETTLEMENT', value: '4.2 Days', badge: 'Fast Speed', icon: 'speed', color: 'text-blue-500' },
   ];
 
   const invoices = [
@@ -333,8 +333,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                         <div className="text-xs font-bold text-slate-700 dark:text-slate-200">{inv.dueDate}</div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className={`px-3 py-1 text-[10px] font-black rounded-full uppercase ${inv.statusColor}`}>
-                          {inv.status}
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
+                          <span className={`w-1.5 h-1.5 rounded-full ${inv.status === 'Paid' ? 'bg-emerald-500' : inv.status === 'Pending' ? 'bg-amber-500' : 'bg-rose-500'}`}></span>
+                          <span>{inv.status}</span>
                         </span>
                         <button className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors shadow-2xs cursor-pointer">
                           <span className="material-symbols-outlined text-[20px]">picture_as_pdf</span>

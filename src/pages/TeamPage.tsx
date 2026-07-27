@@ -245,13 +245,9 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
                   <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-800">
                     <div>
                       <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block">AVAILABILITY</span>
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-black rounded-full border backdrop-blur-md uppercase tracking-wider mt-1 ${
-                        member.availability.includes('Available')
-                          ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
-                          : 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20'
-                      }`}>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300 mt-1">
                         <span className={`w-1.5 h-1.5 rounded-full ${
-                          member.availability.includes('Available') ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'
+                          member.availability.includes('Available') ? 'bg-emerald-500' : member.availability === 'Offline' ? 'bg-slate-400' : 'bg-amber-500'
                         }`}></span>
                         <span>{member.availability}</span>
                       </span>

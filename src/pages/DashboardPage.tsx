@@ -97,10 +97,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
   const projectList = [
     { name: 'Develop API Endpoints', date: 'Due date: Nov 26, 2026', icon: 'code', color: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' },
-    { name: 'Onboarding Flow', date: 'Due date: Nov 28, 2026', icon: 'account_tree', color: 'text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30' },
-    { name: 'Build Dashboard', date: 'Due date: Nov 30, 2026', icon: 'dashboard', color: 'text-sky-600 bg-sky-50 dark:bg-sky-900/30' },
-    { name: 'Optimize Page Load', date: 'Due date: Dec 5, 2026', icon: 'speed', color: 'text-amber-600 bg-amber-50 dark:bg-amber-900/30' },
-    { name: 'Cross-Browser Testing', date: 'Due date: Dec 6, 2026', icon: 'devices', color: 'text-purple-600 bg-purple-50 dark:bg-purple-900/30' },
+    { name: 'Onboarding Flow', date: 'Due date: Nov 28, 2026', icon: 'account_tree', color: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' },
+    { name: 'Build Dashboard', date: 'Due date: Nov 30, 2026', icon: 'dashboard', color: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' },
+    { name: 'Optimize Page Load', date: 'Due date: Dec 5, 2026', icon: 'speed', color: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' },
+    { name: 'Cross-Browser Testing', date: 'Due date: Dec 6, 2026', icon: 'devices', color: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' },
   ];
 
   const teamMembers = [
@@ -109,15 +109,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       task: 'Working on Github Project Repository',
       status: 'Completed',
       dotColor: 'bg-emerald-500',
-      badgeStyle: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'Edwin Adenike',
       task: 'Working on Integrate User Authentication System',
       status: 'In Progress',
-      dotColor: 'bg-amber-500 animate-pulse',
-      badgeStyle: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
+      dotColor: 'bg-amber-500',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120',
     },
     {
@@ -125,15 +123,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       task: 'Working on Develop Search and Filter Functionality',
       status: 'Pending',
       dotColor: 'bg-rose-500',
-      badgeStyle: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20',
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120',
     },
     {
       name: 'David Oshodi',
       task: 'Working on Responsive Layout for Homepage',
       status: 'In Progress',
-      dotColor: 'bg-amber-500 animate-pulse',
-      badgeStyle: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
+      dotColor: 'bg-amber-500',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120',
     },
   ];
@@ -463,7 +459,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                     <div className="text-[10px] text-zinc-400 font-medium">{m.task}</div>
                   </div>
                 </div>
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-black rounded-full border backdrop-blur-md uppercase tracking-wider ${m.badgeStyle}`}>
+                <span className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
                   <span className={`w-1.5 h-1.5 rounded-full ${m.dotColor}`}></span>
                   <span>{m.status}</span>
                 </span>

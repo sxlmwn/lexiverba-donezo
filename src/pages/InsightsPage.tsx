@@ -13,8 +13,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
   const statCards = [
     { id: 0, title: 'AVERAGE BLEU SCORE', value: '89.4%', badge: '+2.1% ▲ vs Baseline', icon: 'monitoring', color: 'text-blue-500' },
     { id: 1, title: 'NEURAL ENGINE SPEED', value: '42.5K WPH', badge: 'Words / Hour', icon: 'speed', color: 'text-emerald-500' },
-    { id: 2, title: 'SLA ACCURACY RATE', value: '99.8%', badge: '0 Breaches ▲', icon: 'verified', color: 'text-indigo-500' },
-    { id: 3, title: 'LATENCY SCORE', value: '35ms', badge: 'Sub-50ms Target', icon: 'bolt', color: 'text-purple-500' },
+    { id: 2, title: 'SLA ACCURACY RATE', value: '99.8%', badge: '0 Breaches ▲', icon: 'verified', color: 'text-blue-500' },
+    { id: 3, title: 'LATENCY SCORE', value: '35ms', badge: 'Sub-50ms Target', icon: 'bolt', color: 'text-blue-500' },
   ];
 
   const languagePairs = [
@@ -54,7 +54,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
       status: 'Calibrating',
       statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 badge-glow-amber',
       icon: 'code',
-      iconColor: 'text-purple-600 bg-purple-50 dark:bg-purple-900/30',
+      iconColor: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30',
       badge: 'workspace_premium',
     },
     {
@@ -381,8 +381,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                       <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest">ACCURACY / SPEED</div>
                       <div className="text-xs font-bold text-slate-700 dark:text-slate-200">{lp.accuracy} • {lp.throughput}</div>
                     </div>
-                    <span className={`px-3 py-1 text-[10px] font-black rounded-full uppercase ${lp.statusColor}`}>
-                      {lp.status}
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
+                      <span className={`w-1.5 h-1.5 rounded-full ${lp.status === 'Optimal' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+                      <span>{lp.status}</span>
                     </span>
                   </div>
                 </div>

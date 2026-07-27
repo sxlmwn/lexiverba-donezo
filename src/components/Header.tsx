@@ -49,44 +49,44 @@ export const Header: React.FC<HeaderProps> = ({
   // Global Omnipresent Search Database covering the ENTIRE LexiVerba Website
   const globalDatabase = [
     // Documents
-    { title: 'Legal Contract DE/EN Final.pdf', type: 'Document', category: 'Documents', tab: 'documents', icon: 'picture_as_pdf', color: 'text-rose-500', desc: '14.2 MB • Sworn Certified by Elena Rodriguez' },
+    { title: 'Legal Contract DE/EN Final.pdf', type: 'Document', category: 'Documents', tab: 'documents', icon: 'picture_as_pdf', color: 'text-blue-500', desc: '14.2 MB • Sworn Certified by Elena Rodriguez' },
     { title: 'Medical Report ES/EN v2.docx', type: 'Document', category: 'Documents', tab: 'documents', icon: 'description', color: 'text-blue-500', desc: '8.4 MB • In Review by Amina Okafor' },
     { title: 'Annual Financial Statement 2026.xlsx', type: 'Document', category: 'Documents', tab: 'documents', icon: 'table_chart', color: 'text-emerald-500', desc: '4.8 MB • Certified Audit Pass' },
     { title: 'Patent Application ZH/EN Draft.pdf', type: 'Document', category: 'Documents', tab: 'documents', icon: 'gavel', color: 'text-amber-500', desc: '18.9 MB • Reviewed by Marcus Chen' },
-    { title: 'EU Privacy Compliance Protocol.docx', type: 'Document', category: 'Documents', tab: 'documents', icon: 'policy', color: 'text-indigo-500', desc: '2.1 MB • ISO-27001 Security Audit' },
+    { title: 'EU Privacy Compliance Protocol.docx', type: 'Document', category: 'Documents', tab: 'documents', icon: 'policy', color: 'text-blue-500', desc: '2.1 MB • ISO-27001 Security Audit' },
 
     // Team Members & Linguists
     { title: 'Elena Rodriguez', type: 'Team Member', category: 'Team', tab: 'team', icon: 'person', color: 'text-blue-500', desc: 'Legal Reviewer (ES/EN) • JD Degree • ISO-17100' },
-    { title: 'Marcus Chen', type: 'Team Member', category: 'Team', tab: 'team', icon: 'person_outline', color: 'text-purple-500', desc: 'Technical Specialist (ZH/EN) • Patent Bar' },
+    { title: 'Marcus Chen', type: 'Team Member', category: 'Team', tab: 'team', icon: 'person_outline', color: 'text-blue-500', desc: 'Technical Specialist (ZH/EN) • Patent Bar' },
     { title: 'Amina Okafor', type: 'Team Member', category: 'Team', tab: 'team', icon: 'workspace_premium', color: 'text-emerald-500', desc: 'Medical Translator (FR/EN) • MD Candidate' },
-    { title: 'Alexandra Deff', type: 'Team Member', category: 'Team', tab: 'team', icon: 'engineering', color: 'text-indigo-500', desc: 'GitHub Repository Lead Engineer' },
-    { title: 'Edwin Adenike', type: 'Team Member', category: 'Team', tab: 'team', icon: 'shield_person', color: 'text-amber-500', desc: 'User Authentication System Lead' },
+    { title: 'Alexandra Deff', type: 'Team Member', category: 'Team', tab: 'team', icon: 'engineering', color: 'text-blue-500', desc: 'GitHub Repository Lead Engineer' },
+    { title: 'Edwin Adenike', type: 'Team Member', category: 'Team', tab: 'team', icon: 'shield_person', color: 'text-blue-500', desc: 'User Authentication System Lead' },
 
     // Invoices & Billing
     { title: 'INV-2026-001 — Acme Global Corp', type: 'Invoice', category: 'Invoices', tab: 'invoices', icon: 'receipt_long', color: 'text-emerald-500', desc: '$4,850.00 • Status: Paid via Stripe' },
     { title: 'INV-2026-002 — Helios Pharma Ltd', type: 'Invoice', category: 'Invoices', tab: 'invoices', icon: 'payments', color: 'text-amber-500', desc: '$9,200.00 • Status: Pending Settlement' },
-    { title: 'INV-2026-003 — Quantum Dynamics', type: 'Invoice', category: 'Invoices', tab: 'invoices', icon: 'account_balance', color: 'text-blue-500', desc: '$2,340.00 • Status: Paid SWIFT Wire' },
+    { title: 'INV-2026-003 — Quantum Dynamics', type: 'Invoice', category: 'Invoices', tab: 'invoices', icon: 'account_balance', color: 'text-emerald-500', desc: '$2,340.00 • Status: Paid SWIFT Wire' },
     { title: 'INV-2026-004 — Vanguard Financial', type: 'Invoice', category: 'Invoices', tab: 'invoices', icon: 'error_outline', color: 'text-rose-500', desc: '$14,500.00 • Status: Overdue NET-30' },
 
     // Projects
-    { title: 'Develop API Endpoints', type: 'Project', category: 'Projects', tab: 'dashboard', icon: 'code', color: 'text-indigo-500', desc: 'Due: Nov 26, 2026 • Backend System Sync' },
+    { title: 'Develop API Endpoints', type: 'Project', category: 'Projects', tab: 'dashboard', icon: 'code', color: 'text-blue-500', desc: 'Due: Nov 26, 2026 • Backend System Sync' },
     { title: 'Onboarding Flow UI/UX', type: 'Project', category: 'Projects', tab: 'dashboard', icon: 'account_tree', color: 'text-blue-500', desc: 'Due: Nov 28, 2026 • Agency Portal' },
-    { title: 'Build Agency Dashboard', type: 'Project', category: 'Projects', tab: 'dashboard', icon: 'dashboard', color: 'text-emerald-500', desc: 'Due: Nov 30, 2026 • Analytics Core' },
-    { title: 'Optimize Page Load Speed', type: 'Project', category: 'Projects', tab: 'dashboard', icon: 'speed', color: 'text-amber-500', desc: 'Due: Dec 05, 2026 • Performance Benchmarks' },
+    { title: 'Build Agency Dashboard', type: 'Project', category: 'Projects', tab: 'dashboard', icon: 'dashboard', color: 'text-blue-500', desc: 'Due: Nov 30, 2026 • Analytics Core' },
+    { title: 'Optimize Page Load Speed', type: 'Project', category: 'Projects', tab: 'dashboard', icon: 'speed', color: 'text-blue-500', desc: 'Due: Dec 05, 2026 • Performance Benchmarks' },
 
     // Analytics & Quality Insights
-    { title: 'Neural Model BLEU Accuracy (89.4%)', type: 'Analytics', category: 'Analytics', tab: 'insights', icon: 'monitoring', color: 'text-purple-500', desc: 'Precision Threshold Pass • ISO-17100' },
+    { title: 'Neural Model BLEU Accuracy (89.4%)', type: 'Analytics', category: 'Analytics', tab: 'insights', icon: 'monitoring', color: 'text-emerald-500', desc: 'Precision Threshold Pass • ISO-17100' },
     { title: 'Wordcount Throughput (42.5K WPH)', type: 'Analytics', category: 'Analytics', tab: 'insights', icon: 'bolt', color: 'text-blue-500', desc: 'Peak NMT Engine Speed • Latency 35ms' },
-    { title: 'German to English Pair (DE/EN)', type: 'Analytics', category: 'Analytics', tab: 'insights', icon: 'translate', color: 'text-emerald-500', desc: '98.4% Domain Precision • Sworn Active' },
-    { title: 'Spanish to English Pair (ES/EN)', type: 'Analytics', category: 'Analytics', tab: 'insights', icon: 'translate', color: 'text-amber-500', desc: '96.8% Domain Precision • Certified' },
+    { title: 'German to English Pair (DE/EN)', type: 'Analytics', category: 'Analytics', tab: 'insights', icon: 'translate', color: 'text-blue-500', desc: '98.4% Domain Precision • Sworn Active' },
+    { title: 'Spanish to English Pair (ES/EN)', type: 'Analytics', category: 'Analytics', tab: 'insights', icon: 'translate', color: 'text-blue-500', desc: '96.8% Domain Precision • Certified' },
 
     // Pricing & Subscriptions
     { title: 'Pro Team Sworn Agency Plan', type: 'Pricing', category: 'Pricing', tab: 'pricing', icon: 'card_membership', color: 'text-blue-500', desc: '$149/mo • 100K Words • Dedicated Reviewer' },
-    { title: 'Enterprise Custom AI Plan', type: 'Pricing', category: 'Pricing', tab: 'pricing', icon: 'diamond', color: 'text-purple-500', desc: '$399/mo • Unlimited NMT • SLA Guarantee' },
+    { title: 'Enterprise Custom AI Plan', type: 'Pricing', category: 'Pricing', tab: 'pricing', icon: 'diamond', color: 'text-blue-500', desc: '$399/mo • Unlimited NMT • SLA Guarantee' },
 
     // Settings & Security
-    { title: 'Neural MT Auto-Correction Glossary', type: 'Settings', category: 'Settings', tab: 'settings', icon: 'auto_fix_high', color: 'text-amber-500', desc: 'Glossary Priority Pre-processing Enabled' },
-    { title: 'Production API Access Keys', type: 'Settings', category: 'Settings', tab: 'settings', icon: 'key', color: 'text-rose-500', desc: 'Key: lx_prod_9921487291847 • Active' },
+    { title: 'Neural MT Auto-Correction Glossary', type: 'Settings', category: 'Settings', tab: 'settings', icon: 'auto_fix_high', color: 'text-blue-500', desc: 'Glossary Priority Pre-processing Enabled' },
+    { title: 'Production API Access Keys', type: 'Settings', category: 'Settings', tab: 'settings', icon: 'key', color: 'text-blue-500', desc: 'Key: lx_prod_9921487291847 • Active' },
     { title: 'Sworn Audit Alert Threshold (75%)', type: 'Settings', category: 'Settings', tab: 'settings', icon: 'verified_user', color: 'text-emerald-500', desc: 'BLEU Drop Notification Engine Active' },
   ];
 
@@ -407,7 +407,7 @@ export const Header: React.FC<HeaderProps> = ({
                     isDarkMode ? 'hover:bg-[#18181b] text-slate-200' : 'hover:bg-slate-100 text-slate-700'
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[20px] text-purple-500">settings</span>
+                  <span className="material-symbols-outlined text-[20px] text-blue-500">settings</span>
                   <span>System Preferences</span>
                 </button>
 
@@ -420,7 +420,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-[20px] text-amber-500">
+                    <span className="material-symbols-outlined text-[20px] text-blue-500">
                       {isDarkMode ? 'light_mode' : 'dark_mode'}
                     </span>
                     <span>{isDarkMode ? 'Switch to Light' : 'Switch to Dark'}</span>

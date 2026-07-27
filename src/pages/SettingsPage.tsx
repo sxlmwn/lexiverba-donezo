@@ -11,8 +11,8 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
   const statCards = [
     { id: 0, title: 'API KEYS ACTIVE', value: '2 Production', badge: 'Active Rate Limit', icon: 'key', color: 'text-blue-500' },
     { id: 1, title: 'ACTIVE WEBHOOKS', value: '6 Live Signals', badge: 'Auto Sync', icon: 'webhook', color: 'text-emerald-500' },
-    { id: 2, title: 'AUTO-CORRECT MT', value: 'Enabled', badge: 'Glossary Priority', icon: 'auto_fix_high', color: 'text-amber-500' },
-    { id: 3, title: 'ISO AUDIT VAULT', value: 'ISO-17100', badge: 'Compliance Pass', icon: 'verified', color: 'text-purple-500' },
+    { id: 2, title: 'AUTO-CORRECT MT', value: 'Enabled', badge: 'Glossary Priority', icon: 'auto_fix_high', color: 'text-blue-500' },
+    { id: 3, title: 'ISO AUDIT VAULT', value: 'ISO-17100', badge: 'Compliance Pass', icon: 'verified', color: 'text-blue-500' },
   ];
 
   return (
@@ -57,7 +57,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
               onMouseEnter={() => setHoveredCard(c.id)}
               className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
                 isExpanded
-                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl scale-[1.02] border-2 border-blue-500'
+                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
                   : isDarkMode
                   ? 'bg-[#18181b] border-2 border-[#27272a] text-white shadow-sm hover:shadow-lg'
                   : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'

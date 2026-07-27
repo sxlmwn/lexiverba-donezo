@@ -91,14 +91,14 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
             key={idx}
             className={`p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between relative transition-all duration-300 ${
               plan.highlighted
-                ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl scale-[1.03] border-blue-500 z-10'
+                ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-blue-500 z-10'
                 : isDarkMode
                 ? 'bg-[#18181b] border-2 border-[#27272a] text-white shadow-sm hover:shadow-lg'
                 : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
             }`}
           >
             {plan.highlighted && (
-              <span className="absolute -top-4 right-8 bg-amber-400 text-slate-900 text-[10px] font-black uppercase px-4 py-1 rounded-full shadow-md badge-glow-amber">
+              <span className="absolute -top-4 right-8 bg-blue-600 text-white text-[10px] font-black uppercase px-4 py-1 rounded-full shadow-md">
                 MOST POPULAR
               </span>
             )}
