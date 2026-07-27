@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useTheme } from '../theme';
 
 interface PricingPageProps {
   isDarkMode?: boolean;
   onItemClick?: (item: { title: string; subtitle: string; icon?: string; badge?: string }) => void;
 }
 
-export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, onItemClick }) => {
+export const PricingPage: React.FC<PricingPageProps> = ({ onItemClick }) => {
+  const { isDarkMode } = useTheme();
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
 
   const plans = [
@@ -114,17 +116,13 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
                 <span className={`text-xs font-semibold ${plan.highlighted ? 'text-blue-200' : 'text-slate-400'}`}>{plan.period}</span>
               </div>
 
-              {/* Tag Pills */}
+              {/* Tag Metadata */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {plan.tags.map((tag, tIdx) => (
                   <span
                     key={tIdx}
-                    className={`text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider ${
-                      plan.highlighted
-                        ? 'bg-white/20 text-white'
-                        : isDarkMode
-                        ? 'bg-[#27272a] text-slate-300'
-                        : 'bg-slate-100 text-slate-600'
+                    className={`text-[10px] font-bold tracking-wide uppercase ${
+                      plan.highlighted ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'
                     }`}
                   >
                     {tag}

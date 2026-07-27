@@ -1,12 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTheme } from '../theme';
+import { Badge } from '../components/ui/Badge';
+import { ProgressBar } from '../components/ui/ProgressBar';
 
 interface TeamPageProps {
   isDarkMode?: boolean;
   onItemClick?: (item: { title: string; subtitle: string; icon?: string; badge?: string }) => void;
 }
 
-export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemClick }) => {
+export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
+  const { isDarkMode } = useTheme();
   const [hoveredMemberCard, setHoveredMemberCard] = useState<number | string | null>(null);
+
+  // Gauge animation state (Count up from 0 to 75% on mount)
+  const [gaugePercent, setGaugePercent] = useState<number>(0);
+
+  useEffect(() => {
+    let start = 0;
+    const target = 75;
+    const duration = 1000;
+    const stepTime = Math.abs(Math.floor(duration / target));
+
+    const timer = setInterval(() => {
+      start += 1;
+      setGaugePercent(start);
+      if (start >= target) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const totalArcLength = 251.32;
+  const completedDashOffset = totalArcLength - (totalArcLength * (gaugePercent / 100));
+  const standbyDashOffset = totalArcLength - (totalArcLength * ((gaugePercent / 75) * 0.55));
 
   const teamMembers = [
     {
@@ -138,7 +166,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
                   stroke="#38bdf8"
                   strokeWidth="28"
                   strokeDasharray="251.32"
-                  strokeDashoffset="113.09"
+                  strokeDashoffset={standbyDashOffset}
                   strokeLinecap="round"
                   className="transition-all duration-700 ease-out"
                 />
@@ -148,7 +176,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
                   stroke="#004ac6"
                   strokeWidth="28"
                   strokeDasharray="251.32"
-                  strokeDashoffset="62.83"
+                  strokeDashoffset={completedDashOffset}
                   strokeLinecap="round"
                   className="transition-all duration-700 ease-out"
                 />
@@ -156,7 +184,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
 
               <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
                 <span className={`text-4xl font-extrabold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                  75%
+                  {gaugePercent}%
                 </span>
                 <span className="text-[10px] font-bold text-zinc-400 mt-1">Utilization</span>
               </div>
@@ -187,34 +215,25 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
             <h3 className="text-lg font-extrabold">Expert Availability</h3>
 
             <div className="space-y-4 pt-2">
-              <div>
-                <div className="flex justify-between text-xs font-semibold mb-1">
-                  <span>Legal &amp; Compliance</span>
-                  <span className="text-blue-600 font-extrabold">92%</span>
-                </div>
-                <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-blue-600 h-full rounded-full w-[92%]"></div>
-                </div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
+                <ProgressBar progress={92} showLabel label="Legal & Compliance" barColor="bg-blue-600" />
               </div>
-
-              <div>
-                <div className="flex justify-between text-xs font-semibold mb-1">
-                  <span>Medical / Life Sciences</span>
-                  <span className="text-blue-600 font-extrabold">45%</span>
-                </div>
-                <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-blue-600 h-full rounded-full w-[45%]"></div>
-                </div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
+                <ProgressBar progress={45} showLabel label="Medical / Life Sciences" barColor="bg-blue-600" />
               </div>
-
-              <div>
-                <div className="flex justify-between text-xs font-semibold mb-1">
-                  <span>Technical / Engineering</span>
-                  <span className="text-blue-600 font-extrabold">68%</span>
-                </div>
-                <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-blue-600 h-full rounded-full w-[68%]"></div>
-                </div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
+                <ProgressBar progress={78} showLabel label="Financial & Banking" barColor="bg-blue-600" />
+              </div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
+                <ProgressBar progress={60} showLabel label="Patent & IP Law" barColor="bg-blue-600" />
               </div>
             </div>
           </div>
@@ -232,13 +251,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
                   onMouseLeave={() => setHoveredMemberCard(null)}
                   onClick={() => onItemClick && onItemClick({ title: member.name, subtitle: `${member.role} • ${member.availability}`, icon: member.badge, badge: 'LINGUIST PROFILE' })}
                   className={`p-6 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-all duration-300 relative flex flex-col justify-between cursor-pointer ${
-                    isDarkMode ? 'bg-[#18181b] text-white' : 'bg-white text-slate-900'
-                  } ${
-                    isHovered
-                      ? 'border-blue-500 shadow-2xl z-10'
-                      : isDarkMode
-                      ? 'border-[#27272a] shadow-sm'
-                      : 'border-slate-200/80 shadow-sm'
+                    isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
                   }`}
                 >
                   <div>
@@ -261,14 +274,12 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
                     <h4 className="text-xl font-extrabold tracking-tight">{member.name}</h4>
                     <p className="text-xs text-blue-500 font-bold mt-0.5 mb-3">{member.role}</p>
 
-                    {/* Skill Tag Pills */}
+                    {/* Tag Metadata */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {member.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className={`text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider ${
-                            isDarkMode ? 'bg-[#1e2638] text-slate-300' : 'bg-slate-100 text-slate-600'
-                          }`}
+                          className="text-[10px] font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
                         >
                           {tag}
                         </span>
@@ -279,13 +290,10 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
                   {/* Availability & Quick Action Button */}
                   <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-800">
                     <div>
-                      <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest block">AVAILABILITY</span>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300 mt-1">
-                        <span className={`w-1.5 h-1.5 rounded-full ${
-                          member.availability.includes('Available') ? 'bg-emerald-500' : member.availability === 'Offline' ? 'bg-slate-400' : 'bg-amber-500'
-                        }`}></span>
-                        <span>{member.availability}</span>
-                      </span>
+                      <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest block mb-1">AVAILABILITY</span>
+                      <Badge status={member.availability.includes('Available') ? 'Available' : member.availability === 'Offline' ? 'Offline' : 'Pending'}>
+                        {member.availability}
+                      </Badge>
                     </div>
                     <button className="w-10 h-10 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-all shadow-md shadow-blue-600/30 active:scale-95 cursor-pointer">
                       <span className="material-symbols-outlined text-[20px]">{member.actionIcon}</span>

@@ -1,15 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTheme } from '../theme';
+import { MetricCard } from '../components/ui/MetricCard';
+import { Badge } from '../components/ui/Badge';
+import { ProgressBar } from '../components/ui/ProgressBar';
 
 interface InvoicesPageProps {
   isDarkMode?: boolean;
   onItemClick?: (item: { title: string; subtitle: string; icon?: string; badge?: string }) => void;
 }
 
-export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, onItemClick }) => {
-  const [hoveredStatCard, setHoveredStatCard] = useState<number | null>(null);
+export const InvoicesPage: React.FC<InvoicesPageProps> = ({ onItemClick }) => {
+  const { isDarkMode } = useTheme();
   const [hoveredInvoiceCard, setHoveredInvoiceCard] = useState<string | number | null>(null);
   const [viewType, setViewType] = useState<'grid' | 'table'>('grid');
   const [selectedStatus, setSelectedStatus] = useState<string>('All');
+
+  // Gauge animation state (Count up from 0 to 91% on mount)
+  const [gaugePercent, setGaugePercent] = useState<number>(0);
+
+  useEffect(() => {
+    let start = 0;
+    const target = 91;
+    const duration = 1000;
+    const stepTime = Math.abs(Math.floor(duration / target));
+
+    const timer = setInterval(() => {
+      start += 1;
+      setGaugePercent(start);
+      if (start >= target) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const totalArcLength = 251.32;
+  const completedDashOffset = totalArcLength - (totalArcLength * (gaugePercent / 100));
+  const clearingDashOffset = totalArcLength - (totalArcLength * ((gaugePercent / 91) * 0.96));
 
   const statCards = [
     { id: 0, title: 'TOTAL OUTSTANDING', value: '$12,150.00', badge: '3 Pending Invoices', icon: 'warning', color: 'text-amber-500' },
@@ -27,9 +55,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
       dueDate: 'Jul 28, 2026',
       tags: ['NET-30', 'SWORN CERT', 'STRIPE'],
       status: 'Paid',
-      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 badge-glow-emerald',
+      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
       icon: 'receipt',
-      iconColor: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30',
+      iconColor: 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300',
       badge: 'verified',
     },
     {
@@ -40,9 +68,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
       dueDate: 'Aug 04, 2026',
       tags: ['HIPAA COMPLIANT', 'WIRE TRANSFER'],
       status: 'Paid',
-      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 badge-glow-emerald',
+      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
       icon: 'local_hospital',
-      iconColor: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30',
+      iconColor: 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300',
       badge: 'verified_user',
     },
     {
@@ -53,9 +81,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
       dueDate: 'Jul 31, 2026',
       tags: ['PATENT BAR', 'PENDING REVIEW'],
       status: 'Pending',
-      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 badge-glow-amber',
+      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
       icon: 'gavel',
-      iconColor: 'text-amber-600 bg-amber-50 dark:bg-amber-900/30',
+      iconColor: 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300',
       badge: 'workspace_premium',
     },
     {
@@ -66,9 +94,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
       dueDate: 'Jul 20, 2026',
       tags: ['OVERDUE 7D', 'RETAINER CLAIM'],
       status: 'Overdue',
-      statusColor: 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300 badge-glow-rose',
+      statusColor: 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300',
       icon: 'account_balance',
-      iconColor: 'text-rose-600 bg-rose-50 dark:bg-rose-900/30',
+      iconColor: 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300',
       badge: 'warning',
     },
   ];
@@ -120,48 +148,16 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
 
       {/* Top 4 Stats Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {statCards.map((c) => {
-          const isExpanded = hoveredStatCard === c.id;
-          return (
-            <div
-              key={c.id}
-              onMouseEnter={() => setHoveredStatCard(c.id)}
-              className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
-                isExpanded
-                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
-                  : isDarkMode
-                  ? 'bg-[#18181b] border-2 border-[#27272a] text-white shadow-sm hover:shadow-lg'
-                  : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className={`text-[10px] font-extrabold uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
-                  {c.title}
-                </span>
-                <div className={`w-9 h-9 rounded-2xl flex items-center justify-center shadow-sm ${
-                  isExpanded ? 'bg-white/10 text-white' : 'bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400'
-                }`}>
-                  <span className="material-symbols-outlined text-[20px]">{c.icon}</span>
-                </div>
-              </div>
-
-              <div>
-                <div className="text-3xl font-extrabold tracking-tight mb-1">{c.value}</div>
-                <div className="flex items-center gap-1.5">
-                  <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
-                    isExpanded
-                      ? 'bg-white/20 text-white'
-                      : isDarkMode
-                      ? 'bg-blue-900/40 text-blue-300 border border-blue-800/40'
-                      : 'bg-blue-50 text-blue-700 border border-blue-200'
-                  }`}>
-                    {c.badge}
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {statCards.map((c) => (
+          <MetricCard
+            key={c.id}
+            title={c.title}
+            value={c.value}
+            badge={c.badge}
+            icon={c.icon}
+            onClick={() => onItemClick && onItemClick({ title: c.title, subtitle: `${c.value} • ${c.badge}`, icon: c.icon, badge: c.badge })}
+          />
+        ))}
       </div>
 
       {/* Main Content Grid: 12 Columns */}
@@ -195,7 +191,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                   stroke="#38bdf8"
                   strokeWidth="28"
                   strokeDasharray="251.32"
-                  strokeDashoffset="10.05"
+                  strokeDashoffset={clearingDashOffset}
                   strokeLinecap="round"
                   className="transition-all duration-700 ease-out"
                 />
@@ -205,7 +201,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                   stroke="#004ac6"
                   strokeWidth="28"
                   strokeDasharray="251.32"
-                  strokeDashoffset="22.62"
+                  strokeDashoffset={completedDashOffset}
                   strokeLinecap="round"
                   className="transition-all duration-700 ease-out"
                 />
@@ -213,7 +209,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
 
               <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
                 <span className={`text-4xl font-extrabold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                  91%
+                  {gaugePercent}%
                 </span>
                 <span className="text-[10px] font-bold text-zinc-400 mt-1">$17.2K / $19K</span>
               </div>
@@ -244,7 +240,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
             <h3 className="text-lg font-extrabold">Settlement Channels</h3>
 
             <div className="space-y-4 pt-2">
-              <div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
                 <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Stripe Instant Credit Card</span>
                   <span className="text-blue-600 font-extrabold">68%</span>
@@ -254,7 +252,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                 </div>
               </div>
 
-              <div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
                 <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Corporate Wire (SWIFT/SEPA)</span>
                   <span className="text-blue-600 font-extrabold">24%</span>
@@ -264,7 +264,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                 </div>
               </div>
 
-              <div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
                 <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>USDC Stablecoin Settlement</span>
                   <span className="text-blue-600 font-extrabold">8%</span>
@@ -290,13 +292,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                     onMouseLeave={() => setHoveredInvoiceCard(null)}
                     onClick={() => onItemClick && onItemClick({ title: `${inv.id} • ${inv.client}`, subtitle: `${inv.service} • Amount: ${inv.amount} • Due: ${inv.dueDate}`, icon: inv.icon, badge: inv.status })}
                     className={`p-6 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-all duration-300 relative flex flex-col justify-between cursor-pointer animate-card-pop ${
-                      isDarkMode ? 'bg-[#18181b] text-white' : 'bg-white text-slate-900'
-                    } ${
-                      isHovered
-                        ? 'border-blue-500 shadow-2xl z-10'
-                        : isDarkMode
-                        ? 'border-[#27272a] shadow-sm'
-                        : 'border-slate-200/80 shadow-sm'
+                      isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
                     }`}
                   >
                     <div>
@@ -320,14 +316,12 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                         {inv.amount}
                       </div>
 
-                      {/* Tag Pills */}
+                      {/* Tag Metadata */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {inv.tags.map((tag, tIdx) => (
                           <span
                             key={tIdx}
-                            className={`text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider ${
-                              isDarkMode ? 'bg-[#27272a] text-slate-300' : 'bg-slate-100 text-slate-600'
-                            }`}
+                            className="text-[10px] font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
                           >
                             {tag}
                           </span>
@@ -342,10 +336,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                         <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">{inv.dueDate}</div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
-                          <span className={`w-1.5 h-1.5 rounded-full ${inv.status === 'Paid' ? 'bg-emerald-500' : inv.status === 'Pending' ? 'bg-amber-500' : 'bg-rose-500'}`}></span>
-                          <span>{inv.status}</span>
-                        </span>
+                        <Badge status={inv.status} />
                         <button className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors shadow-2xs cursor-pointer">
                           <span className="material-symbols-outlined text-[20px]">picture_as_pdf</span>
                         </button>
@@ -383,9 +374,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                       <td className="py-4 text-slate-400">{inv.dueDate}</td>
                       <td className="py-4 font-extrabold text-slate-900 dark:text-white">{inv.amount}</td>
                       <td className="py-4">
-                        <span className={`px-3 py-1 text-xs font-extrabold rounded-full uppercase ${inv.statusColor}`}>
-                          {inv.status}
-                        </span>
+                        <Badge status={inv.status} />
                       </td>
                       <td className="py-4 text-right">
                         <button className={`p-2 rounded-full transition-colors cursor-pointer ${

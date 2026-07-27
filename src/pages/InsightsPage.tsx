@@ -1,15 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTheme } from '../theme';
+import { MetricCard } from '../components/ui/MetricCard';
+import { Badge } from '../components/ui/Badge';
+import { ProgressBar } from '../components/ui/ProgressBar';
 
 interface InsightsPageProps {
   isDarkMode?: boolean;
   onItemClick?: (item: { title: string; subtitle: string; icon?: string; badge?: string }) => void;
 }
 
-export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, onItemClick }) => {
-  const [hoveredStatCard, setHoveredStatCard] = useState<number | null>(null);
+export const InsightsPage: React.FC<InsightsPageProps> = ({ onItemClick }) => {
+  const { isDarkMode } = useTheme();
   const [hoveredInsightCard, setHoveredInsightCard] = useState<number | string | null>(null);
   const [chartType, setChartType] = useState<'bars' | 'line'>('bars');
   const [timeframe, setTimeframe] = useState<'D' | 'W' | 'M'>('W');
+
+  // Gauge animation state (Count up from 0 to 98.2% on mount)
+  const [gaugePercent, setGaugePercent] = useState<number>(0);
+
+  useEffect(() => {
+    let start = 0;
+    const target = 98.2;
+    const duration = 1000;
+    const steps = 98;
+    const stepTime = Math.abs(Math.floor(duration / steps));
+
+    const timer = setInterval(() => {
+      start += 1;
+      if (start >= steps) {
+        setGaugePercent(target);
+        clearInterval(timer);
+      } else {
+        setGaugePercent(start);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const totalArcLength = 251.32;
+  const completedDashOffset = totalArcLength - (totalArcLength * (gaugePercent / 100));
+  const alignedDashOffset = totalArcLength - (totalArcLength * ((gaugePercent / 98.2) * 0.94));
 
   const statCards = [
     { id: 0, title: 'AVERAGE BLEU SCORE', value: '89.4%', badge: '+2.1% ▲ vs Baseline', icon: 'monitoring', color: 'text-blue-500' },
@@ -27,9 +58,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
       throughput: '18.4K WPH',
       tags: ['BLEU 92.1', 'ISO-17100', 'NEURAL V4'],
       status: 'Optimal',
-      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 badge-glow-emerald',
+      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
       icon: 'translate',
-      iconColor: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30',
+      iconColor: 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300',
       badge: 'verified',
     },
     {
@@ -40,9 +71,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
       throughput: '14.2K WPH',
       tags: ['HIPAA ENGINE', 'MD CERTIFIED', 'LLM PROMPT'],
       status: 'Optimal',
-      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 badge-glow-emerald',
+      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
       icon: 'health_and_safety',
-      iconColor: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30',
+      iconColor: 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300',
       badge: 'verified_user',
     },
     {
@@ -53,9 +84,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
       throughput: '12.0K WPH',
       tags: ['JSON AUTO', 'PATENT BAR', 'RETRAINING'],
       status: 'Calibrating',
-      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 badge-glow-amber',
+      statusColor: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
       icon: 'code',
-      iconColor: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30',
+      iconColor: 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300',
       badge: 'workspace_premium',
     },
     {
@@ -66,9 +97,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
       throughput: '9.8K WPH',
       tags: ['COPYWRITER', 'GLOSSARY v2', 'CREATIVE AI'],
       status: 'Optimal',
-      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 badge-glow-emerald',
+      statusColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
       icon: 'draw',
-      iconColor: 'text-rose-600 bg-rose-50 dark:bg-rose-900/30',
+      iconColor: 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300',
       badge: 'verified',
     },
   ];
@@ -116,48 +147,16 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
 
       {/* Top 4 Stats Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {statCards.map((c) => {
-          const isExpanded = hoveredStatCard === c.id;
-          return (
-            <div
-              key={c.id}
-              onMouseEnter={() => setHoveredStatCard(c.id)}
-              className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
-                isExpanded
-                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
-                  : isDarkMode
-                  ? 'bg-[#18181b] border-2 border-[#27272a] text-white shadow-sm hover:shadow-lg'
-                  : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className={`text-[10px] font-extrabold uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
-                  {c.title}
-                </span>
-                <div className={`w-9 h-9 rounded-2xl flex items-center justify-center shadow-sm ${
-                  isExpanded ? 'bg-white/10 text-white' : 'bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400'
-                }`}>
-                  <span className="material-symbols-outlined text-[20px]">{c.icon}</span>
-                </div>
-              </div>
-
-              <div>
-                <div className="text-3xl font-extrabold tracking-tight mb-1">{c.value}</div>
-                <div className="flex items-center gap-1.5">
-                  <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
-                    isExpanded
-                      ? 'bg-white/20 text-white'
-                      : isDarkMode
-                      ? 'bg-blue-900/40 text-blue-300 border border-blue-800/40'
-                      : 'bg-blue-50 text-blue-700 border border-blue-200'
-                  }`}>
-                    {c.badge}
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {statCards.map((c) => (
+          <MetricCard
+            key={c.id}
+            title={c.title}
+            value={c.value}
+            badge={c.badge}
+            icon={c.icon}
+            onClick={() => onItemClick && onItemClick({ title: c.title, subtitle: `${c.value} • ${c.badge}`, icon: c.icon, badge: c.badge })}
+          />
+        ))}
       </div>
 
       {/* Main Content Grid: 12 Columns */}
@@ -191,7 +190,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                   stroke="#38bdf8"
                   strokeWidth="28"
                   strokeDasharray="251.32"
-                  strokeDashoffset="15.08"
+                  strokeDashoffset={alignedDashOffset}
                   strokeLinecap="round"
                   className="transition-all duration-700 ease-out"
                 />
@@ -201,7 +200,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                   stroke="#004ac6"
                   strokeWidth="28"
                   strokeDasharray="251.32"
-                  strokeDashoffset="4.52"
+                  strokeDashoffset={completedDashOffset}
                   strokeLinecap="round"
                   className="transition-all duration-700 ease-out"
                 />
@@ -209,7 +208,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
 
               <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
                 <span className={`text-4xl font-extrabold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                  98.2%
+                  {gaugePercent}%
                 </span>
                 <span className="text-[10px] font-bold text-zinc-400 mt-1">12 Engine Pairs</span>
               </div>
@@ -240,7 +239,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
             <h3 className="text-lg font-extrabold">Domain Precision</h3>
 
             <div className="space-y-4 pt-2">
-              <div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
                 <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Legal &amp; Sworn Contracts</span>
                   <span className="text-blue-600 font-extrabold">98.4%</span>
@@ -250,7 +251,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                 </div>
               </div>
 
-              <div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
                 <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Medical &amp; Bio Protocols</span>
                   <span className="text-blue-600 font-extrabold">96.8%</span>
@@ -260,7 +263,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                 </div>
               </div>
 
-              <div>
+              <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
+                isDarkMode ? 'hover:bg-zinc-800/60' : 'hover:bg-slate-50'
+              }`}>
                 <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Fintech &amp; Earnings Reports</span>
                   <span className="text-blue-600 font-extrabold">97.1%</span>
@@ -383,13 +388,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                   onMouseLeave={() => setHoveredInsightCard(null)}
                   onClick={() => onItemClick && onItemClick({ title: lp.pair, subtitle: `${lp.type} • Accuracy: ${lp.accuracy} • Throughput: ${lp.throughput}`, icon: lp.icon, badge: lp.status })}
                   className={`p-6 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-all duration-300 relative flex flex-col justify-between cursor-pointer animate-card-pop ${
-                    isDarkMode ? 'bg-[#18181b] text-white' : 'bg-white text-slate-900'
-                  } ${
-                    isHovered
-                      ? 'border-blue-500 shadow-2xl z-10'
-                      : isDarkMode
-                      ? 'border-[#27272a] shadow-sm'
-                      : 'border-slate-200/80 shadow-sm'
+                    isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
                   }`}
                 >
                   <div>
@@ -408,14 +407,12 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                     <h4 className="text-lg font-extrabold tracking-tight">{lp.pair}</h4>
                     <p className="text-xs text-blue-500 font-bold mt-0.5 mb-3">{lp.type}</p>
 
-                    {/* Tag Pills */}
+                    {/* Tag Metadata */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {lp.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className={`text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider ${
-                            isDarkMode ? 'bg-[#27272a] text-slate-300' : 'bg-slate-100 text-slate-600'
-                          }`}
+                          className="text-[10px] font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
                         >
                           {tag}
                         </span>
@@ -429,10 +426,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                       <div className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">ACCURACY / SPEED</div>
                       <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">{lp.accuracy} • {lp.throughput}</div>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
-                      <span className={`w-1.5 h-1.5 rounded-full ${lp.status === 'Optimal' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
-                      <span>{lp.status}</span>
-                    </span>
+                    <Badge status={lp.status} />
                   </div>
                 </div>
               );

@@ -18,8 +18,9 @@ export const InteractiveModal: React.FC<InteractiveModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
+    <div onClick={onClose} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
       <div
+        onClick={(e) => e.stopPropagation()}
         className={`w-full max-w-lg p-6 rounded-[2rem] border-2 shadow-2xl transition-all animate-in zoom-in-95 duration-200 ${
           isDarkMode
             ? 'bg-[#121215] border-[#27272a] text-white'

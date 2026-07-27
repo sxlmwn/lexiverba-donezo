@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../theme';
+import { MetricCard } from '../components/ui/MetricCard';
+import { Badge } from '../components/ui/Badge';
 
 interface DashboardPageProps {
   isDarkMode?: boolean;
@@ -9,20 +12,19 @@ interface DashboardPageProps {
 }
 
 export const DashboardPage: React.FC<DashboardPageProps> = ({
-  isDarkMode = false,
   onAddProjectClick,
   onImportDataClick,
   onStartMeetingClick,
   onItemClick,
 }) => {
+  const { isDarkMode } = useTheme();
   const [seconds, setSeconds] = useState(5048); // 01:24:08
   const [isTimerRunning, setIsTimerRunning] = useState(true);
-  const [hoveredCard, setHoveredCard] = useState<number>(0);
   const [chartType, setChartType] = useState<'bars' | 'line'>('bars');
   const [timeframe, setTimeframe] = useState<'D' | 'W' | 'M'>('W');
 
-  // Interactive Animated Gauge State (Count up from 0 to 41% on hover)
-  const [gaugePercent, setGaugePercent] = useState<number>(41);
+  // Interactive Animated Gauge State (Count up from 0 to 41% on mount)
+  const [gaugePercent, setGaugePercent] = useState<number>(0);
   const [isGaugeAnimating, setIsGaugeAnimating] = useState<boolean>(false);
 
   useEffect(() => {
@@ -57,6 +59,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
     }, stepTime);
   };
 
+  useEffect(() => {
+    triggerGaugeAnimation();
+  }, []);
+
   const formatTime = (totalSecs: number) => {
     const hrs = Math.floor(totalSecs / 3600);
     const mins = Math.floor((totalSecs % 3600) / 60);
@@ -65,34 +71,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
   };
 
   const statCards = [
-    {
-      id: 0,
-      title: 'TOTAL PROJECTS',
-      value: '24',
-      badge: '5 ▲ Increased',
-      icon: 'north_east',
-    },
-    {
-      id: 1,
-      title: 'ENDED PROJECTS',
-      value: '10',
-      badge: '6 ▲ Increased',
-      icon: 'north_east',
-    },
-    {
-      id: 2,
-      title: 'RUNNING PROJECTS',
-      value: '12',
-      badge: '2 ▲ Increased',
-      icon: 'north_east',
-    },
-    {
-      id: 3,
-      title: 'PENDING PROJECT',
-      value: '2',
-      badge: 'On Discuss',
-      icon: 'north_east',
-    },
+    { id: 0, title: 'TOTAL PROJECTS', value: '24', badge: '5 ▲ Increased', icon: 'folder_open' },
+    { id: 1, title: 'ENDED PROJECTS', value: '10', badge: '6 ▲ Increased', icon: 'task_alt' },
+    { id: 2, title: 'RUNNING PROJECTS', value: '12', badge: '2 ▲ Increased', icon: 'play_arrow' },
+    { id: 3, title: 'PENDING PROJECT', value: '2', badge: 'On Discuss', icon: 'pending_actions' },
   ];
 
   const projectList = [
@@ -136,7 +118,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
   const totalArcLength = 251.32;
   const completedDashOffset = totalArcLength - (totalArcLength * (gaugePercent / 100));
-  const inProgressDashOffset = totalArcLength - (totalArcLength * 0.70);
+  const inProgressDashOffset = totalArcLength - (totalArcLength * ((gaugePercent / 41) * 0.70));
 
   return (
     <div className="space-y-8">
@@ -182,63 +164,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
       {/* Top 4 Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-        {statCards.map((card) => {
-          const isExpanded = hoveredCard === card.id;
-
-          return (
-            <div
-              key={card.id}
-              onMouseEnter={() => setHoveredCard(card.id)}
-              onClick={() => onItemClick && onItemClick({ title: card.title, subtitle: `${card.value} • ${card.badge}`, icon: card.icon, badge: card.badge })}
-              className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
-                isExpanded
-                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
-                  : isDarkMode
-                  ? 'bg-[#18181b] border-2 border-[#27272a] text-white shadow-sm hover:shadow-lg'
-                  : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
-              }`}
-            >
-              {isExpanded && (
-                <div className="absolute -right-6 -top-6 opacity-10 text-white pointer-events-none transition-all duration-500">
-                  <span className="material-symbols-outlined text-[160px]">{card.icon}</span>
-                </div>
-              )}
-
-              <div className="flex justify-between items-start relative z-10">
-                <span className={`text-xs font-extrabold uppercase tracking-widest ${
-                  isExpanded ? 'text-blue-100' : isDarkMode ? 'text-zinc-300' : 'text-slate-700'
-                }`}>
-                  {card.title}
-                </span>
-                <div
-                  className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-                    isExpanded ? 'bg-white/20 text-white' : isDarkMode ? 'bg-zinc-800 text-zinc-300' : 'border border-slate-200 text-slate-600'
-                  }`}
-                >
-                  <span className="material-symbols-outlined text-[18px]">north_east</span>
-                </div>
-              </div>
-
-              <div className="mt-8 relative z-10">
-                <div className="text-5xl font-extrabold tracking-tight mb-3">
-                  {card.value}
-                </div>
-
-                <div
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold transition-colors ${
-                    isExpanded
-                      ? 'bg-white/20 text-white'
-                      : isDarkMode
-                      ? 'bg-zinc-800 text-zinc-300 border border-zinc-700'
-                      : 'bg-slate-100 text-slate-600 border border-slate-200/60'
-                  }`}
-                >
-                  {card.badge}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {statCards.map((card) => (
+          <MetricCard
+            key={card.id}
+            title={card.title}
+            value={card.value}
+            badge={card.badge}
+            icon={card.icon}
+            onClick={() => onItemClick && onItemClick({ title: card.title, subtitle: `${card.value} • ${card.badge}`, icon: card.icon, badge: card.badge })}
+          />
+        ))}
       </div>
 
       {/* Middle Grid */}
@@ -310,7 +245,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               ].map((bar, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center h-full justify-end relative group">
                   {bar.badge && (
-                    <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-md badge-shadow">
+                    <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-md">
                       {bar.badge}
                     </div>
                   )}
@@ -459,10 +394,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                     <div className="text-[10px] text-zinc-400 font-medium">{m.task}</div>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-2 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
-                  <span className={`w-1.5 h-1.5 rounded-full ${m.dotColor}`}></span>
-                  <span>{m.status}</span>
-                </span>
+                <Badge status={m.status} />
               </div>
             ))}
           </div>

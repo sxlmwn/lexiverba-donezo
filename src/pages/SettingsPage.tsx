@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useTheme } from '../theme';
+import { MetricCard } from '../components/ui/MetricCard';
 
 interface SettingsPageProps {
-  isDarkMode?: boolean;
   onItemClick?: (item: { title: string; subtitle: string; icon?: string; badge?: string }) => void;
 }
 
-export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, onItemClick }) => {
-  const [hoveredStatCard, setHoveredStatCard] = useState<number | null>(null);
+export const SettingsPage: React.FC<SettingsPageProps> = ({ onItemClick }) => {
+  const { isDarkMode } = useTheme();
 
   const statCards = [
     { id: 0, title: 'API KEYS ACTIVE', value: '2 Production', badge: 'Active Rate Limit', icon: 'key', color: 'text-blue-500' },
@@ -25,60 +26,33 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
             <span className="text-xs font-extrabold text-blue-500 uppercase tracking-[0.25em]">SYSTEM CONFIGURATION &amp; SECURITY</span>
           </div>
           <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            Agency System Controls
+            Platform Settings
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-            Manage API keys, Neural MT model parameters, and ISO team permissions.
+            Configure neural translation engines, API security keys, and compliance protocols.
           </p>
         </div>
 
-        {/* Pill Action Buttons */}
-        <div className="flex items-center gap-3">
-          <button className={`flex items-center gap-2 px-6 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
-            isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
-          }`}>
-            <span className="material-symbols-outlined text-[18px]">history</span>
-            Export Audit Logs
-          </button>
-          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
-            <span className="material-symbols-outlined text-[18px]">save</span>
-            Save System State
-          </button>
-        </div>
+        <button className={`flex items-center gap-2 px-7 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+          isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
+        }`}>
+          <span className="material-symbols-outlined text-[18px]">save</span>
+          Save Preferences
+        </button>
       </div>
 
       {/* Top 4 Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {statCards.map((c) => {
-          const isExpanded = hoveredStatCard === c.id;
-          return (
-            <div
-              key={c.id}
-              onMouseEnter={() => setHoveredStatCard(c.id)}
-              className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
-                isExpanded
-                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
-                  : isDarkMode
-                  ? 'bg-[#18181b] border-2 border-[#27272a] text-white shadow-sm hover:shadow-lg'
-                  : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
-              }`}
-            >
-              <div className="flex justify-between items-start relative z-10">
-                <span className={`text-xs font-extrabold uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
-                  {c.title}
-                </span>
-                <span className={`text-[10px] px-3 py-1 rounded-full font-extrabold ${
-                  isExpanded ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300'
-                }`}>
-                  {c.badge}
-                </span>
-              </div>
-              <div className="mt-6 relative z-10">
-                <div className="text-4xl font-extrabold tracking-tight">{c.value}</div>
-              </div>
-            </div>
-          );
-        })}
+        {statCards.map((c) => (
+          <MetricCard
+            key={c.id}
+            title={c.title}
+            value={c.value}
+            badge={c.badge}
+            icon={c.icon}
+            onClick={() => onItemClick && onItemClick({ title: c.title, subtitle: `${c.value} • ${c.badge}`, icon: c.icon, badge: c.badge })}
+          />
+        ))}
       </div>
 
       {/* Settings Options Card Grid */}

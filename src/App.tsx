@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTheme } from './theme';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { FloatingAIAssistant } from './components/FloatingAIAssistant';
@@ -14,7 +15,7 @@ import { LoginPage } from './pages/LoginPage';
 
 export function App() {
   const [currentTab, setCurrentTab] = useState<string>('dashboard');
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const { isDarkMode, toggleDarkMode, setIsDarkMode } = useTheme();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -26,25 +27,12 @@ export function App() {
   const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
 
-  // Sync Dark Mode class on document Element
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
   // Handle Help Tab navigation
   useEffect(() => {
     if (currentTab === 'help') {
       setIsHelpOpen(true);
     }
   }, [currentTab]);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
-  };
 
   // Item Detail Modal State
   const [activeDetailItem, setActiveDetailItem] = useState<{ title: string; subtitle: string; icon?: string; badge?: string } | null>(null);
@@ -62,7 +50,6 @@ export function App() {
       case 'dashboard':
         return (
           <DashboardPage
-            isDarkMode={isDarkMode}
             onAddProjectClick={() => setIsAddProjectOpen(true)}
             onImportDataClick={() => setIsImportOpen(true)}
             onStartMeetingClick={() => setIsMeetingOpen(true)}
@@ -70,21 +57,20 @@ export function App() {
           />
         );
       case 'documents':
-        return <DocumentsPage isDarkMode={isDarkMode} onItemClick={handleItemClick} />;
+        return <DocumentsPage onItemClick={handleItemClick} />;
       case 'team':
-        return <TeamPage isDarkMode={isDarkMode} onItemClick={handleItemClick} />;
+        return <TeamPage onItemClick={handleItemClick} />;
       case 'invoices':
-        return <InvoicesPage isDarkMode={isDarkMode} onItemClick={handleItemClick} />;
+        return <InvoicesPage onItemClick={handleItemClick} />;
       case 'pricing':
-        return <PricingPage isDarkMode={isDarkMode} onItemClick={handleItemClick} />;
+        return <PricingPage onItemClick={handleItemClick} />;
       case 'insights':
-        return <InsightsPage isDarkMode={isDarkMode} onItemClick={handleItemClick} />;
+        return <InsightsPage onItemClick={handleItemClick} />;
       case 'settings':
-        return <SettingsPage isDarkMode={isDarkMode} onItemClick={handleItemClick} />;
+        return <SettingsPage onItemClick={handleItemClick} />;
       default:
         return (
           <DashboardPage
-            isDarkMode={isDarkMode}
             onAddProjectClick={() => setIsAddProjectOpen(true)}
             onImportDataClick={() => setIsImportOpen(true)}
             onStartMeetingClick={() => setIsMeetingOpen(true)}
