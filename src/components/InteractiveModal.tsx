@@ -27,7 +27,7 @@ export const InteractiveModal: React.FC<InteractiveModalProps> = ({
         }`}
       >
         <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200/50 dark:border-zinc-800">
-          <h3 className="text-xl font-black">{title}</h3>
+          <h3 className="text-xl font-extrabold">{title}</h3>
           <button
             onClick={onClose}
             className="w-9 h-9 rounded-full flex items-center justify-center transition-colors hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-400 hover:text-slate-600 dark:hover:text-white"

@@ -48,9 +48,9 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-1.5 w-10 bg-blue-600 rounded-full shadow-md shadow-blue-500/30"></div>
-            <span className="text-xs font-black text-blue-500 uppercase tracking-[0.25em]">TRANSPARENT SUBSCRIPTIONS &amp; CERTIFIED TIERS</span>
+            <span className="text-xs font-extrabold text-blue-500 uppercase tracking-[0.25em]">TRANSPARENT SUBSCRIPTIONS &amp; CERTIFIED TIERS</span>
           </div>
-          <h1 className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+          <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Enterprise Pricing Plans
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -62,7 +62,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
         <div className={`flex p-1.5 rounded-full border shadow-sm ${isDarkMode ? 'bg-[#18181b] border-[#27272a]' : 'bg-white border-slate-200'}`}>
           <button
             onClick={() => setBillingCycle('monthly')}
-            className={`px-5 py-2.5 text-xs font-black rounded-full transition-all cursor-pointer ${
+            className={`px-5 py-2.5 text-xs font-extrabold rounded-full transition-all cursor-pointer ${
               billingCycle === 'monthly'
                 ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
                 : 'text-slate-400 hover:text-slate-200'
@@ -72,14 +72,14 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
           </button>
           <button
             onClick={() => setBillingCycle('annual')}
-            className={`px-5 py-2.5 text-xs font-black rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-5 py-2.5 text-xs font-extrabold rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
               billingCycle === 'annual'
                 ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <span>Annual Billing</span>
-            <span className="bg-emerald-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase">Save 20%</span>
+            <span className="bg-emerald-500 text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase">Save 20%</span>
           </button>
         </div>
       </div>
@@ -98,20 +98,20 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
             }`}
           >
             {plan.highlighted && (
-              <span className="absolute -top-4 right-8 bg-blue-600 text-white text-[10px] font-black uppercase px-4 py-1 rounded-full shadow-md">
+              <span className="absolute -top-4 right-8 bg-blue-600 text-white text-[10px] font-extrabold uppercase px-4 py-1 rounded-full shadow-md">
                 MOST POPULAR
               </span>
             )}
 
             <div>
-              <h3 className="text-2xl font-black">{plan.name}</h3>
+              <h3 className="text-2xl font-extrabold">{plan.name}</h3>
               <p className={`text-xs font-medium mt-1 mb-6 ${plan.highlighted ? 'text-blue-100' : 'text-slate-400'}`}>
                 {plan.description}
               </p>
 
               <div className="flex items-baseline gap-1 my-6">
-                <span className="text-5xl font-black tracking-tight">{plan.price}</span>
-                <span className={`text-xs font-bold ${plan.highlighted ? 'text-blue-200' : 'text-slate-400'}`}>{plan.period}</span>
+                <span className="text-5xl font-extrabold tracking-tight">{plan.price}</span>
+                <span className={`text-xs font-semibold ${plan.highlighted ? 'text-blue-200' : 'text-slate-400'}`}>{plan.period}</span>
               </div>
 
               {/* Tag Pills */}
@@ -119,7 +119,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
                 {plan.tags.map((tag, tIdx) => (
                   <span
                     key={tIdx}
-                    className={`text-[9px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider ${
+                    className={`text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider ${
                       plan.highlighted
                         ? 'bg-white/20 text-white'
                         : isDarkMode
@@ -132,7 +132,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
                 ))}
               </div>
 
-              <ul className="space-y-3 border-t border-slate-100 dark:border-zinc-800 pt-6 text-xs font-semibold">
+              <ul className="space-y-3 border-t border-slate-100 dark:border-zinc-800 pt-6 text-xs font-medium">
                 {plan.features.map((f, i) => (
                   <li key={i} className="flex items-center gap-2">
                     <span className={`material-symbols-outlined text-[18px] ${plan.highlighted ? 'text-amber-300' : 'text-blue-600'}`}>
@@ -146,7 +146,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ isDarkMode = false, on
 
             <button
               onClick={() => onItemClick && onItemClick({ title: `${plan.name} Plan`, subtitle: `Price: ${plan.price}${plan.period} • Billing: ${billingCycle}`, icon: 'payments', badge: 'SUBSCRIPTION PLAN' })}
-              className={`w-full mt-8 py-4 font-black text-xs rounded-full shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer ${
+              className={`w-full mt-8 py-4 font-extrabold text-xs rounded-full shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer ${
                 plan.highlighted
                   ? 'bg-white text-blue-700 hover:bg-blue-50'
                   : 'bg-blue-600 hover:bg-blue-700 text-white'

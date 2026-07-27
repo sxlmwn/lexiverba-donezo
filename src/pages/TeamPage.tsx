@@ -82,25 +82,25 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-1.5 w-10 bg-blue-600 rounded-full shadow-md shadow-blue-500/30"></div>
-            <span className="text-xs font-black text-blue-500 uppercase tracking-[0.25em]">ISO-17100 LINGUIST NETWORK &amp; EXPERTS</span>
+            <span className="text-xs font-extrabold text-blue-500 uppercase tracking-[0.25em]">ISO-17100 LINGUIST NETWORK &amp; EXPERTS</span>
           </div>
-          <h1 className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+          <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Team Collaboration
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-            Manage your distributed team of <span className="font-black text-blue-500">142 certified specialists</span> across 48 time zones.
+            Manage your distributed team of <span className="font-extrabold text-blue-500">142 certified specialists</span> across 48 time zones.
           </p>
         </div>
 
         {/* Pill Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className={`flex items-center gap-2 px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+          <button className={`flex items-center gap-2 px-6 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
           }`}>
             <span className="material-symbols-outlined text-[18px]">filter_list</span>
             Filter Network
           </button>
-          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
+          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
             <span className="material-symbols-outlined text-[18px]">person_add</span>
             Invite Expert
           </button>
@@ -116,7 +116,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-black leading-tight">Active<br />Capacity</h3>
+              <h3 className="text-lg font-extrabold leading-tight">Active<br />Capacity</h3>
               <div className="w-9 h-9 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-sm">
                 <span className="material-symbols-outlined text-[20px]">monitoring</span>
               </div>
@@ -155,14 +155,14 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
               </svg>
 
               <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
-                <span className={`text-4xl font-black tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`text-4xl font-extrabold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                   75%
                 </span>
-                <span className="text-[10px] font-extrabold text-zinc-400 mt-1">Utilization</span>
+                <span className="text-[10px] font-bold text-zinc-400 mt-1">Utilization</span>
               </div>
             </div>
 
-            <div className={`flex justify-between items-center text-xs font-bold border-t pt-4 mt-2 ${
+            <div className={`flex justify-between items-center text-xs font-semibold border-t pt-4 mt-2 ${
               isDarkMode ? 'border-zinc-800 text-zinc-300' : 'border-slate-100 text-slate-600'
             }`}>
               <div className="flex items-center gap-1.5">
@@ -184,13 +184,13 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
           <div className={`p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card space-y-4 transition-colors ${
             isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
-            <h3 className="text-lg font-black">Expert Availability</h3>
+            <h3 className="text-lg font-extrabold">Expert Availability</h3>
 
             <div className="space-y-4 pt-2">
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Legal &amp; Compliance</span>
-                  <span className="text-blue-600 font-black">92%</span>
+                  <span className="text-blue-600 font-extrabold">92%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[92%]"></div>
@@ -198,9 +198,9 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Medical / Life Sciences</span>
-                  <span className="text-blue-600 font-black">45%</span>
+                  <span className="text-blue-600 font-extrabold">45%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[45%]"></div>
@@ -208,9 +208,9 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Technical / Engineering</span>
-                  <span className="text-blue-600 font-black">68%</span>
+                  <span className="text-blue-600 font-extrabold">68%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[68%]"></div>
@@ -258,15 +258,15 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
                     </div>
 
                     {/* Member Info */}
-                    <h4 className="text-xl font-black tracking-tight">{member.name}</h4>
-                    <p className="text-xs text-blue-500 font-extrabold mt-0.5 mb-3">{member.role}</p>
+                    <h4 className="text-xl font-extrabold tracking-tight">{member.name}</h4>
+                    <p className="text-xs text-blue-500 font-bold mt-0.5 mb-3">{member.role}</p>
 
                     {/* Skill Tag Pills */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {member.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className={`text-[9px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider ${
+                          className={`text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider ${
                             isDarkMode ? 'bg-[#1e2638] text-slate-300' : 'bg-slate-100 text-slate-600'
                           }`}
                         >
@@ -279,8 +279,8 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
                   {/* Availability & Quick Action Button */}
                   <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-800">
                     <div>
-                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block">AVAILABILITY</span>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300 mt-1">
+                      <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest block">AVAILABILITY</span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300 mt-1">
                         <span className={`w-1.5 h-1.5 rounded-full ${
                           member.availability.includes('Available') ? 'bg-emerald-500' : member.availability === 'Offline' ? 'bg-slate-400' : 'bg-amber-500'
                         }`}></span>
@@ -302,7 +302,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
               <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-3 shadow-lg shadow-blue-600/30">
                 <span className="material-symbols-outlined text-[28px]">add</span>
               </div>
-              <h4 className="text-lg font-black">Add Member</h4>
+              <h4 className="text-lg font-extrabold">Add Member</h4>
               <p className="text-xs text-slate-400 font-medium max-w-[180px] mt-1">
                 Invite a new linguist to join your agency team
               </p>
@@ -315,17 +315,17 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
       <div className={`p-6 rounded-[2.5rem] border-2 float-shadow smooth-card font-mono text-xs space-y-2 transition-colors ${
         isDarkMode ? 'bg-[#080b12] border-slate-800 text-slate-300' : 'bg-slate-900 border-slate-900 text-slate-200'
       }`}>
-        <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-[10px] font-black uppercase text-slate-500 tracking-widest">
+        <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-[10px] font-extrabold uppercase text-slate-500 tracking-widest">
           <span>NETWORK LIVE STREAM</span>
           <span className="text-emerald-400 flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
             SYNC_READY: 142_NODES_UP
           </span>
         </div>
-        <div className="space-y-1 font-semibold text-[11px] text-blue-400">
-          <div>&gt; [09:42:15] <span className="text-white font-bold">E. Rodriguez</span> COMPLETED "Case_Study_72_Revision"</div>
-          <div>&gt; [09:44:02] <span className="text-white font-bold">M. Chen</span> ACCEPTED "Technical_Manual_V4"</div>
-          <div>&gt; [09:45:55] SYSTEM ASSIGNING "Medical_Report_Alpha" TO <span className="text-white font-bold">A. Okafor</span></div>
+        <div className="space-y-1 font-medium text-[11px] text-blue-400">
+          <div>&gt; [09:42:15] <span className="text-white font-semibold">E. Rodriguez</span> COMPLETED "Case_Study_72_Revision"</div>
+          <div>&gt; [09:44:02] <span className="text-white font-semibold">M. Chen</span> ACCEPTED "Technical_Manual_V4"</div>
+          <div>&gt; [09:45:55] SYSTEM ASSIGNING "Medical_Report_Alpha" TO <span className="text-white font-semibold">A. Okafor</span></div>
           <div>&gt; [09:48:10] NETWORK_UPDATE: LATENCY 14ms | REGION: APAC_EU</div>
         </div>
       </div>

@@ -89,9 +89,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-1.5 w-10 bg-blue-600 rounded-full shadow-md shadow-blue-500/30"></div>
-            <span className="text-xs font-black text-blue-500 uppercase tracking-[0.25em]">NEURAL MT PERFORMANCE &amp; BLEU QUALITY</span>
+            <span className="text-xs font-extrabold text-blue-500 uppercase tracking-[0.25em]">NEURAL MT PERFORMANCE &amp; BLEU QUALITY</span>
           </div>
-          <h1 className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+          <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Analytics &amp; Quality Insights
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -101,13 +101,13 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
 
         {/* Pill Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className={`flex items-center gap-2 px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+          <button className={`flex items-center gap-2 px-6 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
           }`}>
             <span className="material-symbols-outlined text-[18px]">download</span>
             Export Report
           </button>
-          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
+          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
             <span className="material-symbols-outlined text-[18px]">tune</span>
             Calibrate Models
           </button>
@@ -131,7 +131,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
               }`}
             >
               <div className="flex items-center justify-between mb-4">
-                <span className={`text-[10px] font-black uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
+                <span className={`text-[10px] font-extrabold uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
                   {c.title}
                 </span>
                 <div className={`w-9 h-9 rounded-2xl flex items-center justify-center shadow-sm ${
@@ -142,9 +142,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
               </div>
 
               <div>
-                <div className="text-3xl font-black tracking-tight mb-1">{c.value}</div>
+                <div className="text-3xl font-extrabold tracking-tight mb-1">{c.value}</div>
                 <div className="flex items-center gap-1.5">
-                  <span className={`text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
+                  <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
                     isExpanded
                       ? 'bg-white/20 text-white'
                       : isDarkMode
@@ -169,7 +169,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-black leading-tight">Neural Model<br />Precision SLA</h3>
+              <h3 className="text-lg font-extrabold leading-tight">Neural Model<br />Precision SLA</h3>
               <div className="w-9 h-9 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-sm">
                 <span className="material-symbols-outlined text-[20px]">psychology</span>
               </div>
@@ -208,14 +208,14 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
               </svg>
 
               <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
-                <span className={`text-4xl font-black tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`text-4xl font-extrabold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                   98.2%
                 </span>
-                <span className="text-[10px] font-extrabold text-zinc-400 mt-1">12 Engine Pairs</span>
+                <span className="text-[10px] font-bold text-zinc-400 mt-1">12 Engine Pairs</span>
               </div>
             </div>
 
-            <div className={`flex justify-between items-center text-xs font-bold border-t pt-4 mt-2 ${
+            <div className={`flex justify-between items-center text-xs font-semibold border-t pt-4 mt-2 ${
               isDarkMode ? 'border-zinc-800 text-zinc-300' : 'border-slate-100 text-slate-600'
             }`}>
               <div className="flex items-center gap-1.5">
@@ -237,13 +237,13 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
           <div className={`p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card space-y-4 transition-colors ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
-            <h3 className="text-lg font-black">Domain Precision</h3>
+            <h3 className="text-lg font-extrabold">Domain Precision</h3>
 
             <div className="space-y-4 pt-2">
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Legal &amp; Sworn Contracts</span>
-                  <span className="text-blue-600 font-black">98.4%</span>
+                  <span className="text-blue-600 font-extrabold">98.4%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[98.4%]"></div>
@@ -251,9 +251,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Medical &amp; Bio Protocols</span>
-                  <span className="text-blue-600 font-black">96.8%</span>
+                  <span className="text-blue-600 font-extrabold">96.8%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[96.8%]"></div>
@@ -261,9 +261,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Fintech &amp; Earnings Reports</span>
-                  <span className="text-blue-600 font-black">97.1%</span>
+                  <span className="text-blue-600 font-extrabold">97.1%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[97.1%]"></div>
@@ -281,15 +281,15 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
           }`}>
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
               <div>
-                <h3 className="text-xl font-black">NMT Wordcount &amp; Precision Throughput</h3>
-                <p className="text-xs text-zinc-400 font-bold">Real-time words processed per hour</p>
+                <h3 className="text-xl font-extrabold">NMT Wordcount &amp; Precision Throughput</h3>
+                <p className="text-xs text-zinc-400 font-semibold">Real-time words processed per hour</p>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#27272a] border-zinc-700' : 'bg-slate-100 border-slate-200'}`}>
                   <button
                     onClick={() => setChartType('bars')}
-                    className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 cursor-pointer ${
+                    className={`px-3 py-1 text-xs font-extrabold rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                       chartType === 'bars'
                         ? 'bg-blue-600 text-white shadow-md'
                         : 'text-zinc-400 hover:text-zinc-200'
@@ -300,7 +300,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                   </button>
                   <button
                     onClick={() => setChartType('line')}
-                    className={`px-3 py-1 text-xs font-black rounded-full transition-all flex items-center gap-1 cursor-pointer ${
+                    className={`px-3 py-1 text-xs font-extrabold rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                       chartType === 'line'
                         ? 'bg-blue-600 text-white shadow-md'
                         : 'text-zinc-400 hover:text-zinc-200'
@@ -316,7 +316,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                     <button
                       key={t}
                       onClick={() => setTimeframe(t)}
-                      className={`px-3 py-1 text-xs font-black rounded-full transition-colors cursor-pointer ${
+                      className={`px-3 py-1 text-xs font-extrabold rounded-full transition-colors cursor-pointer ${
                         timeframe === t
                           ? 'bg-blue-600 text-white shadow-md'
                           : 'text-zinc-400 hover:text-zinc-200'
@@ -342,7 +342,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                 ].map((bar, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center h-full justify-end relative group">
                     {bar.badge && (
-                      <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-md animate-bounce">
+                      <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-md animate-bounce">
                         {bar.badge}
                       </div>
                     )}
@@ -356,7 +356,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                       }`}
                       style={{ height: bar.height }}
                     ></div>
-                    <span className="text-xs font-bold text-zinc-400 mt-3">{bar.day}</span>
+                    <span className="text-xs font-semibold text-zinc-400 mt-3">{bar.day}</span>
                   </div>
                 ))}
               </div>
@@ -404,16 +404,16 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                     </div>
 
                     {/* Info */}
-                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{lp.id}</div>
-                    <h4 className="text-lg font-black tracking-tight">{lp.pair}</h4>
-                    <p className="text-xs text-blue-500 font-extrabold mt-0.5 mb-3">{lp.type}</p>
+                    <div className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">{lp.id}</div>
+                    <h4 className="text-lg font-extrabold tracking-tight">{lp.pair}</h4>
+                    <p className="text-xs text-blue-500 font-bold mt-0.5 mb-3">{lp.type}</p>
 
                     {/* Tag Pills */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {lp.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className={`text-[9px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider ${
+                          className={`text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider ${
                             isDarkMode ? 'bg-[#27272a] text-slate-300' : 'bg-slate-100 text-slate-600'
                           }`}
                         >
@@ -426,10 +426,10 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
                   {/* Accuracy & Status */}
                   <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-zinc-800">
                     <div>
-                      <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest">ACCURACY / SPEED</div>
-                      <div className="text-xs font-bold text-slate-700 dark:text-slate-200">{lp.accuracy} • {lp.throughput}</div>
+                      <div className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">ACCURACY / SPEED</div>
+                      <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">{lp.accuracy} • {lp.throughput}</div>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
                       <span className={`w-1.5 h-1.5 rounded-full ${lp.status === 'Optimal' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
                       <span>{lp.status}</span>
                     </span>

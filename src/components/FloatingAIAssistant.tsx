@@ -34,8 +34,8 @@ export const FloatingAIAssistant: React.FC = () => {
                 <span className="material-symbols-outlined text-[22px]">bolt</span>
               </div>
               <div>
-                <h4 className="font-bold text-sm leading-tight">Lexi AI Assistant</h4>
-                <span className="text-[10px] text-blue-200 font-semibold uppercase tracking-wider">Active Memory v4.2</span>
+                <h4 className="font-semibold text-sm leading-tight">Lexi AI Assistant</h4>
+                <span className="text-[10px] text-blue-200 font-medium uppercase tracking-wider">Active Memory v4.2</span>
               </div>
             </div>
             <button
@@ -75,7 +75,7 @@ export const FloatingAIAssistant: React.FC = () => {
             />
             <button
               type="submit"
-              className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-colors flex items-center justify-center"
+              className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold transition-colors flex items-center justify-center"
             >
               <span className="material-symbols-outlined text-[16px]">send</span>
             </button>
@@ -89,7 +89,7 @@ export const FloatingAIAssistant: React.FC = () => {
       >
         <span className="material-symbols-outlined text-[32px]">bolt</span>
         {!isOpen && (
-          <div className="absolute right-full mr-4 bg-slate-900 text-white px-4 py-2.5 rounded-2xl shadow-2xl opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap text-xs font-bold border border-blue-500/30">
+          <div className="absolute right-full mr-4 bg-slate-900 text-white px-4 py-2.5 rounded-2xl shadow-2xl opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap text-xs font-semibold border border-blue-500/30">
             How can Lexi-AI assist you?
           </div>
         )}

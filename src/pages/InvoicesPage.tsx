@@ -93,9 +93,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-1.5 w-10 bg-blue-600 rounded-full shadow-md shadow-blue-500/30"></div>
-            <span className="text-xs font-black text-blue-500 uppercase tracking-[0.25em]">FINANCIAL SETTLEMENTS &amp; INVOICING</span>
+            <span className="text-xs font-extrabold text-blue-500 uppercase tracking-[0.25em]">FINANCIAL SETTLEMENTS &amp; INVOICING</span>
           </div>
-          <h1 className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+          <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Billing &amp; Invoices
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -105,13 +105,13 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
 
         {/* Pill Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className={`flex items-center gap-2 px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+          <button className={`flex items-center gap-2 px-6 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
           }`}>
             <span className="material-symbols-outlined text-[18px]">receipt</span>
             Statement History
           </button>
-          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
+          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
             <span className="material-symbols-outlined text-[18px]">add_card</span>
             Create Invoice
           </button>
@@ -135,7 +135,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
               }`}
             >
               <div className="flex items-center justify-between mb-4">
-                <span className={`text-[10px] font-black uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
+                <span className={`text-[10px] font-extrabold uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
                   {c.title}
                 </span>
                 <div className={`w-9 h-9 rounded-2xl flex items-center justify-center shadow-sm ${
@@ -146,9 +146,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
               </div>
 
               <div>
-                <div className="text-3xl font-black tracking-tight mb-1">{c.value}</div>
+                <div className="text-3xl font-extrabold tracking-tight mb-1">{c.value}</div>
                 <div className="flex items-center gap-1.5">
-                  <span className={`text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
+                  <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
                     isExpanded
                       ? 'bg-white/20 text-white'
                       : isDarkMode
@@ -173,7 +173,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-black leading-tight">Billing<br />Realization Rate</h3>
+              <h3 className="text-lg font-extrabold leading-tight">Billing<br />Realization Rate</h3>
               <div className="w-9 h-9 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-sm">
                 <span className="material-symbols-outlined text-[20px]">payments</span>
               </div>
@@ -212,14 +212,14 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
               </svg>
 
               <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
-                <span className={`text-4xl font-black tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`text-4xl font-extrabold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                   91%
                 </span>
-                <span className="text-[10px] font-extrabold text-zinc-400 mt-1">$17.2K / $19K</span>
+                <span className="text-[10px] font-bold text-zinc-400 mt-1">$17.2K / $19K</span>
               </div>
             </div>
 
-            <div className={`flex justify-between items-center text-xs font-bold border-t pt-4 mt-2 ${
+            <div className={`flex justify-between items-center text-xs font-semibold border-t pt-4 mt-2 ${
               isDarkMode ? 'border-zinc-800 text-zinc-300' : 'border-slate-100 text-slate-600'
             }`}>
               <div className="flex items-center gap-1.5">
@@ -241,13 +241,13 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
           <div className={`p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card space-y-4 transition-colors ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
-            <h3 className="text-lg font-black">Settlement Channels</h3>
+            <h3 className="text-lg font-extrabold">Settlement Channels</h3>
 
             <div className="space-y-4 pt-2">
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Stripe Instant Credit Card</span>
-                  <span className="text-blue-600 font-black">68%</span>
+                  <span className="text-blue-600 font-extrabold">68%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[68%]"></div>
@@ -255,9 +255,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>Corporate Wire (SWIFT/SEPA)</span>
-                  <span className="text-blue-600 font-black">24%</span>
+                  <span className="text-blue-600 font-extrabold">24%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[24%]"></div>
@@ -265,9 +265,9 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-bold mb-1">
+                <div className="flex justify-between text-xs font-semibold mb-1">
                   <span>USDC Stablecoin Settlement</span>
-                  <span className="text-blue-600 font-black">8%</span>
+                  <span className="text-blue-600 font-extrabold">8%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                   <div className="bg-blue-600 h-full rounded-full w-[8%]"></div>
@@ -311,12 +311,12 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                       </div>
 
                       {/* Invoice Info & Client */}
-                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{inv.id}</div>
-                      <h4 className="text-xl font-black tracking-tight">{inv.client}</h4>
-                      <p className="text-xs text-blue-500 font-extrabold mt-0.5 mb-3">{inv.service}</p>
+                      <div className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">{inv.id}</div>
+                      <h4 className="text-xl font-extrabold tracking-tight">{inv.client}</h4>
+                      <p className="text-xs text-blue-500 font-bold mt-0.5 mb-3">{inv.service}</p>
 
                       {/* Amount Display */}
-                      <div className="text-3xl font-black tracking-tight mb-4 text-slate-900 dark:text-white">
+                      <div className="text-3xl font-extrabold tracking-tight mb-4 text-slate-900 dark:text-white">
                         {inv.amount}
                       </div>
 
@@ -325,7 +325,7 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                         {inv.tags.map((tag, tIdx) => (
                           <span
                             key={tIdx}
-                            className={`text-[9px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider ${
+                            className={`text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider ${
                               isDarkMode ? 'bg-[#27272a] text-slate-300' : 'bg-slate-100 text-slate-600'
                             }`}
                           >
@@ -338,11 +338,11 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                     {/* Due Date & PDF Action Button */}
                     <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-zinc-800">
                       <div>
-                        <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest">DUE DATE</div>
-                        <div className="text-xs font-bold text-slate-700 dark:text-slate-200">{inv.dueDate}</div>
+                        <div className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">DUE DATE</div>
+                        <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">{inv.dueDate}</div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/60 text-slate-700 dark:text-slate-300">
                           <span className={`w-1.5 h-1.5 rounded-full ${inv.status === 'Paid' ? 'bg-emerald-500' : inv.status === 'Pending' ? 'bg-amber-500' : 'bg-rose-500'}`}></span>
                           <span>{inv.status}</span>
                         </span>
@@ -359,10 +359,10 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
             <div className={`rounded-[2.5rem] border-2 p-8 float-shadow smooth-card transition-colors ${
               isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
             }`}>
-              <h3 className="text-xl font-black mb-6">Recent Invoices</h3>
+              <h3 className="text-xl font-extrabold mb-6">Recent Invoices</h3>
               <table className="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr className={`border-b-2 text-xs font-black uppercase tracking-wider ${
+                  <tr className={`border-b-2 text-xs font-extrabold uppercase tracking-wider ${
                     isDarkMode ? 'border-zinc-800 text-slate-400' : 'border-slate-100 text-slate-400'
                   }`}>
                     <th className="pb-4">Invoice ID</th>
@@ -373,17 +373,17 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
                     <th className="pb-4 text-right">PDF</th>
                   </tr>
                 </thead>
-                <tbody className={`divide-y font-semibold ${
+                <tbody className={`divide-y font-medium ${
                   isDarkMode ? 'divide-zinc-800 text-slate-300' : 'divide-slate-100 text-slate-700'
                 }`}>
                   {filteredInvoices.map((inv, idx) => (
                     <tr key={idx} className={`transition-colors ${isDarkMode ? 'hover:bg-zinc-800/40' : 'hover:bg-slate-50'}`}>
-                      <td className="py-4 font-black">{inv.id}</td>
-                      <td className="py-4 font-black text-blue-500">{inv.client}</td>
+                      <td className="py-4 font-extrabold">{inv.id}</td>
+                      <td className="py-4 font-extrabold text-blue-500">{inv.client}</td>
                       <td className="py-4 text-slate-400">{inv.dueDate}</td>
-                      <td className="py-4 font-black text-slate-900 dark:text-white">{inv.amount}</td>
+                      <td className="py-4 font-extrabold text-slate-900 dark:text-white">{inv.amount}</td>
                       <td className="py-4">
-                        <span className={`px-3 py-1 text-xs font-black rounded-full uppercase ${inv.statusColor}`}>
+                        <span className={`px-3 py-1 text-xs font-extrabold rounded-full uppercase ${inv.statusColor}`}>
                           {inv.status}
                         </span>
                       </td>

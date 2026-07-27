@@ -22,9 +22,9 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-1.5 w-10 bg-blue-600 rounded-full shadow-md shadow-blue-500/30"></div>
-            <span className="text-xs font-black text-blue-500 uppercase tracking-[0.25em]">SYSTEM CONFIGURATION &amp; SECURITY</span>
+            <span className="text-xs font-extrabold text-blue-500 uppercase tracking-[0.25em]">SYSTEM CONFIGURATION &amp; SECURITY</span>
           </div>
-          <h1 className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+          <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Agency System Controls
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -34,13 +34,13 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
 
         {/* Pill Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className={`flex items-center gap-2 px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+          <button className={`flex items-center gap-2 px-6 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
           }`}>
             <span className="material-symbols-outlined text-[18px]">history</span>
             Export Audit Logs
           </button>
-          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
+          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
             <span className="material-symbols-outlined text-[18px]">save</span>
             Save System State
           </button>
@@ -64,17 +64,17 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
               }`}
             >
               <div className="flex justify-between items-start relative z-10">
-                <span className={`text-xs font-black uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
+                <span className={`text-xs font-extrabold uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
                   {c.title}
                 </span>
-                <span className={`text-[10px] px-3 py-1 rounded-full font-black ${
+                <span className={`text-[10px] px-3 py-1 rounded-full font-extrabold ${
                   isExpanded ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300'
                 }`}>
                   {c.badge}
                 </span>
               </div>
               <div className="mt-6 relative z-10">
-                <div className="text-4xl font-black tracking-tight">{c.value}</div>
+                <div className="text-4xl font-extrabold tracking-tight">{c.value}</div>
               </div>
             </div>
           );
@@ -87,7 +87,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
       }`}>
         <div className="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-zinc-800">
           <div>
-            <h3 className="font-extrabold text-base">Neural MT Auto-Correction</h3>
+            <h3 className="font-bold text-base">Neural MT Auto-Correction</h3>
             <p className="text-xs text-slate-400 font-medium mt-0.5">Automatically apply glossary terms before human review panel</p>
           </div>
           <input type="checkbox" defaultChecked className="w-5 h-5 rounded text-blue-600 focus:ring-blue-600 cursor-pointer" />
@@ -95,7 +95,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
 
         <div className="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-zinc-800">
           <div>
-            <h3 className="font-extrabold text-base">Sworn Audit Alerts</h3>
+            <h3 className="font-bold text-base">Sworn Audit Alerts</h3>
             <p className="text-xs text-slate-400 font-medium mt-0.5">Alert lead auditor when BLEU accuracy score drops below 75%</p>
           </div>
           <input type="checkbox" defaultChecked className="w-5 h-5 rounded text-blue-600 focus:ring-blue-600 cursor-pointer" />
@@ -103,10 +103,10 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
 
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-extrabold text-base">API Key Production Access</h3>
-            <p className="text-xs text-slate-400 font-medium mt-0.5">Production key: <span className="font-mono text-blue-500 font-bold">lx_prod_9921487291847</span></p>
+            <h3 className="font-bold text-base">API Key Production Access</h3>
+            <p className="text-xs text-slate-400 font-medium mt-0.5">Production key: <span className="font-mono text-blue-500 font-semibold">lx_prod_9921487291847</span></p>
           </div>
-          <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-md shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 cursor-pointer">
+          <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full shadow-md shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 cursor-pointer">
             Regenerate Key
           </button>
         </div>
