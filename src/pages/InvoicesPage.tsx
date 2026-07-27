@@ -78,49 +78,38 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
 
   return (
     <div className="space-y-8 animate-page-enter">
+      {/* SVG Definitions for Hatched Pattern */}
+      <svg className="absolute w-0 h-0 pointer-events-none">
+        <defs>
+          <pattern id="hatchedPatternInv" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="8" stroke={isDarkMode ? '#3f3f46' : '#cbd5e1'} strokeWidth="3" />
+          </pattern>
+        </defs>
+      </svg>
+
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-1.5 w-10 bg-blue-600 rounded-full shadow-md shadow-blue-500/30"></div>
-            <span className="text-xs font-black text-blue-500 uppercase tracking-[0.25em]">FINANCIAL TRANSACTIONS &amp; RETAINERS</span>
+            <span className="text-xs font-black text-blue-500 uppercase tracking-[0.25em]">FINANCIAL SETTLEMENTS &amp; INVOICING</span>
           </div>
           <h1 className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            Invoices &amp; Billing Ledger
+            Billing &amp; Invoices
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-            Manage client retainers, word-count billing, and ISO certified invoices.
+            Track corporate billing, milestone payouts, and instant Stripe SWIFT settlements.
           </p>
         </div>
 
         {/* Pill Action Buttons */}
         <div className="flex items-center gap-3">
-          {/* View Type Toggle */}
-          <div className={`flex p-1.5 rounded-full border shadow-sm ${isDarkMode ? 'bg-[#18181b] border-[#27272a]' : 'bg-white border-slate-200'}`}>
-            <button
-              onClick={() => setViewType('grid')}
-              className={`px-4 py-2 text-xs font-black rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
-                viewType === 'grid'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <span className="material-symbols-outlined text-[16px]">grid_view</span>
-              <span>Cards</span>
-            </button>
-            <button
-              onClick={() => setViewType('table')}
-              className={`px-4 py-2 text-xs font-black rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
-                viewType === 'table'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <span className="material-symbols-outlined text-[16px]">table_rows</span>
-              <span>Table</span>
-            </button>
-          </div>
-
+          <button className={`flex items-center gap-2 px-6 py-3.5 border font-black text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+            isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
+          }`}>
+            <span className="material-symbols-outlined text-[18px]">receipt</span>
+            Statement History
+          </button>
           <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
             <span className="material-symbols-outlined text-[18px]">add_card</span>
             Create Invoice
@@ -128,8 +117,8 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
         </div>
       </div>
 
-      {/* Top 4 Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+      {/* Top 4 Stats Overview Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((c) => {
           const isExpanded = hoveredCard === c.id;
           return (
@@ -138,94 +127,111 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
               onMouseEnter={() => setHoveredCard(c.id)}
               className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
                 isExpanded
-                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl scale-[1.02] border-2 border-blue-500'
+                  ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
                   : isDarkMode
                   ? 'bg-[#18181b] border-2 border-[#27272a] text-white shadow-sm hover:shadow-lg'
                   : 'bg-white border-2 border-slate-200/80 text-slate-900 shadow-sm hover:shadow-lg'
               }`}
             >
-              <div className="flex justify-between items-start relative z-10">
-                <span className={`text-xs font-black uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
+              <div className="flex items-center justify-between mb-4">
+                <span className={`text-[10px] font-black uppercase tracking-widest ${isExpanded ? 'text-blue-100' : 'text-slate-400'}`}>
                   {c.title}
                 </span>
-                <span className={`text-[10px] px-3 py-1 rounded-full font-black ${
-                  isExpanded ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300'
+                <div className={`w-9 h-9 rounded-2xl flex items-center justify-center shadow-sm ${
+                  isExpanded ? 'bg-white/10 text-white' : 'bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400'
                 }`}>
-                  {c.badge}
-                </span>
+                  <span className="material-symbols-outlined text-[20px]">{c.icon}</span>
+                </div>
               </div>
-              <div className="mt-6 relative z-10">
-                <div className="text-4xl font-black tracking-tight">{c.value}</div>
+
+              <div>
+                <div className="text-3xl font-black tracking-tight mb-1">{c.value}</div>
+                <div className="flex items-center gap-1.5">
+                  <span className={`text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
+                    isExpanded
+                      ? 'bg-white/20 text-white'
+                      : isDarkMode
+                      ? 'bg-blue-900/40 text-blue-300 border border-blue-800/40'
+                      : 'bg-blue-50 text-blue-700 border border-blue-200'
+                  }`}>
+                    {c.badge}
+                  </span>
+                </div>
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* Status Filter Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2">
-        {['All', 'Paid', 'Pending', 'Overdue'].map((st) => (
-          <button
-            key={st}
-            onClick={() => setSelectedStatus(st)}
-            className={`px-5 py-2.5 rounded-full text-xs font-black transition-all cursor-pointer shadow-2xs ${
-              selectedStatus === st
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                : isDarkMode
-                ? 'bg-[#18181b] border border-[#27272a] text-slate-400 hover:text-white'
-                : 'bg-white border border-slate-200 text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            {st} Invoices
-          </button>
-        ))}
-      </div>
-
-      {/* Main Grid Layout (Matching Team & Documents Pages) */}
+      {/* Main Content Grid: 12 Columns */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-0">
         {/* Left Side Billing Capacity & Payment Methods - 4 Cols */}
         <div className="lg:col-span-4 space-y-8">
           {/* Realization Rate Donut Arc Gauge */}
-          <div className={`p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-colors ${
+          <div className={`p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-black leading-tight">Billing<br />Realization Rate</h3>
-              <div className="w-9 h-9 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 flex items-center justify-center shadow-sm">
+              <div className="w-9 h-9 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-sm">
                 <span className="material-symbols-outlined text-[20px]">payments</span>
               </div>
             </div>
 
-            {/* 91% Donut Arc Gauge */}
-            <div className="relative w-44 h-44 mx-auto my-6 flex items-center justify-center">
-              <svg className="w-full h-full transform -rotate-90">
-                <circle cx="88" cy="88" r="70" fill="transparent" stroke={isDarkMode ? '#27272a' : '#e2e8f0'} strokeWidth="16" />
-                <circle
-                  cx="88"
-                  cy="88"
-                  r="70"
-                  fill="transparent"
-                  stroke="#10b981"
-                  strokeWidth="16"
-                  strokeDasharray="440"
-                  strokeDashoffset="39"
+            {/* Standardized Arc Gauge */}
+            <div className="relative w-64 h-40 mx-auto flex flex-col items-center justify-end my-4 cursor-pointer group">
+              <svg className="w-64 h-40" viewBox="0 0 200 110">
+                <path
+                  d="M 20 100 A 80 80 0 0 1 180 100"
+                  fill="none"
+                  stroke="url(#hatchedPatternInv)"
+                  strokeWidth="28"
                   strokeLinecap="round"
                 />
+                <path
+                  d="M 20 100 A 80 80 0 0 1 180 100"
+                  fill="none"
+                  stroke="#38bdf8"
+                  strokeWidth="28"
+                  strokeDasharray="251.32"
+                  strokeDashoffset="10.05"
+                  strokeLinecap="round"
+                  className="transition-all duration-700 ease-out"
+                />
+                <path
+                  d="M 20 100 A 80 80 0 0 1 180 100"
+                  fill="none"
+                  stroke="#004ac6"
+                  strokeWidth="28"
+                  strokeDasharray="251.32"
+                  strokeDashoffset="22.62"
+                  strokeLinecap="round"
+                  className="transition-all duration-700 ease-out"
+                />
               </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <span className="text-4xl font-black tracking-tight">91%</span>
-                <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-0.5">$17.2K / $19K</span>
+
+              <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
+                <span className={`text-4xl font-black tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                  91%
+                </span>
+                <span className="text-[10px] font-extrabold text-zinc-400 mt-1">$17.2K / $19K</span>
               </div>
             </div>
 
-            <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-zinc-800 text-xs">
-              <div className="flex justify-between items-center font-bold">
-                <span className="text-slate-400">Payment Gateway</span>
-                <span className="font-black text-emerald-500 text-sm">Stripe Auto Pay</span>
+            <div className={`flex justify-between items-center text-xs font-bold border-t pt-4 mt-2 ${
+              isDarkMode ? 'border-zinc-800 text-zinc-300' : 'border-slate-100 text-slate-600'
+            }`}>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-[#004ac6]"></span>
+                <span>Collected</span>
               </div>
-              <div className="flex justify-between items-center font-bold">
-                <span className="text-slate-400">ISO Billing Standard</span>
-                <span className="font-black text-blue-600 dark:text-blue-400 text-sm">ISO-17100</span>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-[#38bdf8]"></span>
+                <span>Clearing</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3.5 h-3.5 border-2 border-dashed border-zinc-400 rounded-sm bg-slate-100 dark:bg-zinc-800"></span>
+                <span>Pending</span>
               </div>
             </div>
           </div>
