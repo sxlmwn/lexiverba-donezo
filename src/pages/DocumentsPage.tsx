@@ -282,20 +282,20 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ isDarkMode = false
               <div>
                 <div className="flex justify-between text-xs font-bold mb-1">
                   <span>Medical / Life Sciences</span>
-                  <span className="text-emerald-500 font-black">62%</span>
+                  <span className="text-blue-600 font-black">62%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-emerald-500 h-full rounded-full w-[62%]"></div>
+                  <div className="bg-blue-600 h-full rounded-full w-[62%]"></div>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-xs font-bold mb-1">
                   <span>Fintech &amp; Audits</span>
-                  <span className="text-amber-500 font-black">74%</span>
+                  <span className="text-blue-600 font-black">74%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-amber-500 h-full rounded-full w-[74%]"></div>
+                  <div className="bg-blue-600 h-full rounded-full w-[74%]"></div>
                 </div>
               </div>
             </div>

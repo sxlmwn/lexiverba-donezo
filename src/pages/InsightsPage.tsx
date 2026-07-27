@@ -207,20 +207,20 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
               <div>
                 <div className="flex justify-between text-xs font-bold mb-1">
                   <span>Medical &amp; Bio Protocols</span>
-                  <span className="text-emerald-500 font-black">96.8%</span>
+                  <span className="text-blue-600 font-black">96.8%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-emerald-500 h-full rounded-full w-[96.8%]"></div>
+                  <div className="bg-blue-600 h-full rounded-full w-[96.8%]"></div>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-xs font-bold mb-1">
                   <span>Fintech &amp; Earnings Reports</span>
-                  <span className="text-purple-500 font-black">97.1%</span>
+                  <span className="text-blue-600 font-black">97.1%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-purple-500 h-full rounded-full w-[97.1%]"></div>
+                  <div className="bg-blue-600 h-full rounded-full w-[97.1%]"></div>
                 </div>
               </div>
             </div>

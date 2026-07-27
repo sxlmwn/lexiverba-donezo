@@ -250,20 +250,20 @@ export const InvoicesPage: React.FC<InvoicesPageProps> = ({ isDarkMode = false, 
               <div>
                 <div className="flex justify-between text-xs font-bold mb-1">
                   <span>Corporate Wire (SWIFT/SEPA)</span>
-                  <span className="text-emerald-500 font-black">24%</span>
+                  <span className="text-blue-600 font-black">24%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-emerald-500 h-full rounded-full w-[24%]"></div>
+                  <div className="bg-blue-600 h-full rounded-full w-[24%]"></div>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-xs font-bold mb-1">
                   <span>USDC Stablecoin Settlement</span>
-                  <span className="text-purple-500 font-black">8%</span>
+                  <span className="text-blue-600 font-black">8%</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
-                  <div className="bg-purple-500 h-full rounded-full w-[8%]"></div>
+                  <div className="bg-blue-600 h-full rounded-full w-[8%]"></div>
                 </div>
               </div>
             </div>
