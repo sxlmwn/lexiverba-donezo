@@ -6,7 +6,7 @@ interface SettingsPageProps {
 }
 
 export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, onItemClick }) => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredStatCard, setHoveredStatCard] = useState<number | null>(null);
 
   const statCards = [
     { id: 0, title: 'API KEYS ACTIVE', value: '2 Production', badge: 'Active Rate Limit', icon: 'key', color: 'text-blue-500' },
@@ -50,11 +50,11 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ isDarkMode = false, 
       {/* Top 4 Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((c) => {
-          const isExpanded = hoveredCard === c.id;
+          const isExpanded = hoveredStatCard === c.id;
           return (
             <div
               key={c.id}
-              onMouseEnter={() => setHoveredCard(c.id)}
+              onMouseEnter={() => setHoveredStatCard(c.id)}
               className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
                 isExpanded
                   ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'

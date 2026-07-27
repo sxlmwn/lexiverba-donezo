@@ -6,7 +6,7 @@ interface TeamPageProps {
 }
 
 export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemClick }) => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredMemberCard, setHoveredMemberCard] = useState<number | string | null>(null);
 
   const teamMembers = [
     {
@@ -224,19 +224,21 @@ export const TeamPage: React.FC<TeamPageProps> = ({ isDarkMode = false, onItemCl
         <div className="lg:col-span-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {teamMembers.map((member) => {
-              const isHovered = hoveredCard === member.id;
+              const isHovered = hoveredMemberCard === member.id;
               return (
                 <div
                   key={member.id}
-                  onMouseEnter={() => setHoveredCard(member.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
+                  onMouseEnter={() => setHoveredMemberCard(member.id)}
+                  onMouseLeave={() => setHoveredMemberCard(null)}
                   onClick={() => onItemClick && onItemClick({ title: member.name, subtitle: `${member.role} • ${member.availability}`, icon: member.badge, badge: 'LINGUIST PROFILE' })}
                   className={`p-6 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-all duration-300 relative flex flex-col justify-between cursor-pointer ${
+                    isDarkMode ? 'bg-[#18181b] text-white' : 'bg-white text-slate-900'
+                  } ${
                     isHovered
-                      ? 'shadow-2xl border-blue-500 z-10'
+                      ? 'border-blue-500 shadow-2xl z-10'
                       : isDarkMode
-                      ? 'bg-[#131927] border-[#1f283d] text-white shadow-sm'
-                      : 'bg-white border-slate-200/80 text-slate-900 shadow-sm'
+                      ? 'border-[#27272a] shadow-sm'
+                      : 'border-slate-200/80 shadow-sm'
                   }`}
                 >
                   <div>

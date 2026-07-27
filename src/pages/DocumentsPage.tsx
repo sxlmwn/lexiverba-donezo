@@ -6,7 +6,8 @@ interface DocumentsPageProps {
 }
 
 export const DocumentsPage: React.FC<DocumentsPageProps> = ({ isDarkMode = false, onItemClick }) => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredStatCard, setHoveredStatCard] = useState<number | null>(null);
+  const [hoveredDocCard, setHoveredDocCard] = useState<number | string | null>(null);
   const [viewType, setViewType] = useState<'grid' | 'table'>('grid');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
@@ -152,11 +153,11 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ isDarkMode = false
       {/* Top 4 Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((c) => {
-          const isExpanded = hoveredCard === c.id;
+          const isExpanded = hoveredStatCard === c.id;
           return (
             <div
               key={c.id}
-              onMouseEnter={() => setHoveredCard(c.id)}
+              onMouseEnter={() => setHoveredStatCard(c.id)}
               className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
                 isExpanded
                   ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
@@ -313,19 +314,21 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ isDarkMode = false
           {viewType === 'grid' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredDocs.map((doc) => {
-                const isHovered = hoveredCard === doc.id;
+                const isHovered = hoveredDocCard === doc.id;
                 return (
                   <div
                     key={doc.id}
-                    onMouseEnter={() => setHoveredCard(doc.id)}
-                    onMouseLeave={() => setHoveredCard(null)}
+                    onMouseEnter={() => setHoveredDocCard(doc.id)}
+                    onMouseLeave={() => setHoveredDocCard(null)}
                     onClick={() => onItemClick && onItemClick({ title: doc.name, subtitle: `${doc.category} • ${doc.size} • Status: ${doc.status}`, icon: doc.icon, badge: doc.status })}
                     className={`p-6 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-all duration-300 relative flex flex-col justify-between cursor-pointer animate-card-pop ${
+                      isDarkMode ? 'bg-[#18181b] text-white' : 'bg-white text-slate-900'
+                    } ${
                       isHovered
-                        ? 'shadow-2xl border-blue-500 z-10'
+                        ? 'border-blue-500 shadow-2xl z-10'
                         : isDarkMode
-                        ? 'bg-[#18181b] border-[#27272a] text-white shadow-sm'
-                        : 'bg-white border-slate-200/80 text-slate-900 shadow-sm'
+                        ? 'border-[#27272a] shadow-sm'
+                        : 'border-slate-200/80 shadow-sm'
                     }`}
                   >
                     <div>

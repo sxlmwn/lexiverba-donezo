@@ -6,7 +6,8 @@ interface InsightsPageProps {
 }
 
 export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, onItemClick }) => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredStatCard, setHoveredStatCard] = useState<number | null>(null);
+  const [hoveredInsightCard, setHoveredInsightCard] = useState<number | string | null>(null);
   const [chartType, setChartType] = useState<'bars' | 'line'>('bars');
   const [timeframe, setTimeframe] = useState<'D' | 'W' | 'M'>('W');
 
@@ -116,11 +117,11 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
       {/* Top 4 Stats Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((c) => {
-          const isExpanded = hoveredCard === c.id;
+          const isExpanded = hoveredStatCard === c.id;
           return (
             <div
               key={c.id}
-              onMouseEnter={() => setHoveredCard(c.id)}
+              onMouseEnter={() => setHoveredStatCard(c.id)}
               className={`p-6 rounded-[2.5rem] cursor-pointer smooth-card float-shadow float-hover transition-all duration-300 relative overflow-hidden flex flex-col justify-between ${
                 isExpanded
                   ? 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white shadow-2xl border-2 border-blue-500'
@@ -373,20 +374,22 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ isDarkMode = false, 
 
           {/* Language Pair Performance Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {languagePairs.map((lp, idx) => {
-              const isHovered = hoveredCard === idx;
+            {languagePairs.map((lp) => {
+              const isHovered = hoveredInsightCard === lp.id;
               return (
                 <div
                   key={lp.id}
-                  onMouseEnter={() => setHoveredCard(idx)}
-                  onMouseLeave={() => setHoveredCard(null)}
+                  onMouseEnter={() => setHoveredInsightCard(lp.id)}
+                  onMouseLeave={() => setHoveredInsightCard(null)}
                   onClick={() => onItemClick && onItemClick({ title: lp.pair, subtitle: `${lp.type} • Accuracy: ${lp.accuracy} • Throughput: ${lp.throughput}`, icon: lp.icon, badge: lp.status })}
                   className={`p-6 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card transition-all duration-300 relative flex flex-col justify-between cursor-pointer animate-card-pop ${
+                    isDarkMode ? 'bg-[#18181b] text-white' : 'bg-white text-slate-900'
+                  } ${
                     isHovered
-                      ? 'shadow-2xl border-blue-500 z-10'
+                      ? 'border-blue-500 shadow-2xl z-10'
                       : isDarkMode
-                      ? 'bg-[#18181b] border-[#27272a] text-white shadow-sm'
-                      : 'bg-white border-slate-200/80 text-slate-900 shadow-sm'
+                      ? 'border-[#27272a] shadow-sm'
+                      : 'border-slate-200/80 shadow-sm'
                   }`}
                 >
                   <div>
