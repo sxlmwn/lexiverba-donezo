@@ -59,9 +59,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
                 <div className="w-10 h-10 bg-white text-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                   <span className="material-symbols-outlined text-blue-600 text-[26px]">translate</span>
                 </div>
-                <span className="text-2xl font-extrabold tracking-tight text-white">LexiVerba</span>
+                <span className="text-2xl font-semibold tracking-tight text-white">LexiVerba</span>
               </div>
-              <h1 className="text-3xl font-extrabold leading-tight tracking-tight mt-6">
+              <h1 className="text-3xl font-semibold leading-tight tracking-tight mt-6">
                 Your portal to <br />
                 Global Linguistic <br />
                 <span className="opacity-80 italic font-serif">Excellence.</span>
@@ -83,8 +83,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
                     />
                   </div>
                   <div>
-                    <p className="font-bold text-xs text-white">Dr. Elena Vance</p>
-                    <p className="text-[10px] text-white/70 uppercase tracking-widest font-extrabold">DEAN OF LINGUISTICS</p>
+                    <p className="font-semibold text-xs text-white">Dr. Elena Vance</p>
+                    <p className="text-[10px] text-white/70 uppercase tracking-widest font-semibold">DEAN OF LINGUISTICS</p>
                   </div>
                 </div>
               </div>
@@ -100,11 +100,11 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
                 <span className="material-symbols-outlined text-[20px]">translate</span>
               </div>
-              <span className="font-extrabold text-xl text-slate-900 dark:text-white">LexiVerba</span>
+              <span className="font-semibold text-xl text-slate-900 dark:text-white">LexiVerba</span>
             </div>
 
             <div className="mb-8">
-              <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-1">Welcome back</h2>
+              <h2 className="text-2xl font-semibold text-slate-900 dark:text-white mb-1">Welcome back</h2>
               <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Please enter your credentials to access the dashboard.</p>
             </div>
 
@@ -116,7 +116,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
               className="space-y-6"
             >
               <div className="space-y-1.5">
-                <label className="block text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider ml-1">Work Email</label>
+                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider ml-1">Work Email</label>
                 <div className="relative group">
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors">
                     mail
@@ -133,8 +133,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
 
               <div className="space-y-1.5">
                 <div className="flex justify-between items-center px-1">
-                  <label className="text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Password</label>
-                  <a href="#" className="text-xs font-extrabold text-blue-600 hover:underline">Forgot password?</a>
+                  <label className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Password</label>
+                  <a href="#" className="text-xs font-semibold text-blue-600 hover:underline">Forgot password?</a>
                 </div>
                 <div className="relative group">
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors">
@@ -164,7 +164,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
 
               <button
                 type="submit"
-                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-extrabold text-xs shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold text-xs shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <span>Sign In to Dashboard</span>
                 <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform text-[18px]">
@@ -179,7 +179,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
                 <button
                   type="button"
                   onClick={onLoginSuccess}
-                  className="flex-1 py-3 flex items-center justify-center gap-2 bg-slate-100 dark:bg-[#1a2234] hover:bg-slate-200 dark:hover:bg-[#253046] rounded-lg transition-colors font-bold text-xs text-slate-900 dark:text-white cursor-pointer"
+                  className="flex-1 py-3 flex items-center justify-center gap-2 bg-slate-100 dark:bg-[#1a2234] hover:bg-slate-200 dark:hover:bg-[#253046] rounded-lg transition-colors font-semibold text-xs text-slate-900 dark:text-white cursor-pointer"
                 >
                   <svg className="w-4 h-4" viewBox="0 0 24 24">
                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -192,7 +192,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
                 <button
                   type="button"
                   onClick={onLoginSuccess}
-                  className="flex-1 py-3 flex items-center justify-center gap-2 bg-slate-100 dark:bg-[#1a2234] hover:bg-slate-200 dark:hover:bg-[#253046] rounded-lg transition-colors font-bold text-xs text-slate-900 dark:text-white cursor-pointer"
+                  className="flex-1 py-3 flex items-center justify-center gap-2 bg-slate-100 dark:bg-[#1a2234] hover:bg-slate-200 dark:hover:bg-[#253046] rounded-lg transition-colors font-semibold text-xs text-slate-900 dark:text-white cursor-pointer"
                 >
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.152-1.11-1.459-1.11-1.459-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" />
@@ -203,13 +203,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, isDarkMode
             </div>
 
             <div className="mt-8 text-center text-xs font-semibold text-slate-400">
-              New to the platform? <a href="#" className="text-blue-600 hover:underline font-extrabold">Request access</a>
+              New to the platform? <a href="#" className="text-blue-600 hover:underline font-semibold">Request access</a>
             </div>
           </div>
         </div>
 
         {/* Footer Metadata */}
-        <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 opacity-50 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 text-center">
+        <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 opacity-50 text-[10px] font-semibold uppercase tracking-widest text-slate-400 text-center">
           <span>Privacy Protocol v4.2</span>
           <span className="hidden sm:inline">•</span>
           <span>ISO 27001 Certified</span>

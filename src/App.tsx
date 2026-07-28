@@ -205,7 +205,7 @@ export function App() {
             <span className="material-symbols-outlined text-[40px]">videocam</span>
           </div>
           <div>
-            <h4 className="font-bold text-base">Arc Company Review Session</h4>
+            <h4 className="font-semibold text-base">Arc Company Review Session</h4>
             <p className="text-xs text-slate-400 mt-1">Connecting secure WebRTC encrypted room...</p>
           </div>
           <div className="flex justify-center gap-3 pt-2">
@@ -230,7 +230,7 @@ export function App() {
           <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl mx-auto flex items-center justify-center shadow-lg">
             <span className="material-symbols-outlined text-[32px]">smartphone</span>
           </div>
-          <h4 className="font-bold text-sm">LexiVerba iOS &amp; Android Companion</h4>
+          <h4 className="font-semibold text-sm">LexiVerba iOS &amp; Android Companion</h4>
           <p className="text-xs text-slate-400">Scan QR code or send download link to your mobile device.</p>
           <div className="p-4 bg-slate-100 dark:bg-zinc-800 rounded-2xl w-32 h-32 mx-auto flex items-center justify-center font-mono text-[10px] text-slate-500">
             [ QR CODE ]
@@ -294,7 +294,7 @@ export function App() {
       >
         <div className="space-y-4 text-xs">
           {activeDetailItem?.badge && (
-            <span className="inline-block bg-blue-600 text-white font-extrabold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            <span className="inline-block bg-blue-600 text-white font-semibold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
               {activeDetailItem.badge}
             </span>
           )}
@@ -304,7 +304,7 @@ export function App() {
           <div className="flex justify-end gap-3 pt-2">
             <button
               onClick={() => setActiveDetailItem(null)}
-              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl text-xs shadow-md transition-all cursor-pointer"
+              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-xs shadow-md transition-all cursor-pointer"
             >
               Close Details
             </button>

@@ -110,25 +110,25 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-1.5 w-10 bg-blue-600 rounded-full shadow-md shadow-blue-500/30"></div>
-            <span className="text-xs font-extrabold text-blue-500 uppercase tracking-[0.25em]">ISO-17100 LINGUIST NETWORK &amp; EXPERTS</span>
+            <span className="text-xs font-semibold text-blue-500 uppercase tracking-[0.25em]">ISO-17100 LINGUIST NETWORK &amp; EXPERTS</span>
           </div>
-          <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+          <h1 className={`text-4xl lg:text-5xl font-semibold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Team Collaboration
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-            Manage your distributed team of <span className="font-extrabold text-blue-500">142 certified specialists</span> across 48 time zones.
+            Manage your distributed team of <span className="font-semibold text-blue-500">142 certified specialists</span> across 48 time zones.
           </p>
         </div>
 
         {/* Pill Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className={`flex items-center gap-2 px-6 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+          <button className={`flex items-center gap-2 px-6 py-3.5 border font-semibold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
           }`}>
             <span className="material-symbols-outlined text-[18px]">filter_list</span>
             Filter Network
           </button>
-          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
+          <button className="flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer">
             <span className="material-symbols-outlined text-[18px]">person_add</span>
             Invite Expert
           </button>
@@ -144,7 +144,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-extrabold leading-tight">Active<br />Capacity</h3>
+              <h3 className="text-lg font-semibold leading-tight">Active<br />Capacity</h3>
               <div className="w-9 h-9 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-sm">
                 <span className="material-symbols-outlined text-[20px]">monitoring</span>
               </div>
@@ -183,10 +183,10 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
               </svg>
 
               <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
-                <span className={`text-4xl font-extrabold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <span className={`text-4xl font-semibold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                   {gaugePercent}%
                 </span>
-                <span className="text-[10px] font-bold text-zinc-400 mt-1">Utilization</span>
+                <span className="text-[10px] font-semibold text-zinc-400 mt-1">Utilization</span>
               </div>
             </div>
 
@@ -212,7 +212,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
           <div className={`p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card space-y-4 transition-colors ${
             isDarkMode ? 'bg-[#131927] border-[#1f283d] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
-            <h3 className="text-lg font-extrabold">Expert Availability</h3>
+            <h3 className="text-lg font-semibold">Expert Availability</h3>
 
             <div className="space-y-4 pt-2">
               <div className={`p-2.5 rounded-2xl transition-all hover:translate-x-1 cursor-pointer ${
@@ -271,15 +271,15 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
                     </div>
 
                     {/* Member Info */}
-                    <h4 className="text-xl font-extrabold tracking-tight">{member.name}</h4>
-                    <p className="text-xs text-blue-500 font-bold mt-0.5 mb-3">{member.role}</p>
+                    <h4 className="text-xl font-semibold tracking-tight">{member.name}</h4>
+                    <p className="text-xs text-blue-500 font-semibold mt-0.5 mb-3">{member.role}</p>
 
                     {/* Tag Metadata */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {member.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className="text-[10px] font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
+                          className="text-[10px] font-semibold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
                         >
                           {tag}
                         </span>
@@ -290,7 +290,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
                   {/* Availability & Quick Action Button */}
                   <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-800">
                     <div>
-                      <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest block mb-1">AVAILABILITY</span>
+                      <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest block mb-1">AVAILABILITY</span>
                       <Badge status={member.availability.includes('Available') ? 'Available' : member.availability === 'Offline' ? 'Offline' : 'Pending'}>
                         {member.availability}
                       </Badge>
@@ -310,7 +310,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
               <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-3 shadow-lg shadow-blue-600/30">
                 <span className="material-symbols-outlined text-[28px]">add</span>
               </div>
-              <h4 className="text-lg font-extrabold">Add Member</h4>
+              <h4 className="text-lg font-semibold">Add Member</h4>
               <p className="text-xs text-slate-400 font-medium max-w-[180px] mt-1">
                 Invite a new linguist to join your agency team
               </p>
@@ -323,7 +323,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onItemClick }) => {
       <div className={`p-6 rounded-[2.5rem] border-2 float-shadow smooth-card font-mono text-xs space-y-2 transition-colors ${
         isDarkMode ? 'bg-[#080b12] border-slate-800 text-slate-300' : 'bg-slate-900 border-slate-900 text-slate-200'
       }`}>
-        <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-[10px] font-extrabold uppercase text-slate-500 tracking-widest">
+        <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-[10px] font-semibold uppercase text-slate-500 tracking-widest">
           <span>NETWORK LIVE STREAM</span>
           <span className="text-emerald-400 flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>

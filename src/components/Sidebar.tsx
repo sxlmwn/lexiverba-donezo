@@ -46,7 +46,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span className="material-symbols-outlined text-[24px]">translate</span>
             </div>
             {!isCollapsed && (
-              <span className={`font-extrabold text-2xl tracking-tight transition-opacity duration-200 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+              <span className={`font-semibold text-2xl tracking-tight transition-opacity duration-200 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                 LexiVerba
               </span>
             )}
@@ -73,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* MENU Group */}
           <div>
             {!isCollapsed && (
-              <div className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] px-3 mb-3">
+              <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.2em] px-3 mb-3">
                 MENU
               </div>
             )}
@@ -90,8 +90,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     } rounded-2xl font-semibold transition-all text-xs relative group cursor-pointer ${
                       isActive
                         ? isDarkMode
-                          ? 'bg-[#1e1e24] text-white font-bold shadow-sm'
-                          : 'bg-slate-100 text-slate-900 font-bold shadow-2xs'
+                          ? 'bg-[#1e1e24] text-white font-semibold shadow-sm'
+                          : 'bg-slate-100 text-slate-900 font-semibold shadow-2xs'
                         : isDarkMode
                         ? 'text-slate-400 hover:bg-[#18181c] hover:text-white'
                         : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
@@ -119,7 +119,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                     {!isCollapsed && item.badge && (
                       <span
-                        className={`text-[10px] font-extrabold px-2 py-0.5 rounded-md ${
+                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${
                           isActive
                             ? 'bg-blue-600 text-white'
                             : 'bg-slate-200/80 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300'
@@ -137,7 +137,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* GENERAL Group */}
           <div>
             {!isCollapsed && (
-              <div className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] px-3 mb-3">
+              <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.2em] px-3 mb-3">
                 GENERAL
               </div>
             )}
@@ -154,8 +154,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     } rounded-2xl font-semibold transition-all text-xs relative group cursor-pointer ${
                       isActive
                         ? isDarkMode
-                          ? 'bg-[#1e1e24] text-white font-bold shadow-sm'
-                          : 'bg-slate-100 text-slate-900 font-bold shadow-2xs'
+                          ? 'bg-[#1e1e24] text-white font-semibold shadow-sm'
+                          : 'bg-slate-100 text-slate-900 font-semibold shadow-2xs'
                         : isDarkMode
                         ? 'text-slate-400 hover:bg-[#18181c] hover:text-white'
                         : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'

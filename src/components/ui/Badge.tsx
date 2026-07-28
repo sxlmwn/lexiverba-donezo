@@ -70,7 +70,7 @@ export const Badge: React.FC<BadgeProps> = ({
     <span
       data-badge-interactive={interactive ? 'true' : 'false'}
       className={cn(
-        'inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full border shadow-2xs transition-all',
+        'inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider rounded-full border shadow-2xs transition-all',
         variantStyles[resolvedVariant],
         interactive && 'clickable-badge',
         className

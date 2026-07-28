@@ -27,7 +27,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       {showLabel && (
         <div className="flex justify-between text-xs font-semibold mb-1">
           <span>{label || 'Progress'}</span>
-          <span className="text-blue-600 font-extrabold">{normalizedProgress}%</span>
+          <span className="text-blue-600 font-semibold">{normalizedProgress}%</span>
         </div>
       )}
       <div className={cn('w-full rounded-full overflow-hidden', trackColor, height)}>

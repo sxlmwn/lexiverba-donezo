@@ -131,9 +131,9 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-1.5 w-10 bg-blue-600 rounded-full shadow-md shadow-blue-500/30"></div>
-            <span className="text-xs font-extrabold text-blue-500 uppercase tracking-[0.25em]">ISO-17100 CERTIFIED VAULT</span>
+            <span className="text-xs font-semibold text-blue-500 uppercase tracking-[0.25em]">ISO-17100 CERTIFIED VAULT</span>
           </div>
-          <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+          <h1 className={`text-4xl lg:text-5xl font-semibold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Documents &amp; Assets
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -146,7 +146,7 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
           <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#18181b] border-[#27272a]' : 'bg-white border-slate-200'}`}>
             <button
               onClick={() => setViewType('grid')}
-              className={`px-4 py-2 text-xs font-extrabold rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-4 py-2 text-xs font-semibold rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
                 viewType === 'grid'
                   ? 'bg-blue-600 text-white shadow-md'
                   : isDarkMode
@@ -159,7 +159,7 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
             </button>
             <button
               onClick={() => setViewType('table')}
-              className={`px-4 py-2 text-xs font-extrabold rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-4 py-2 text-xs font-semibold rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
                 viewType === 'table'
                   ? 'bg-blue-600 text-white shadow-md'
                   : isDarkMode
@@ -172,7 +172,7 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
             </button>
           </div>
 
-          <button className={`flex items-center gap-2 px-6 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+          <button className={`flex items-center gap-2 px-6 py-3.5 border font-semibold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
           }`}>
             <span className="material-symbols-outlined text-[18px]">cloud_sync</span>
@@ -203,13 +203,13 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
           <div className={`p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card flex flex-col justify-between transition-colors ${
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
-            <h3 className="text-xl font-extrabold mb-4">Asset Categories</h3>
+            <h3 className="text-xl font-semibold mb-4">Asset Categories</h3>
             <div className="space-y-2">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`w-full flex items-center justify-between px-5 py-3.5 rounded-2xl text-xs font-extrabold transition-all hover:translate-x-1 cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-5 py-3.5 rounded-2xl text-xs font-semibold transition-all hover:translate-x-1 cursor-pointer ${
                     selectedCategory === cat
                       ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
                       : isDarkMode
@@ -218,7 +218,7 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
                   }`}
                 >
                   <span>{cat}</span>
-                  <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold ${
+                  <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-semibold ${
                     selectedCategory === cat
                       ? 'bg-white/20 text-white'
                       : isDarkMode
@@ -237,8 +237,8 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
             isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
           }`}>
             <div className="flex justify-between items-center">
-              <h3 className="text-lg font-extrabold">Vault Storage</h3>
-              <span className="text-xs font-extrabold text-blue-500 bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full">78% CAPACITY</span>
+              <h3 className="text-lg font-semibold">Vault Storage</h3>
+              <span className="text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full">78% CAPACITY</span>
             </div>
 
             <div className="space-y-4 pt-2">
@@ -289,15 +289,15 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
                       </div>
 
                       {/* Document Info */}
-                      <h4 className="text-lg font-extrabold tracking-tight leading-snug">{doc.name}</h4>
-                      <p className="text-xs text-blue-500 font-bold mt-1 mb-3">{doc.category}</p>
+                      <h4 className="text-lg font-semibold tracking-tight leading-snug">{doc.name}</h4>
+                      <p className="text-xs text-blue-500 font-semibold mt-1 mb-3">{doc.category}</p>
 
                       {/* Tag Metadata */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {doc.tags.map((tag, idx) => (
                           <span
                             key={idx}
-                            className="text-[10px] font-bold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
+                            className="text-[10px] font-semibold tracking-wide text-slate-500 dark:text-slate-400 uppercase"
                           >
                             {tag}
                           </span>
@@ -308,7 +308,7 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
                     {/* Metadata & Quick Action Buttons */}
                     <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-zinc-800">
                       <div>
-                        <div className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">
+                        <div className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest">
                           {doc.size} • {doc.date}
                         </div>
                         <div className="text-xs font-semibold text-slate-700 dark:text-slate-200 mt-0.5">
@@ -330,10 +330,10 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
             <div className={`rounded-[2.5rem] border-2 p-8 float-shadow smooth-card transition-colors ${
               isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
             }`}>
-              <h3 className="text-xl font-extrabold mb-6">Linguistic Assets Repository</h3>
+              <h3 className="text-xl font-semibold mb-6">Linguistic Assets Repository</h3>
               <table className="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr className={`border-b-2 text-xs font-extrabold uppercase tracking-wider ${
+                  <tr className={`border-b-2 text-xs font-semibold uppercase tracking-wider ${
                     isDarkMode ? 'border-zinc-800 text-slate-400' : 'border-slate-100 text-slate-400'
                   }`}>
                     <th className="pb-4">Document Name</th>
@@ -349,7 +349,7 @@ export const DocumentsPage: React.FC<DocumentsPageProps> = ({ onItemClick }) => 
                 }`}>
                   {filteredDocs.map((doc, idx) => (
                     <tr key={idx} className={`transition-colors ${isDarkMode ? 'hover:bg-zinc-800/40' : 'hover:bg-slate-50'}`}>
-                      <td className="py-4 font-extrabold text-blue-500">{doc.name}</td>
+                      <td className="py-4 font-semibold text-blue-500">{doc.name}</td>
                       <td className="py-4 text-slate-400">{doc.category}</td>
                       <td className="py-4">{doc.size}</td>
                       <td className="py-4 text-slate-400">{doc.date}</td>

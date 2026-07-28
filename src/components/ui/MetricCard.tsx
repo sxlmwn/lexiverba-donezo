@@ -93,7 +93,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       <div className="flex items-center justify-between mb-4 relative z-10">
         <span
           className={cn(
-            'text-[10px] font-extrabold uppercase tracking-widest',
+            'text-[10px] font-semibold uppercase tracking-widest',
             isHovered ? 'text-blue-100' : 'text-slate-400'
           )}
         >
@@ -112,11 +112,11 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       </div>
 
       <div className="relative z-10">
-        <div className="text-3xl lg:text-4xl font-extrabold tracking-tight mb-2">{displayValue}</div>
+        <div className="text-3xl lg:text-4xl font-semibold tracking-tight mb-2">{displayValue}</div>
         {badge && (
           <div className="flex items-center gap-1.5">
             {isHovered ? (
-              <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-white/20 text-white">
+              <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-white/20 text-white">
                 {badge}
               </span>
             ) : (

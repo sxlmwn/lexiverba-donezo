@@ -134,7 +134,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       {/* Page Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
-          <h1 className={`text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+          <h1 className={`text-4xl lg:text-5xl font-semibold tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Dashboard
           </h1>
           <p className={`text-sm font-medium mt-1 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
@@ -146,14 +146,14 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         <div className="flex items-center gap-3">
           <button 
             onClick={onAddProjectClick}
-            className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer"
+            className="flex items-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer"
           >
             <span className="text-base font-semibold">+</span>
             Add Project
           </button>
           <button 
             onClick={onImportDataClick}
-            className={`px-6 py-3.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
+            className={`px-6 py-3.5 border font-semibold text-xs rounded-full shadow-2xs transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer ${
               isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
             }`}
           >
@@ -184,7 +184,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         }`}>
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
-              <h3 className="text-xl font-extrabold">Project Analytics</h3>
+              <h3 className="text-xl font-semibold">Project Analytics</h3>
               <p className="text-xs text-zinc-400 font-semibold">Wordcount throughput &amp; active project volume</p>
             </div>
 
@@ -192,7 +192,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               <div className={`flex p-1 rounded-full border ${isDarkMode ? 'bg-[#27272a] border-zinc-700' : 'bg-slate-100 border-slate-200'}`}>
                 <button
                   onClick={() => setChartType('bars')}
-                  className={`px-3 py-1 text-xs font-extrabold rounded-full transition-all flex items-center gap-1 cursor-pointer ${
+                  className={`px-3 py-1 text-xs font-semibold rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                     chartType === 'bars'
                       ? 'bg-blue-600 text-white shadow-md'
                       : 'text-zinc-400 hover:text-zinc-200'
@@ -203,7 +203,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 </button>
                 <button
                   onClick={() => setChartType('line')}
-                  className={`px-3 py-1 text-xs font-extrabold rounded-full transition-all flex items-center gap-1 cursor-pointer ${
+                  className={`px-3 py-1 text-xs font-semibold rounded-full transition-all flex items-center gap-1 cursor-pointer ${
                     chartType === 'line'
                       ? 'bg-blue-600 text-white shadow-md'
                       : 'text-zinc-400 hover:text-zinc-200'
@@ -219,7 +219,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <button
                     key={t}
                     onClick={() => setTimeframe(t)}
-                    className={`px-3 py-1 text-xs font-extrabold rounded-full transition-colors cursor-pointer ${
+                    className={`px-3 py-1 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
                       timeframe === t
                         ? 'bg-blue-600 text-white shadow-md'
                         : 'text-zinc-400 hover:text-zinc-200'
@@ -245,7 +245,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               ].map((bar, i) => (
                 <div key={i} className="flex-1 flex flex-col items-center h-full justify-end relative group">
                   {bar.badge && (
-                    <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-md">
+                    <div className="absolute -top-7 bg-blue-600 text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-full shadow-md">
                       {bar.badge}
                     </div>
                   )}
@@ -282,7 +282,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <circle cx="800" cy="40" r="6" fill={isDarkMode ? '#09090b' : 'white'} stroke="currentColor" strokeWidth="4"></circle>
                 </svg>
               </div>
-              <div className="flex justify-between mt-3 text-xs font-extrabold text-zinc-400 px-2">
+              <div className="flex justify-between mt-3 text-xs font-semibold text-zinc-400 px-2">
                 <span>MON</span>
                 <span>TUE</span>
                 <span>WED</span>
@@ -303,7 +303,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           }`}
         >
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xl font-extrabold">Project Progress</h3>
+            <h3 className="text-xl font-semibold">Project Progress</h3>
             <span className="text-xs font-semibold text-blue-600 bg-blue-50 dark:bg-blue-900/40 px-3 py-1 rounded-full">LIVE SLA</span>
           </div>
 
@@ -341,7 +341,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             </svg>
 
             <div className="absolute bottom-2 flex flex-col items-center justify-center group-hover:scale-110 transition-transform">
-              <span className={`text-5xl font-extrabold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+              <span className={`text-5xl font-semibold tracking-tight leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                 {gaugePercent}%
               </span>
               <span className="text-xs font-semibold text-zinc-400 mt-1">Project Ended</span>
@@ -374,8 +374,8 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-extrabold">Team Collaboration</h3>
-            <button className={`px-4 py-1.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 cursor-pointer ${
+            <h3 className="text-lg font-semibold">Team Collaboration</h3>
+            <button className={`px-4 py-1.5 border font-semibold text-xs rounded-full shadow-2xs transition-all hover:scale-105 cursor-pointer ${
               isDarkMode ? 'bg-zinc-800 border-zinc-700 text-white' : 'bg-white border-slate-300 text-slate-800'
             }`}>
               + Add Member
@@ -390,7 +390,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 <div className="flex items-center gap-3">
                   <img src={m.avatar} alt={m.name} className="w-10 h-10 rounded-full object-cover" />
                   <div>
-                    <div className="font-bold text-xs">{m.name}</div>
+                    <div className="font-semibold text-xs">{m.name}</div>
                     <div className="text-[10px] text-zinc-400 font-medium">{m.task}</div>
                   </div>
                 </div>
@@ -405,8 +405,8 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-extrabold">Project</h3>
-            <button className={`px-4 py-1.5 border font-extrabold text-xs rounded-full shadow-2xs transition-all hover:scale-105 cursor-pointer ${
+            <h3 className="text-lg font-semibold">Project</h3>
+            <button className={`px-4 py-1.5 border font-semibold text-xs rounded-full shadow-2xs transition-all hover:scale-105 cursor-pointer ${
               isDarkMode ? 'bg-zinc-800 border-zinc-700 text-white' : 'bg-white border-slate-300 text-slate-800'
             }`}>
               + New
@@ -426,7 +426,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <span className="material-symbols-outlined text-[20px]">{p.icon}</span>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-bold text-xs truncate">{p.name}</div>
+                  <div className="font-semibold text-xs truncate">{p.name}</div>
                   <div className="text-[10px] text-zinc-400 font-medium">{p.date}</div>
                 </div>
               </div>
@@ -438,16 +438,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         <div className={`lg:col-span-3 p-8 rounded-[2.5rem] border-2 float-shadow float-hover smooth-card space-y-4 transition-colors ${
           isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
-          <h3 className="text-lg font-extrabold mb-4">Hard Deadlines</h3>
+          <h3 className="text-lg font-semibold mb-4">Hard Deadlines</h3>
           <div 
             onClick={() => onItemClick && onItemClick({ title: 'Legal Contract - DE/EN', subtitle: 'URGENT • Due in 2 hours. Reviewer: Alex Sterling', icon: 'priority_high', badge: 'URGENT 2H' })}
             className="p-4 rounded-2xl bg-red-500/10 border-l-8 border-red-500 transition-all hover:translate-x-2 cursor-pointer"
           >
             <div className="flex justify-between items-center mb-1">
-              <span className="text-[10px] font-extrabold text-red-500 uppercase tracking-widest">URGENT • 2H</span>
+              <span className="text-[10px] font-semibold text-red-500 uppercase tracking-widest">URGENT • 2H</span>
               <span className="material-symbols-outlined text-red-500 text-[18px]">priority_high</span>
             </div>
-            <h4 className="font-extrabold text-xs">Legal Contract - DE/EN</h4>
+            <h4 className="font-semibold text-xs">Legal Contract - DE/EN</h4>
             <p className="text-[10px] text-zinc-400 font-medium mt-1">Reviewer: Alex Sterling</p>
           </div>
 
@@ -456,9 +456,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             className="p-4 rounded-2xl bg-blue-500/10 border-l-8 border-blue-500 transition-all hover:translate-x-2 cursor-pointer"
           >
             <div className="flex justify-between items-center mb-1">
-              <span className="text-[10px] font-extrabold text-blue-500 uppercase tracking-widest">HIGH • TODAY</span>
+              <span className="text-[10px] font-semibold text-blue-500 uppercase tracking-widest">HIGH • TODAY</span>
             </div>
-            <h4 className="font-extrabold text-xs">Financial Report - ES/EN</h4>
+            <h4 className="font-semibold text-xs">Financial Report - ES/EN</h4>
             <p className="text-[10px] text-zinc-400 font-medium mt-1">Validation pending</p>
           </div>
         </div>
@@ -471,9 +471,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           isDarkMode ? 'bg-[#18181b] border-[#27272a] text-white' : 'bg-white border-slate-200/80 text-slate-900'
         }`}>
           <div>
-            <h3 className="text-lg font-extrabold mb-4">Reminders</h3>
+            <h3 className="text-lg font-semibold mb-4">Reminders</h3>
             <div className="mt-2">
-              <h4 className="text-2xl font-extrabold leading-snug">
+              <h4 className="text-2xl font-semibold leading-snug">
                 Meeting with Arc Company
               </h4>
               <p className="text-xs text-zinc-400 font-medium mt-2">
@@ -484,7 +484,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
           <button 
             onClick={onStartMeetingClick}
-            className="w-full max-w-sm mt-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer"
+            className="w-full max-w-sm mt-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 float-hover cursor-pointer"
           >
             <span className="material-symbols-outlined text-[18px]">videocam</span>
             Start Meeting
@@ -495,8 +495,8 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         <div className="lg:col-span-5 bg-gradient-to-br from-zinc-900 via-zinc-950 to-black text-white p-8 rounded-[2.5rem] shadow-2xl float-shadow float-hover smooth-card flex flex-col justify-between relative overflow-hidden border border-zinc-800">
           <div className="absolute -right-8 -bottom-8 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl"></div>
           <div>
-            <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-4">Time Tracker</h3>
-            <div className="text-4xl font-extrabold font-mono tracking-wider mt-4">
+            <h3 className="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-4">Time Tracker</h3>
+            <div className="text-4xl font-semibold font-mono tracking-wider mt-4">
               {formatTime(seconds)}
             </div>
           </div>
